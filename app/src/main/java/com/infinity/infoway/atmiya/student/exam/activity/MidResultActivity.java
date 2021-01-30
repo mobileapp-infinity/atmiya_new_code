@@ -94,7 +94,7 @@ public class MidResultActivity extends AppCompatActivity implements View.OnClick
                         }
                     });
         } else {
-            Toast.makeText(this, "No internet connection,Please try again later.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No internet connection, Please try again later.", Toast.LENGTH_SHORT).show();
         }
     }
 

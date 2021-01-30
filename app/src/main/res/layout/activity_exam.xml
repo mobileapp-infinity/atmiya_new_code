@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/common_bg_color"
+    android:orientation="vertical"
     tools:context=".student.exam.activity.ExamActivity">
 
     <LinearLayout
@@ -27,9 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="Exam"
-            android:layout_marginLeft="10dp"
             android:textAllCaps="true"
             android:textColor="@color/white" />
 
@@ -39,8 +39,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_margin="16dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
@@ -51,41 +51,41 @@
 
             <LinearLayout
                 android:id="@+id/llExamSchedule"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="12dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border_for_fee_details_menu">
+                    android:background="@drawable/border_for_fee_details_menu"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_exam_schedule"
                         android:paddingTop="18dp"
-                        android:paddingBottom="18dp"/>
+                        android:paddingBottom="18dp"
+                        app:srcCompat="@drawable/ic_exam_schedule" />
 
                     <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Exam Schedule"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:minLines="2"
-                        android:maxLines="2"
+                        android:background="@drawable/shape_fee_details_screen"
                         android:gravity="center"
+                        android:maxLines="2"
+                        android:minLines="2"
+                        android:padding="8dp"
+                        android:text="Exam Schedule"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:background="@drawable/shape_fee_details_screen"/>
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -93,41 +93,41 @@
 
             <LinearLayout
                 android:id="@+id/llExamCIAMarks"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="12dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border_for_fee_details_menu">
+                    android:background="@drawable/border_for_fee_details_menu"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_result"
                         android:paddingTop="18dp"
-                        android:paddingBottom="18dp"/>
+                        android:paddingBottom="18dp"
+                        app:srcCompat="@drawable/ic_result" />
 
                     <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CIA MARKS"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:minLines="2"
-                        android:maxLines="2"
+                        android:background="@drawable/shape_fee_details_screen"
                         android:gravity="center"
+                        android:maxLines="2"
+                        android:minLines="2"
+                        android:padding="8dp"
+                        android:text="CIA MARKS"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:background="@drawable/shape_fee_details_screen"/>
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -135,41 +135,41 @@
 
             <LinearLayout
                 android:id="@+id/llExamResult"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="12dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border_for_fee_details_menu">
+                    android:background="@drawable/border_for_fee_details_menu"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_cia_marks"
                         android:paddingTop="18dp"
-                        android:paddingBottom="18dp"/>
+                        android:paddingBottom="18dp"
+                        app:srcCompat="@drawable/ic_cia_marks" />
 
                     <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Result"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:minLines="2"
-                        android:maxLines="2"
+                        android:background="@drawable/shape_fee_details_screen"
                         android:gravity="center"
+                        android:maxLines="2"
+                        android:minLines="2"
+                        android:padding="8dp"
+                        android:text="Result"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:background="@drawable/shape_fee_details_screen"/>
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -184,126 +184,127 @@
             android:weightSum="3">
 
             <LinearLayout
+                android:id="@+id/llMidMarks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_for_fee_details_menu"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp"
+                        app:srcCompat="@drawable/ic_result" />
+
+                    <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_fee_details_screen"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:minLines="2"
+                        android:padding="8dp"
+                        android:text="MID MARKS"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/llMidResult"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="12dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border_for_fee_details_menu">
+                    android:background="@drawable/border_for_fee_details_menu"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_exam_schedule"
                         android:paddingTop="18dp"
-                        android:paddingBottom="18dp"/>
+                        android:paddingBottom="18dp"
+                        app:srcCompat="@drawable/ic_exam_schedule" />
 
                     <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/shape_fee_details_screen"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:minLines="2"
+                        android:padding="8dp"
                         android:text="Mid Result"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:gravity="center"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:background="@drawable/shape_fee_details_screen"/>
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="invisible"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="12dp">
+                android:visibility="invisible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border_for_fee_details_menu">
+                    android:background="@drawable/border_for_fee_details_menu"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_result"
                         android:paddingTop="18dp"
-                        android:paddingBottom="18dp"/>
+                        android:paddingBottom="18dp"
+                        app:srcCompat="@drawable/ic_cia_marks" />
 
                     <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CIA MARKS"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:minLines="2"
-                        android:maxLines="2"
+                        android:background="@drawable/shape_fee_details_screen"
                         android:gravity="center"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:background="@drawable/shape_fee_details_screen"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:visibility="invisible"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="12dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/border_for_fee_details_menu">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_cia_marks"
-                        android:paddingTop="18dp"
-                        android:paddingBottom="18dp"/>
-
-                    <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:minLines="2"
+                        android:padding="8dp"
                         android:text="Result"
-                        android:textSize="10sp"
-                        android:padding="8dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:gravity="center"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:background="@drawable/shape_fee_details_screen"/>
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 

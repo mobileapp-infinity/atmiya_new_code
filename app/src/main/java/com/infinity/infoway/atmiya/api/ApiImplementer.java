@@ -27,6 +27,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_subje
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTablePojo;
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PayWithPaytmPojo;
 import com.infinity.infoway.atmiya.student.home_work.pojo.StudentHomeWorkPojo;
 import com.infinity.infoway.atmiya.student.news_or_notification.UpdateNotificationStatusPojo;
@@ -942,7 +943,6 @@ public class ApiImplementer {
                 institute_id,
                 ip_addr);
         call.enqueue(cb);
-
     }
 
     public static void resetUserPasswordAPIImplementer(String user_type,
@@ -954,7 +954,12 @@ public class ApiImplementer {
         final IApiInterface apiInterface = ApiClient.getClient().create(IApiInterface.class);
         Call<ResetUserPasswordPojo> call = apiInterface.resetUserPasswordAPI(user_type, user_id, institute_id, password, ip_addr);
         call.enqueue(cb);
+    }
 
+    public static void getStudentMidMarksApiImplementer(String stud_id, String sem_id, String div_id, String year_id, Callback<ArrayList<StudentMidMarksPojo>> cb) {
+        final IApiInterface apiInterface = ApiClient.getClient().create(IApiInterface.class);
+        Call<ArrayList<StudentMidMarksPojo>> call = apiInterface.getStudentMidMarksAPI(stud_id, sem_id, div_id, year_id);
+        call.enqueue(cb);
     }
 
 }

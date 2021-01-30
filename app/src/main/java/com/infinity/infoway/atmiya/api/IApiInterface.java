@@ -27,6 +27,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_subje
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTablePojo;
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PayWithPaytmPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.CheckOTPVerificationForEmployeePojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.CheckOTPVerificationForStudentPojo;
@@ -762,5 +763,13 @@ public interface IApiInterface {
             @Query("institute_id") String institute_id,
             @Query("password") String password,
             @Query("ip_addr") String ip_addr);
+
+    @GET("get_mid_sem_student_wise_exam_mark_API")
+    Call<ArrayList<StudentMidMarksPojo>> getStudentMidMarksAPI(
+            @Query("stud_id") String stud_id,
+            @Query("sem_id") String sem_id,
+            @Query("div_id") String div_id,
+            @Query("year_id") String year_id);
+
 
 }
