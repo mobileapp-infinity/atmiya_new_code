@@ -103,7 +103,8 @@ public class FeeDetailsActivity extends AppCompatActivity implements View.OnClic
                 DialogUtil.hideProgressDialog();
                 if (response.isSuccessful() && response.body() != null && response.body().getBase64string() != null &&
                         !response.body().getBase64string().isEmpty()) {
-                    new GeneratePDFFileFromBase64String(FeeDetailsActivity.this, "Pay Slip Of Axis", response.body().getFilename(),
+                    new GeneratePDFFileFromBase64String(FeeDetailsActivity.this, "Pay Slip Of Axis",
+                            CommonUtil.generateUniqueFileName(response.body().getFilename()),
                             response.body().getBase64string());
                 } else {
 //                    progressDialog.hide();
