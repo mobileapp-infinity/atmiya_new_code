@@ -29,9 +29,9 @@ public class EmployeeLoginPojo {
     @SerializedName("ac_logo")
     @Expose
     private String acLogo;
-    @SerializedName("stud_photo")
+    @SerializedName("emp_photo")
     @Expose
-    private String studPhoto;
+    private String empPhoto;
     @SerializedName("status")
     @Expose
     private Integer status;
@@ -127,12 +127,12 @@ public class EmployeeLoginPojo {
         this.acLogo = acLogo;
     }
 
-    public String getStudPhoto() {
-        return studPhoto;
+    public String getEmpPhoto() {
+        return empPhoto;
     }
 
-    public void setStudPhoto(String studPhoto) {
-        this.studPhoto = studPhoto;
+    public void setEmpPhoto(String empPhoto) {
+        this.empPhoto = empPhoto;
     }
 
     public Integer getStatus() {

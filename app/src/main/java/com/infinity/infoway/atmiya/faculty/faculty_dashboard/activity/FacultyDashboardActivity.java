@@ -3,7 +3,6 @@ package com.infinity.infoway.atmiya.faculty.faculty_dashboard.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -255,10 +254,10 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
                                 tvFacultyDesignation.setText(facultyProfilePojo.getEdName() + "");
                             }
 
-                            if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpStudPhotoUrl())) {
+                            if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpPhotoUrl())) {
                                 Glide.with(FacultyDashboardActivity.this)
                                         .asBitmap()
-                                        .load(mySharedPreferences.getEmpStudPhotoUrl().trim())
+                                        .load(mySharedPreferences.getEmpPhotoUrl().trim())
                                         .override(70, 70)
                                         .placeholder(R.drawable.person_img)
                                         .error(R.drawable.person_img)

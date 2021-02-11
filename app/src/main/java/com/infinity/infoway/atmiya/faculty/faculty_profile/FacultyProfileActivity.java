@@ -237,10 +237,10 @@ public class FacultyProfileActivity extends AppCompatActivity implements View.On
                     if (response.isSuccessful() && response.body() != null) {
                         FacultyProfilePojo facultyProfilePojo = response.body().get(0);
 
-                        if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpStudPhotoUrl())) {
+                        if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpPhotoUrl())) {
                             Glide.with(FacultyProfileActivity.this)
                                     .asBitmap()
-                                    .load(mySharedPreferences.getEmpStudPhotoUrl().trim())
+                                    .load(mySharedPreferences.getEmpPhotoUrl().trim())
                                     .override(70, 70)
                                     .placeholder(R.drawable.person_img)
                                     .error(R.drawable.person_img)

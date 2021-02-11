@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -29,7 +27,6 @@ import com.infinity.infoway.atmiya.login.adapter.LoginUserListAdapter;
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.login.pojo.RegisterStudentDetailsModel;
 import com.infinity.infoway.atmiya.login.pojo.StudentLoginPojo;
-import com.infinity.infoway.atmiya.forgot_password.activity.ForgotPasswordActivity;
 import com.infinity.infoway.atmiya.student.student_dashboard.activity.StudentDashboardActivity;
 import com.infinity.infoway.atmiya.utils.CommonUtil;
 import com.infinity.infoway.atmiya.utils.ConnectionDetector;
@@ -388,8 +385,8 @@ public class LoginActivity extends AppCompatActivity implements
             mySharedPreferences.setEmpAcLogo(employeeLoginPojo.getAcLogo() + "");
         }
 
-        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getStudPhoto())) {
-            mySharedPreferences.setStudentPhotoUrl(employeeLoginPojo.getStudPhoto() + "");
+        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getEmpPhoto())) {
+            mySharedPreferences.setEmpPhotoUrl(employeeLoginPojo.getEmpPhoto() + "");
         }
 
 //        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getStatus())) {

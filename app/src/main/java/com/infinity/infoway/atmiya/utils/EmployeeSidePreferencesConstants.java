@@ -10,7 +10,7 @@ public class EmployeeSidePreferencesConstants {
     public static final String EMP_PASSWORD = "emp_password";
     public static final String EMP_AC_FULL_NAME = "emp_ac_full_name";
     public static final String EMP_AC_LOGO = "emp_ac_logo";
-    public static final String EMP_STUD_PHOTO_URL = "emp_stud_photo";
+    public static final String EMP_PHOTO_URL = "emp_photo";
 //    public static final String EMP_STATUS = "emp_status";
     public static final String EMP_AC_CODE = "emp_ac_code";
     public static final String EMP_IS_DIRECTOR = "emp_is_director";

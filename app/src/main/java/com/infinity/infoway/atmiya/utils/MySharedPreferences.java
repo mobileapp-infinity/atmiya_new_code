@@ -108,13 +108,13 @@ public class MySharedPreferences {
         return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_AC_LOGO, "");
     }
 
-    public void setEmpStudPhotoUrl(String empStudPhotoUrl) {
-        editorForStudentOrFaculty.putString(EmployeeSidePreferencesConstants.EMP_STUD_PHOTO_URL, empStudPhotoUrl);
+    public void setEmpPhotoUrl(String empPhotoUrl) {
+        editorForStudentOrFaculty.putString(EmployeeSidePreferencesConstants.EMP_PHOTO_URL, empPhotoUrl);
         editorForStudentOrFaculty.apply();
     }
 
-    public String getEmpStudPhotoUrl() {
-        return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_STUD_PHOTO_URL, "");
+    public String getEmpPhotoUrl() {
+        return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_PHOTO_URL, "");
     }
 
 //    public void setEmpStatus(String empStatus) {
