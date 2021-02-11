@@ -23,4 +23,13 @@
     <dimen name="otp_view_item_line_width">2dp</dimen>
     <dimen name="otp_view_cursor_width">2dp</dimen>
 
+
+    <dimen name="student_dashboard_menu_font_size">13sp</dimen>
+    <dimen name="student_profile_label_font_size">11sp</dimen>
+    <dimen name="student_profile_text_font_size">13sp</dimen>
+
+    <dimen name="faculty_dashboard_menu_font_size">13sp</dimen>
+    <dimen name="faculty_profile_label_font_size">11sp</dimen>
+    <dimen name="faculty_profile_text_font_size">13sp</dimen>
+
 </resources>

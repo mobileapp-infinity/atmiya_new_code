@@ -100,7 +100,7 @@
                     app:svp_colorActiveIndicator="#CEA955"
                     app:svp_colorInactiveIndicator="@color/gray"
                     app:svp_runAuto="true"
-                    app:svp_timeMillis="2000" />
+                    app:svp_timeMillis="2500" />
 
             </LinearLayout>
 
@@ -138,7 +138,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/time_table"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -163,7 +163,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/e_learning"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -187,7 +187,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/exam"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -219,7 +219,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/leave_application"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -244,7 +244,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/assignment"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -268,7 +268,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/holiday"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -311,7 +311,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/syllabus"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -335,7 +335,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/lesson_plan"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -359,7 +359,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/home_work"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -392,7 +392,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/fee_details"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -416,7 +416,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/activity"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -440,7 +440,7 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/message_history"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/student_dashboard_menu_font_size" />
 
                     </LinearLayout>
 

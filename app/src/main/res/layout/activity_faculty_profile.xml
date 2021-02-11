@@ -205,7 +205,7 @@
                     android:text="Employee No"
                     android:textAllCaps="true"
                     android:textColor="@color/profile_heading_color"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                     android:id="@+id/tvFacultyEmployeeNo"
@@ -216,7 +216,7 @@
                     android:text="-"
                     android:textAllCaps="true"
                     android:textColor="@color/profile_heading_value_color"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
             </LinearLayout>
 
@@ -241,7 +241,7 @@
                     android:text="Education"
                     android:textAllCaps="true"
                     android:textColor="@color/profile_heading_color"
-                    android:textSize="10sp" />
+                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                     android:id="@+id/tvFacultyEducation"
@@ -253,7 +253,7 @@
                     android:text="-"
                     android:textAllCaps="true"
                     android:textColor="@color/profile_heading_value_color"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
             </LinearLayout>
 
@@ -344,7 +344,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Gender"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyGender"
@@ -352,7 +352,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -368,7 +368,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Date of Birth"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyDOB"
@@ -376,7 +376,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -392,7 +392,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Aadhaar Card No."
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyAadhaarCardNo"
@@ -400,7 +400,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -416,7 +416,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="PAN Card No."
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyPanCardNo"
@@ -424,7 +424,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -441,7 +441,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Mobile No."
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyMobileNo"
@@ -449,7 +449,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -526,7 +526,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Permanent Address"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyPermenantAddress"
@@ -534,7 +534,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -550,7 +550,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Present Address"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyPresentAddress"
@@ -558,7 +558,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -574,7 +574,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Home Mobile No."
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyHomeMobileNo"
@@ -582,7 +582,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -599,7 +599,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="City"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyCity"
@@ -607,7 +607,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -624,7 +624,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="State"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyState"
@@ -632,7 +632,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -649,7 +649,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Country"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyCountry"
@@ -657,7 +657,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -734,7 +734,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="college"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvStudentCollegeName"
@@ -742,7 +742,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -758,7 +758,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Department Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyDepartmentName"
@@ -766,7 +766,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -782,7 +782,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Designation"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyJobName"
@@ -790,7 +790,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -807,7 +807,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Date of Joining"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyDateOfJoining"
@@ -815,7 +815,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -832,7 +832,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Offer Letter No."
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyOfferLetterNo"
@@ -840,7 +840,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -856,7 +856,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Card no"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyCardNo"
@@ -864,7 +864,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -881,7 +881,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Job Time"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyJobTimeFromToto"
@@ -889,7 +889,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -965,7 +965,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Father's Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyFatherName"
@@ -973,7 +973,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -989,7 +989,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Father's Occupation"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyFatherOccupation"
@@ -997,7 +997,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1013,7 +1013,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Father's Address"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyFathersAddress"
@@ -1021,7 +1021,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1038,7 +1038,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Mother's Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyMotherName"
@@ -1046,7 +1046,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1063,7 +1063,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Mother Occupation"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyMotherOccupation"
@@ -1071,7 +1071,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1088,7 +1088,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Spouse's Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultySpouseName"
@@ -1096,7 +1096,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1112,7 +1112,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Spouse's Occupation"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultySppuseOccupation"
@@ -1120,7 +1120,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1136,7 +1136,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Son/Daughter Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultySonOrDoughterName"
@@ -1144,7 +1144,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1160,7 +1160,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Son/Daughter's Date of Birth"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultySonOrDaughterDOF"
@@ -1168,7 +1168,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1245,7 +1245,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Bank Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyBankName"
@@ -1253,7 +1253,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1269,7 +1269,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Account No."
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyAccountNo"
@@ -1277,7 +1277,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1293,7 +1293,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Branch Name"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyBranchName"
@@ -1301,7 +1301,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 
@@ -1318,7 +1318,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Account Type"
                                     android:textColor="@color/profile_heading_color"
-                                    android:textSize="10sp" />
+                                    android:textSize="@dimen/faculty_profile_label_font_size" />
 
                                 <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
                                     android:id="@+id/tvFacultyAccountType"
@@ -1326,7 +1326,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="-"
                                     android:textColor="@color/profile_heading_value_color"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/faculty_profile_text_font_size" />
 
                             </LinearLayout>
 

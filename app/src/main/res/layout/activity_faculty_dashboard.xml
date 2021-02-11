@@ -100,7 +100,7 @@
                     app:svp_colorActiveIndicator="@color/colorAccent"
                     app:svp_colorInactiveIndicator="@color/gray"
                     app:svp_runAuto="true"
-                    app:svp_timeMillis="2000" />
+                    app:svp_timeMillis="2500" />
 
             </LinearLayout>
 
@@ -139,7 +139,7 @@
                             android:gravity="center"
                             android:text="Profile"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -164,7 +164,7 @@
                             android:gravity="center"
                             android:text="Attendance"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -189,7 +189,7 @@
                             android:gravity="center"
                             android:text="Time Table"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -223,7 +223,7 @@
                             android:gravity="center"
                             android:text="Leave"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -248,7 +248,7 @@
                             android:gravity="center"
                             android:text="Pending\nAttendance"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -273,7 +273,7 @@
                             android:gravity="center"
                             android:text="Lecture Plan"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -307,7 +307,7 @@
                             android:gravity="center"
                             android:text="News"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -333,7 +333,7 @@
                             android:gravity="center"
                             android:text="Announcement"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
@@ -359,7 +359,7 @@
                             android:gravity="center"
                             android:text="Teaching\nUpdate"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
 
                     </LinearLayout>
 
