@@ -100,7 +100,7 @@
                     app:svp_colorActiveIndicator="@color/colorAccent"
                     app:svp_colorInactiveIndicator="@color/gray"
                     app:svp_runAuto="true"
-                    app:svp_timeMillis="1500" />
+                    app:svp_timeMillis="2000" />
 
             </LinearLayout>
 
