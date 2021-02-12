@@ -43,7 +43,7 @@ public class FacultyProfileActivity extends AppCompatActivity implements View.On
 
     private TextViewRegularFont tvFacultyName;
     private TextViewRegularFont tvFacultyEmail;
-//    private TextViewMediumFont tvEmpId;
+    //    private TextViewMediumFont tvEmpId;
     private TextViewMediumFont tvFacultyEmployeeNo;
     private TextViewMediumFont tvFacultyEducation;
 
@@ -234,21 +234,25 @@ public class FacultyProfileActivity extends AppCompatActivity implements View.On
                 @Override
                 public void onResponse(Call<ArrayList<FacultyProfilePojo>> call, Response<ArrayList<FacultyProfilePojo>> response) {
                     DialogUtil.hideProgressDialog();
-                    if (response.isSuccessful() && response.body() != null) {
-                        FacultyProfilePojo facultyProfilePojo = response.body().get(0);
+                    try {
+                        if (response.isSuccessful() && response.body() != null) {
+                            FacultyProfilePojo facultyProfilePojo = response.body().get(0);
 
-                        if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpPhotoUrl())) {
-                            Glide.with(FacultyProfileActivity.this)
-                                    .asBitmap()
-                                    .load(mySharedPreferences.getEmpPhotoUrl().trim())
-                                    .override(70, 70)
-                                    .placeholder(R.drawable.person_img)
-                                    .error(R.drawable.person_img)
-                                    .into(faculty_profile_image);
+                            if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpPhotoUrl())) {
+                                Glide.with(FacultyProfileActivity.this)
+                                        .asBitmap()
+                                        .load(mySharedPreferences.getEmpPhotoUrl().trim())
+                                        .override(70, 70)
+                                        .placeholder(R.drawable.person_img)
+                                        .error(R.drawable.person_img)
+                                        .into(faculty_profile_image);
+                            }
+                            setFacultyProfileDetails(facultyProfilePojo);
+                        } else {
+                            Toast.makeText(FacultyProfileActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
                         }
-                        setFacultyProfileDetails(facultyProfilePojo);
-                    } else {
-                        Toast.makeText(FacultyProfileActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
                     }
                 }
 

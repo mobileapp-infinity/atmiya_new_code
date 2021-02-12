@@ -28,6 +28,7 @@ import com.infinity.infoway.atmiya.custom_class.ProgressBarAnimation;
 import com.infinity.infoway.atmiya.custom_class.TextViewBoldFont;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
 import com.infinity.infoway.atmiya.login.activity.LoginActivity;
+import com.infinity.infoway.atmiya.login.pojo.LogOutPojo;
 import com.infinity.infoway.atmiya.student.assignment.AssignmentActivity;
 import com.infinity.infoway.atmiya.student.attendance.activity.StudentAttendanceActivity;
 import com.infinity.infoway.atmiya.student.e_learning.activity.ELearningActivity;
@@ -50,6 +51,7 @@ import com.infinity.infoway.atmiya.student.student_syllabus.StudentSyllabusActiv
 import com.infinity.infoway.atmiya.student.student_timetable.activity.StudentTimeTableActivity;
 import com.infinity.infoway.atmiya.utils.CommonUtil;
 import com.infinity.infoway.atmiya.utils.ConnectionDetector;
+import com.infinity.infoway.atmiya.utils.DialogUtil;
 import com.infinity.infoway.atmiya.utils.IntentConstants;
 import com.infinity.infoway.atmiya.utils.MySharedPreferences;
 
@@ -299,44 +301,13 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
                 @Override
                 public void onResponse(Call<StudentProfilePojo> call, Response<StudentProfilePojo> response) {
                     try {
-                        llStudentDashboradProgressbar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null) {
                             StudentProfilePojo studentProfilePojo = response.body();
-
-                            if (!CommonUtil.checkIsEmptyOrNullCommon(studentProfilePojo.getUnread_notif_count())) {
-                                tvNotificationCount.setText(studentProfilePojo.getUnread_notif_count() + "");
+                            if (studentProfilePojo.getStudIsLoginDeActive() != null && studentProfilePojo.getStudIsLoginDeActive() == 1) {//if student DeActive status is 1 than force logout to student
+                                logoutUserApiCall(studentProfilePojo);
+                            } else {
+                               loadStudentDashboard(studentProfilePojo);
                             }
-
-                            if (studentProfilePojo.getStudName() != null && !studentProfilePojo.getStudName().isEmpty()) {
-                                tvStudentName.setText("Hello, " + studentProfilePojo.getStudName());
-                            }
-//                            String studentSemAndDesignation = "Sem - ";
-                            String studentSemAndDesignation = "";
-                            if (studentProfilePojo.getSmName() != null && !studentProfilePojo.getSmName().isEmpty()) {
-//                                studentSemAndDesignation += studentProfilePojo.getSmName().split("-")[1];
-                                studentSemAndDesignation = studentProfilePojo.getSmName();
-                            }
-
-                            if (studentProfilePojo.getCourseFullname() != null && !studentProfilePojo.getCourseFullname().isEmpty()) {
-                                studentSemAndDesignation += ", " + studentProfilePojo.getCourseFullname();
-                            }
-                            tvStudentSemAndDesignation.setText(studentSemAndDesignation);
-
-                            Glide.with(StudentDashboardActivity.this)
-                                    .asBitmap()
-                                    .load(studentProfilePojo.getStudPhoto())
-                                    .override(46, 46)
-                                    .placeholder(R.drawable.person_img)
-                                    .error(R.drawable.person_img)
-                                    .into(cImgProfileStudentSide);
-
-                            svStudentDashboard.setVisibility(View.VISIBLE);
-                            llAttendanceStudentSide.startAnimation(AnimationUtils.loadAnimation(StudentDashboardActivity.this, R.anim.attendance_left_to_right));
-                            getSliderImagesApiCall();
-                            loadStudentAttendanceProgress(studentProfilePojo.getCurrentMonthAvgAtt(),
-                                    studentProfilePojo.getPreviousMonthAvgAtt(),
-                                    studentProfilePojo.getSemesterAvgAtt());
-                            getStudentNewsOrNotificationListApiCall();
                         } else {
                             Toast.makeText(StudentDashboardActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
                             finish();
@@ -358,6 +329,76 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
             Toast.makeText(this, "No internet connection,Please try again later", Toast.LENGTH_SHORT).show();
             finish();
         }
+    }
+
+    private void loadStudentDashboard(StudentProfilePojo studentProfilePojo){
+        llStudentDashboradProgressbar.setVisibility(View.GONE);
+        if (!CommonUtil.checkIsEmptyOrNullCommon(studentProfilePojo.getUnread_notif_count())) {
+            tvNotificationCount.setText(studentProfilePojo.getUnread_notif_count() + "");
+        }
+
+        if (studentProfilePojo.getStudName() != null && !studentProfilePojo.getStudName().isEmpty()) {
+            tvStudentName.setText("Hello, " + studentProfilePojo.getStudName());
+        }
+//                            String studentSemAndDesignation = "Sem - ";
+        String studentSemAndDesignation = "";
+
+        if (studentProfilePojo.getCourseFullname() != null && !studentProfilePojo.getCourseFullname().isEmpty()) {
+            studentSemAndDesignation = studentProfilePojo.getCourseFullname();
+        }
+
+        if (studentProfilePojo.getSmName() != null && !studentProfilePojo.getSmName().isEmpty()) {
+//                                studentSemAndDesignation += studentProfilePojo.getSmName().split("-")[1];
+            studentSemAndDesignation += ", " + studentProfilePojo.getSmName();
+        }
+
+        tvStudentSemAndDesignation.setText(studentSemAndDesignation);
+
+        Glide.with(StudentDashboardActivity.this)
+                .asBitmap()
+                .load(studentProfilePojo.getStudPhoto())
+                .override(46, 46)
+                .placeholder(R.drawable.person_img)
+                .error(R.drawable.person_img)
+                .into(cImgProfileStudentSide);
+
+        svStudentDashboard.setVisibility(View.VISIBLE);
+        llAttendanceStudentSide.startAnimation(AnimationUtils.loadAnimation(StudentDashboardActivity.this, R.anim.attendance_left_to_right));
+        getSliderImagesApiCall();
+        loadStudentAttendanceProgress(studentProfilePojo.getCurrentMonthAvgAtt(),
+                studentProfilePojo.getPreviousMonthAvgAtt(),
+                studentProfilePojo.getSemesterAvgAtt());
+        getStudentNewsOrNotificationListApiCall();
+    }
+
+    private void logoutUserApiCall(StudentProfilePojo studentProfilePojo) {
+        if (connectionDetector.isConnectingToInternet()) {
+            ApiImplementer.logoutUserApiImplementer(mySharedPreferences.getLoginUserType(), mySharedPreferences.getStudentId(), new Callback<ArrayList<LogOutPojo>>() {
+                @Override
+                public void onResponse(Call<ArrayList<LogOutPojo>> call, Response<ArrayList<LogOutPojo>> response) {
+                    if (response.isSuccessful() && response.body() != null && response.body().size() > 0) {
+                        if (response.body().get(0).getStatus().equalsIgnoreCase("1")) {
+                            mySharedPreferences.logoutStudentOrFaulty();
+                            Intent intent = new Intent(StudentDashboardActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            loadStudentDashboard(studentProfilePojo);
+                        }
+                    } else {
+                        loadStudentDashboard(studentProfilePojo);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<LogOutPojo>> call, Throwable t) {
+                    loadStudentDashboard(studentProfilePojo);
+                }
+            });
+        } else {
+            Toast.makeText(this, "No internet connection,Please try again later.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void getStudentNewsOrNotificationListApiCall() {

@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:orientation="vertical"
-                    android:text="Employee No"
+                    android:text="Employee No."
                     android:textAllCaps="true"
                     android:textColor="@color/profile_heading_color"
                     android:textSize="@dimen/faculty_profile_label_font_size" />
@@ -732,7 +732,7 @@
                                 <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="college"
+                                    android:text="College"
                                     android:textColor="@color/profile_heading_color"
                                     android:textSize="@dimen/faculty_profile_label_font_size" />
 
@@ -854,7 +854,7 @@
                                 <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Card no"
+                                    android:text="Card No."
                                     android:textColor="@color/profile_heading_color"
                                     android:textSize="@dimen/faculty_profile_label_font_size" />
 

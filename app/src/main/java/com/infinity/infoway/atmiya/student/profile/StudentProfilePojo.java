@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class StudentProfilePojo {
 
+    @SerializedName("stud_is_login_deactive")
+    @Expose
+    private Integer studIsLoginDeActive;
     @SerializedName("stud_id")
     @Expose
     private Integer studId;
@@ -82,7 +85,7 @@ public class StudentProfilePojo {
     private Object bchName;
     @SerializedName("swd_roll_no")
     @Expose
-    private Object swdRollNo;
+    private Integer swdRollNo;
     @SerializedName("stud_internet_username")
     @Expose
     private String studInternetUsername;
@@ -182,6 +185,14 @@ public class StudentProfilePojo {
     @SerializedName("unread_notif_count")
     @Expose
     private String unread_notif_count;
+
+    public Integer getStudIsLoginDeActive() {
+        return studIsLoginDeActive;
+    }
+
+    public void setStudIsLoginDeActive(Integer studIsLoginDeActive) {
+        this.studIsLoginDeActive = studIsLoginDeActive;
+    }
 
     public String getUnread_notif_count() {
         return unread_notif_count;
@@ -391,11 +402,11 @@ public class StudentProfilePojo {
         this.bchName = bchName;
     }
 
-    public Object getSwdRollNo() {
+    public Integer getSwdRollNo() {
         return swdRollNo;
     }
 
-    public void setSwdRollNo(Object swdRollNo) {
+    public void setSwdRollNo(Integer swdRollNo) {
         this.swdRollNo = swdRollNo;
     }
 

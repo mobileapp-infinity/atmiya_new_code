@@ -195,24 +195,22 @@ public class StudentProfileActivity extends AppCompatActivity implements View.On
                 @Override
                 public void onResponse(Call<StudentProfilePojo> call, Response<StudentProfilePojo> response) {
                     DialogUtil.hideProgressDialog();
-                    if (response.isSuccessful() && response.body() != null) {
-                        StudentProfilePojo studentProfilePojo = response.body();
-
-                        Glide.with(StudentProfileActivity.this)
-                                .asBitmap()
-                                .load(studentProfilePojo.getStudPhoto())
-                                .override(70, 70)
-                                .placeholder(R.drawable.person_img)
-                                .error(R.drawable.person_img)
-                                .into(student_profile_image);
-
-//                        mTvStudentUserId.setText(mySharedPreferences.getStudentId());
-
-                        setProfileData(studentProfilePojo);
-
-
-                    } else {
-                        Toast.makeText(StudentProfileActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
+                    try {
+                        if (response.isSuccessful() && response.body() != null) {
+                            StudentProfilePojo studentProfilePojo = response.body();
+                            Glide.with(StudentProfileActivity.this)
+                                    .asBitmap()
+                                    .load(studentProfilePojo.getStudPhoto())
+                                    .override(70, 70)
+                                    .placeholder(R.drawable.person_img)
+                                    .error(R.drawable.person_img)
+                                    .into(student_profile_image);
+                            setProfileData(studentProfilePojo);
+                        } else {
+                            Toast.makeText(StudentProfileActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Throwable th) {
+                        th.printStackTrace();
                     }
                 }
 
