@@ -333,6 +333,7 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
 
     private void loadStudentDashboard(StudentProfilePojo studentProfilePojo){
         llStudentDashboradProgressbar.setVisibility(View.GONE);
+        svStudentDashboard.setVisibility(View.VISIBLE);
         if (!CommonUtil.checkIsEmptyOrNullCommon(studentProfilePojo.getUnread_notif_count())) {
             tvNotificationCount.setText(studentProfilePojo.getUnread_notif_count() + "");
         }
@@ -362,7 +363,6 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
                 .error(R.drawable.person_img)
                 .into(cImgProfileStudentSide);
 
-        svStudentDashboard.setVisibility(View.VISIBLE);
         llAttendanceStudentSide.startAnimation(AnimationUtils.loadAnimation(StudentDashboardActivity.this, R.anim.attendance_left_to_right));
         getSliderImagesApiCall();
         loadStudentAttendanceProgress(studentProfilePojo.getCurrentMonthAvgAtt(),
