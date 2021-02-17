@@ -28,6 +28,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTab
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
+import com.infinity.infoway.atmiya.student.fee_details.pojo.PaySlipOfAxisFeeTypePojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PayWithPaytmPojo;
 import com.infinity.infoway.atmiya.student.home_work.pojo.StudentHomeWorkPojo;
 import com.infinity.infoway.atmiya.student.news_or_notification.UpdateNotificationStatusPojo;
@@ -191,10 +192,24 @@ public class ApiImplementer {
         call.enqueue(cb);
     }
 
-    public static void downloadPaySlipOfAxisApiImplementer(String stud_id,
+//    public static void downloadPaySlipOfAxisApiImplementer(String stud_id,
+//                                                           Callback<PaySlipOfAxisPojo> cb) {
+//        final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
+//        Call<PaySlipOfAxisPojo> call = apiService.downloadPaySlipOfAxis(stud_id);
+//        call.enqueue(cb);
+//    }
+
+    public static void downloadPaySlipOfAxisApiImplementer(String stud_id,String fee_type,
                                                            Callback<PaySlipOfAxisPojo> cb) {
         final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
-        Call<PaySlipOfAxisPojo> call = apiService.downloadPaySlipOfAxis(stud_id);
+        Call<PaySlipOfAxisPojo> call = apiService.downloadPaySlipOfAxis(stud_id,fee_type);
+        call.enqueue(cb);
+    }
+
+    public static void getFeeTypePaySlipOfAxis(String stud_id,
+                                               Callback<ArrayList<PaySlipOfAxisFeeTypePojo>> cb) {
+        final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
+        Call<ArrayList<PaySlipOfAxisFeeTypePojo>> call = apiService.getFeeTypePaySlipOfAxis(stud_id);
         call.enqueue(cb);
     }
 

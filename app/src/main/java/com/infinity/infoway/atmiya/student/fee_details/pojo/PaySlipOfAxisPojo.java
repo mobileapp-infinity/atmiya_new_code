@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class PaySlipOfAxisPojo {
 
-
     @SerializedName("Filename")
     @Expose
     private String filename;
@@ -50,5 +49,6 @@ public class PaySlipOfAxisPojo {
     public void setBase64string(String base64string) {
         this.base64string = base64string;
     }
+
 
 }

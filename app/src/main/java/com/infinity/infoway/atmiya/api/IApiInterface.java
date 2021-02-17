@@ -28,6 +28,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTab
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
+import com.infinity.infoway.atmiya.student.fee_details.pojo.PaySlipOfAxisFeeTypePojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PayWithPaytmPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.CheckOTPVerificationForEmployeePojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.CheckOTPVerificationForStudentPojo;
@@ -160,9 +161,17 @@ public interface IApiInterface {
                                                                       @Query("exam_db") String exam_db);
 
 
-    @GET("Print_Axis_Payslip")
+//    @GET("Print_Axis_Payslip")
+//    @Streaming
+//    Call<PaySlipOfAxisPojo> downloadPaySlipOfAxis(@Query("stud_id") String stud_id);
+
+    @GET("Print_Axis_Payslip_with_payment_code")
     @Streaming
-    Call<PaySlipOfAxisPojo> downloadPaySlipOfAxis(@Query("stud_id") String stud_id);
+    Call<PaySlipOfAxisPojo> downloadPaySlipOfAxis(@Query("stud_id") String stud_id,@Query("fee_type") String fee_type);
+
+    @GET("BindFeeType")
+    @Streaming
+    Call<ArrayList<PaySlipOfAxisFeeTypePojo>> getFeeTypePaySlipOfAxis(@Query("stud_id") String stud_id);
 
     @GET("Get_Student_Assignment_Detail")
     @Streaming

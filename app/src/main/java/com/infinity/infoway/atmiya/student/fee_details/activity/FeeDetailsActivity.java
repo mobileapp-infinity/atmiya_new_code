@@ -73,7 +73,9 @@ public class FeeDetailsActivity extends AppCompatActivity implements View.OnClic
             Intent intent = new Intent(FeeDetailsActivity.this, FeeReciptActivity.class);
             startActivity(intent);
         } else if (v.getId() == R.id.llPaySlipOfAxisFeeDetails) {
-            downloadPayslipOfAxis();
+            Intent intent = new Intent(FeeDetailsActivity.this, PaySlipOfAxisDetailActivity.class);
+            startActivity(intent);
+
         } else if (v.getId() == R.id.llDownloadPaySlipOfHdfc) {
 
         } else if (v.getId() == R.id.llFeeCircularFeeDetails) {
@@ -93,33 +95,5 @@ public class FeeDetailsActivity extends AppCompatActivity implements View.OnClic
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-    private void downloadPayslipOfAxis() {
-        DialogUtil.showProgressDialogNotCancelable(FeeDetailsActivity.this, "downloading... ");
-//        progressDialog.show();
-        ApiImplementer.downloadPaySlipOfAxisApiImplementer(mySharedPreferences.getStudentId(), new Callback<PaySlipOfAxisPojo>() {
-            @Override
-            public void onResponse(Call<PaySlipOfAxisPojo> call, Response<PaySlipOfAxisPojo> response) {
-                DialogUtil.hideProgressDialog();
-                if (response.isSuccessful() && response.body() != null && response.body().getBase64string() != null &&
-                        !response.body().getBase64string().isEmpty()) {
-                    new GeneratePDFFileFromBase64String(FeeDetailsActivity.this, "Pay Slip Of Axis",
-                            CommonUtil.generateUniqueFileName(response.body().getFilename()),
-                            response.body().getBase64string());
-                } else {
-//                    progressDialog.hide();
-                    Toast.makeText(FeeDetailsActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PaySlipOfAxisPojo> call, Throwable t) {
-                DialogUtil.hideProgressDialog();
-//                progressDialog.hide();
-                Toast.makeText(FeeDetailsActivity.this, "Request Failed:- " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
 }
