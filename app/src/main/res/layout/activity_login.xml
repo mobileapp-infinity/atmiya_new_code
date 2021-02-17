@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/common_bg_for_splash_and_login"
+    android:background="@drawable/erp_atmiya_new_login_bg"
     android:orientation="vertical"
     tools:context=".login.activity.LoginActivity">
 
@@ -31,8 +31,8 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
                     android:adjustViewBounds="true"
                     android:src="@drawable/logo" />
 

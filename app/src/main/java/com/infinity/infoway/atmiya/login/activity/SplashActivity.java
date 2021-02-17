@@ -50,7 +50,7 @@ import retrofit2.Response;
 
 public class SplashActivity extends AppCompatActivity {
 
-    AppCompatImageView ivSplashLogo;
+//    AppCompatImageView ivSplashLogo;
 
     private final String[] RunTimePerMissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -140,33 +140,33 @@ public class SplashActivity extends AppCompatActivity {
 
     private void initView() {
         connectionDetector = new ConnectionDetector(SplashActivity.this);
-        ivSplashLogo = findViewById(R.id.ivSplashLogo);
+//        ivSplashLogo = findViewById(R.id.ivSplashLogo);
     }
 
     private void loadSplashScreenAnimationAndAskForPermission() {
-        Animation slide_up = AnimationUtils.loadAnimation(SplashActivity.this,
-                R.anim.slide_up);
-        ivSplashLogo.startAnimation(slide_up);
-        Thread timer = new Thread() {
-            public void run() {
-                try {
-                    sleep(1600);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (!hasPermissions(SplashActivity.this, RunTimePerMissions)) {
-                            ActivityCompat.requestPermissions(SplashActivity.this, RunTimePerMissions, MY_PERMISSIONS_REQUEST_READ_WRITE_STATE);
-                        } else {
-                            permissionForBackgroundLocationAndroidQ();
-                        }
-                    } else {
-                        checkVersionInfoApiCall();
-                    }
-                }
+//        Animation slide_up = AnimationUtils.loadAnimation(SplashActivity.this,
+//                R.anim.slide_up);
+//        ivSplashLogo.startAnimation(slide_up);
+//        Thread timer = new Thread() {
+//            public void run() {
+//                try {
+//                    sleep(1600);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                } finally {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!hasPermissions(SplashActivity.this, RunTimePerMissions)) {
+                ActivityCompat.requestPermissions(SplashActivity.this, RunTimePerMissions, MY_PERMISSIONS_REQUEST_READ_WRITE_STATE);
+            } else {
+                permissionForBackgroundLocationAndroidQ();
             }
-        };
-        timer.start();
+        } else {
+            checkVersionInfoApiCall();
+        }
+//                }
+//            }
+//        };
+//        timer.start();
     }
 
     private void redirectToLoginActivity() {
