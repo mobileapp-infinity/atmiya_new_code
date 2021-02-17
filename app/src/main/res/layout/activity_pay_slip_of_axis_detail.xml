@@ -119,7 +119,7 @@
             android:fontFamily="@font/ubuntu_r"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="Exam Schedule"
+            android:text="Pay Slip Of Axis"
             android:textColor="@color/white" />
 
     </FrameLayout>
