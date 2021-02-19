@@ -57,8 +57,8 @@ public class SubjectWiseAttendanceAdapter extends RecyclerView.Adapter<SubjectWi
             holder.tvPresentInLecture.setText(studentSubjectWiseAttendanceArrayListPojo.get(position).getInout_array1().get(0).getPresent_lect());
         }
 
-        if (data.getAggr() != null && !data.getAggr().isEmpty()) {
-            holder.tvTotalAttendance.setText(studentSubjectWiseAttendanceArrayListPojo.get(position).getInout_array1().get(0).getAggr());
+        if (data.getPersentage_lect() != null && !data.getPersentage_lect().isEmpty()) {
+            holder.tvTotalAttendance.setText(studentSubjectWiseAttendanceArrayListPojo.get(position).getInout_array1().get(0).getPersentage_lect());
         }
 
 
