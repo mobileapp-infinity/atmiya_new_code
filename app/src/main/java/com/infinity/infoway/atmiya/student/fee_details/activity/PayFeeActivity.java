@@ -185,7 +185,7 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
                             }
                         } else {
                             if (!feeTypeId.equalsIgnoreCase("0")) {
-                                sendFeeDataTerm(multiplePendingFeePayListItemIds, "HDFC", feeTypeId, IP);
+                                sendFeeDataTerm("HDFC", feeTypeId, IP);
                             }
                         }
                     } else {
@@ -205,7 +205,7 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
                             }
                         } else {
                             if (!feeTypeId.equalsIgnoreCase("0")) {
-                                sendFeeDataTerm(multiplePendingFeePayListItemIds, "AXIS", feeTypeId, IP);
+                                sendFeeDataTerm("AXIS", feeTypeId, IP);
                             }
                         }
                     }else {
@@ -352,9 +352,10 @@ public class PayFeeActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void sendFeeDataTerm(String examId, String feeSource, String feeId, String createdIp) {
+    private void sendFeeDataTerm(String feeSource, String feeId, String createdIp) {
+
         DialogUtil.showProgressDialogNotCancelable(PayFeeActivity.this, "");
-        ApiImplementer.feeUrlPojoApiImplementer(mySharedPreferences.getStudentId(), mySharedPreferences.getSwdYearId(), examId,
+        ApiImplementer.feeUrlPojoApiImplementer(mySharedPreferences.getStudentId(), mySharedPreferences.getSwdYearId(), "0", //Ord_Exam_id is 0 as per old code
                 mySharedPreferences.getSmId(), feeSource, feeId, createdIp, new Callback<FeeUrlPojo>() {
                     @Override
                     public void onResponse(Call<FeeUrlPojo> call, Response<FeeUrlPojo> response) {
