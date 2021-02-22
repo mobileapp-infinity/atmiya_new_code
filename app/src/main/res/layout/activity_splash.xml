@@ -4,37 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".login.activity.SplashActivity">
 
-
-    <androidx.appcompat.widget.AppCompatImageView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:background="@drawable/erp_atmiya_new_bg_splash"/>
+        android:layout_height="match_parent">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:gravity="center">-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:background="@drawable/erp_atmiya_new_bg_splash"
+            android:scaleType="fitXY" />
 
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:id="@+id/ivSplashLogo"-->
-<!--            android:layout_width="180dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:adjustViewBounds="true"-->
-<!--            android:src="@drawable/logo" />-->
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_splash_footer"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="12dp">
 
-<!--    </LinearLayout>-->
+            <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Design &amp; Developed by:    "
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"/>
 
-<!--    <androidx.appcompat.widget.AppCompatImageView-->
-<!--        android:id="@+id/ivSplashLogo"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/common_bg_for_splash_and_login" />-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="164dp"
+                android:layout_height="36dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_new_iipl_logo"/>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

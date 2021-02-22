@@ -405,8 +405,6 @@ public class FacultyProfileActivity extends AppCompatActivity implements View.On
         if (!CommonUtil.checkIsEmptyOrNullCommon(facultyProfilePojo.getEmpDateOfChield())) {
             tvFacultySonOrDaughterDOF.setText(facultyProfilePojo.getEmpDateOfChield() + "");
         }
-
-
     }
 
     private void logoutUserApiCall() {
