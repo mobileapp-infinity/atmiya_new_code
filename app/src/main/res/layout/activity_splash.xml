@@ -26,18 +26,18 @@
             android:background="@drawable/bg_splash_footer"
             android:orientation="horizontal"
             android:gravity="center"
-            android:padding="12dp">
+            android:padding="8dp">
 
             <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Design &amp; Developed by:    "
-                android:textSize="16sp"
+                android:text="Design &amp; Developed by: "
+                android:textSize="12sp"
                 android:textColor="@color/colorPrimary"/>
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="164dp"
-                android:layout_height="36dp"
+                android:layout_width="154dp"
+                android:layout_height="32dp"
                 android:adjustViewBounds="true"
                 app:srcCompat="@drawable/ic_new_iipl_logo"/>
 
