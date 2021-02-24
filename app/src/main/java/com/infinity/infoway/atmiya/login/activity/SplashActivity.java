@@ -52,16 +52,20 @@ public class SplashActivity extends AppCompatActivity {
 
 //    AppCompatImageView ivSplashLogo;
 
-    private final String[] RunTimePerMissions = {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.CAMERA};
+//    private final String[] RunTimePerMissions = {
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.ACCESS_COARSE_LOCATION,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.CAMERA};
+private final String[] RunTimePerMissions = {
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA};
 
-    private final String[] BACKGROUND_LOCATION_RUN_TIME_PERMISSION = {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+//    private final String[] BACKGROUND_LOCATION_RUN_TIME_PERMISSION = {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
     private static final int MY_PERMISSIONS_REQUEST_READ_WRITE_STATE = 100;
-    private static final int REQUEST_CODE_BACKGROND_LOCATION_PERMISSION_FOR_ANDROID_Q = 1002;
+//    private static final int REQUEST_CODE_BACKGROND_LOCATION_PERMISSION_FOR_ANDROID_Q = 1002;
 
     ConnectionDetector connectionDetector;
 
@@ -158,7 +162,8 @@ public class SplashActivity extends AppCompatActivity {
             if (!hasPermissions(SplashActivity.this, RunTimePerMissions)) {
                 ActivityCompat.requestPermissions(SplashActivity.this, RunTimePerMissions, MY_PERMISSIONS_REQUEST_READ_WRITE_STATE);
             } else {
-                permissionForBackgroundLocationAndroidQ();
+//                permissionForBackgroundLocationAndroidQ();
+                checkVersionInfoApiCall();
             }
         } else {
             checkVersionInfoApiCall();
@@ -187,31 +192,31 @@ public class SplashActivity extends AppCompatActivity {
         return true;
     }
 
-    private static boolean hasPermissionsForBackgroundLocation(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+//    private static boolean hasPermissionsForBackgroundLocation(Context context, String... permissions) {
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && context != null && permissions != null) {
+//            for (String permission : permissions) {
+//                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+//
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
 
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private void permissionForBackgroundLocationAndroidQ() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            if (!hasPermissionsForBackgroundLocation(SplashActivity.this, BACKGROUND_LOCATION_RUN_TIME_PERMISSION)) {
-                ActivityCompat.requestPermissions(SplashActivity.this, BACKGROUND_LOCATION_RUN_TIME_PERMISSION,
-                        REQUEST_CODE_BACKGROND_LOCATION_PERMISSION_FOR_ANDROID_Q);
-            } else {
-                checkVersionInfoApiCall();
-            }
-        } else {
-            checkVersionInfoApiCall();
-        }
-    }
+//    private void permissionForBackgroundLocationAndroidQ() {
+////
+////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+////            if (!hasPermissionsForBackgroundLocation(SplashActivity.this, BACKGROUND_LOCATION_RUN_TIME_PERMISSION)) {
+////                ActivityCompat.requestPermissions(SplashActivity.this, BACKGROUND_LOCATION_RUN_TIME_PERMISSION,
+////                        REQUEST_CODE_BACKGROND_LOCATION_PERMISSION_FOR_ANDROID_Q);
+////            } else {
+////                checkVersionInfoApiCall();
+////            }
+////        } else {
+////            checkVersionInfoApiCall();
+////        }
+////    }
 
     private void alertAlert(String msg) {
         new MaterialAlertDialogBuilder(SplashActivity.this)
@@ -234,24 +239,25 @@ public class SplashActivity extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_READ_WRITE_STATE) {
 
-            if (grantResults.length == 5 &&
+            if (grantResults.length == 3 &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED &&
                     grantResults[1] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[2] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[3] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[4] == PackageManager.PERMISSION_GRANTED) {
-                permissionForBackgroundLocationAndroidQ();
-            } else {
-                alertAlert(getResources().getString(R.string.permissions_has_not_grant));
-            }
-        } else if (requestCode == REQUEST_CODE_BACKGROND_LOCATION_PERMISSION_FOR_ANDROID_Q) {
-            if (grantResults.length == 1 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    grantResults[2] == PackageManager.PERMISSION_GRANTED) {
+//                permissionForBackgroundLocationAndroidQ();
                 checkVersionInfoApiCall();
             } else {
+//                loadSplashScreenAnimationAndAskForPermission();
                 alertAlert(getResources().getString(R.string.permissions_has_not_grant));
             }
         }
+//        else if (requestCode == REQUEST_CODE_BACKGROND_LOCATION_PERMISSION_FOR_ANDROID_Q) {
+//            if (grantResults.length == 1 &&
+//                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                checkVersionInfoApiCall();
+//            } else {
+//                alertAlert(getResources().getString(R.string.permissions_has_not_grant));
+//            }
+//        }
     }
 
     private void checkVersionInfoApiCall() {
