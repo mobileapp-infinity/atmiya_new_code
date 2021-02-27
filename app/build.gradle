@@ -16,8 +16,10 @@ android {
 //        versionName "3.2.3"
 //        versionCode 35
 //        versionName "3.2.4"
-        versionCode 36
-        versionName "3.2.5"
+//        versionCode 36
+//        versionName "3.2.5"
+        versionCode 37
+        versionName "3.2.6"
 
         renderscriptTargetApi 25
         vectorDrawables.useSupportLibrary = true

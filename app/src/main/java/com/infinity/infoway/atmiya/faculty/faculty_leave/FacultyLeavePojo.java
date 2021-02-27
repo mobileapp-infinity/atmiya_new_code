@@ -24,13 +24,13 @@ public class FacultyLeavePojo {
     private String leaveName;
     @SerializedName("Leave_Day")
     @Expose
-    private Integer leaveDay;
+    private Double leaveDay;
     @SerializedName("Leave_Balance")
     @Expose
-    private Integer leaveBalance;
+    private Double leaveBalance;
     @SerializedName("Leave_Taken")
     @Expose
-    private Integer leaveTaken;
+    private Double leaveTaken;
 
     public Integer getContactID() {
         return contactID;
@@ -48,27 +48,27 @@ public class FacultyLeavePojo {
         this.leaveName = leaveName;
     }
 
-    public Integer getLeaveDay() {
+    public Double getLeaveDay() {
         return leaveDay;
     }
 
-    public void setLeaveDay(Integer leaveDay) {
+    public void setLeaveDay(Double leaveDay) {
         this.leaveDay = leaveDay;
     }
 
-    public Integer getLeaveBalance() {
+    public Double getLeaveBalance() {
         return leaveBalance;
     }
 
-    public void setLeaveBalance(Integer leaveBalance) {
+    public void setLeaveBalance(Double leaveBalance) {
         this.leaveBalance = leaveBalance;
     }
 
-    public Integer getLeaveTaken() {
+    public Double getLeaveTaken() {
         return leaveTaken;
     }
 
-    public void setLeaveTaken(Integer leaveTaken) {
+    public void setLeaveTaken(Double leaveTaken) {
         this.leaveTaken = leaveTaken;
     }
 }

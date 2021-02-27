@@ -112,14 +112,21 @@ public class VerifyOTPActivity extends AppCompatActivity implements View.OnClick
                     DialogUtil.hideProgressDialog();
                     if (response.isSuccessful() && response.body() != null && response.body().getTable().size() > 0) {
                         CheckLoginByOTPAndUsernamePojo checkLoginByOTPAndUsernamePojo = response.body();
+                        String forgotPassUserName = "";
                         if (userType.trim().equals(String.valueOf(CommonUtil.LOGIN_TYPE_STUDENT))) {
                             setStudentLoginData(checkLoginByOTPAndUsernamePojo.getTable().get(0));
                             Toast.makeText(VerifyOTPActivity.this, "OTP verified Successfully ", Toast.LENGTH_SHORT).show();
-                            redirectToResetPasswordActivity(userId, institute_id, user_type);
+                            if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsernamePojo.getTable().get(0).getName())) {
+                                forgotPassUserName = checkLoginByOTPAndUsernamePojo.getTable().get(0).getName();
+                            }
+                            redirectToResetPasswordActivity(userId, institute_id, user_type, forgotPassUserName);
                         } else if (userType.trim().equals(String.valueOf(CommonUtil.LOGIN_TYPE_FACULTY))) {
                             setEmployeeLoginData(checkLoginByOTPAndUsernamePojo.getTable().get(0));
                             Toast.makeText(VerifyOTPActivity.this, "OTP verified Successfully ", Toast.LENGTH_SHORT).show();
-                            redirectToResetPasswordActivity(userId, institute_id, user_type);
+                            if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsernamePojo.getTable().get(0).getName())) {
+                                forgotPassUserName = checkLoginByOTPAndUsernamePojo.getTable().get(0).getName();
+                            }
+                            redirectToResetPasswordActivity(userId, institute_id, user_type, forgotPassUserName);
                         }
                     } else {
                         Toast.makeText(VerifyOTPActivity.this, "Incorrect OTP,Please enter correct OTP.", Toast.LENGTH_SHORT).show();
@@ -139,11 +146,12 @@ public class VerifyOTPActivity extends AppCompatActivity implements View.OnClick
     }
 
 
-    private void redirectToResetPasswordActivity(String userId, String instituteId, String userType) {
+    private void redirectToResetPasswordActivity(String userId, String instituteId, String userType, String forgotPasswordUserName) {
         Intent intent = new Intent(VerifyOTPActivity.this, ResetPasswordActivity.class);
         intent.putExtra(IntentConstants.RESET_PASS_USER_ID, userId);
         intent.putExtra(IntentConstants.FACULTY_OR_STUDENT, userType);
         intent.putExtra(IntentConstants.RESET_PASS_INSTITUTE_ID, instituteId);
+        intent.putExtra(IntentConstants.FORGOT_PASSWORD_USER_NAME, forgotPasswordUserName);
         startActivityForResult(intent, IntentConstants.REQUEST_CODE_FOR_RESET_PASSWORD);
     }
 

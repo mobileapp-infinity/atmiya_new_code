@@ -38,16 +38,23 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     AppCompatEditText edtNewPassword;
     AppCompatEditText edtConfirmPassword;
     TextViewRegularFont btnUpdatePassword;
+    TextViewRegularFont tvForgotPasswordUserName;
 
     String userId = "";
     String userType = "";
     String instituteId = "";
+    String forgotPasswordUserName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
         initView();
+
+        if (getIntent().hasExtra(IntentConstants.FORGOT_PASSWORD_USER_NAME)) {
+            forgotPasswordUserName = getIntent().getStringExtra(IntentConstants.FORGOT_PASSWORD_USER_NAME);
+            tvForgotPasswordUserName.setText(forgotPasswordUserName);
+        }
 
         if (getIntent().hasExtra(IntentConstants.RESET_PASS_USER_ID)) {
             userId = getIntent().getStringExtra(IntentConstants.RESET_PASS_USER_ID);
@@ -72,6 +79,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnUpdatePassword = findViewById(R.id.btnUpdatePassword);
         btnUpdatePassword.setOnClickListener(this);
+        tvForgotPasswordUserName = findViewById(R.id.tvForgotPasswordUserName);
     }
 
     @Override
