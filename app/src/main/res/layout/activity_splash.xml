@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:background="@drawable/erp_atmiya_new_bg_splash"
+            app:srcCompat="@drawable/erp_atmiya_new_bg_splash"
             android:scaleType="fitXY" />
 
         <LinearLayout
