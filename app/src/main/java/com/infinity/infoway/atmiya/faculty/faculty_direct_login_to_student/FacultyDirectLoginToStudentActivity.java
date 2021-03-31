@@ -12,9 +12,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.api.ApiImplementer;
+import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
 import com.infinity.infoway.atmiya.student.holiday.HolidayListPojo;
+import com.infinity.infoway.atmiya.utils.CommonUtil;
 import com.infinity.infoway.atmiya.utils.ConnectionDetector;
 import com.infinity.infoway.atmiya.utils.MySharedPreferences;
 
@@ -39,13 +42,23 @@ public class FacultyDirectLoginToStudentActivity extends AppCompatActivity imple
     FacultyStudentListAdapter facultyStudentListAdapter;
     ArrayList<FacultyStudentListPojo.Table> tableArrayList;
 
+    TextInputEditText tiedtStudentName;
+    TextViewRegularFont tvBtnSearch;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_direct_login_to_student);
         initView();
-        getStudentListApiCall();
+    }
+
+    private boolean isValid() {
+        if (CommonUtil.checkIsEmptyOrNullCommon(tiedtStudentName.getText().toString().trim())) {
+            Toast.makeText(this, "Please enter student name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void initView() {
@@ -54,6 +67,9 @@ public class FacultyDirectLoginToStudentActivity extends AppCompatActivity imple
         ivCloseFacultyStudentDirectLogin = findViewById(R.id.ivCloseFacultyStudentDirectLogin);
         ivCloseFacultyStudentDirectLogin.setOnClickListener(this);
 
+        tiedtStudentName = findViewById(R.id.tiedtStudentName);
+        tvBtnSearch = findViewById(R.id.tvBtnSearch);
+        tvBtnSearch.setOnClickListener(this);
         llFacultyStudentList = findViewById(R.id.llFacultyStudentList);
         llFacultyStudentProgressbar = findViewById(R.id.llFacultyStudentProgressbar);
         llNoDataFoundFacultyStudent = findViewById(R.id.llNoDataFoundFacultyStudent);
@@ -85,18 +101,19 @@ public class FacultyDirectLoginToStudentActivity extends AppCompatActivity imple
     }
 
     void filter(String text) {
-        ArrayList<FacultyStudentListPojo.Table> updatedList = new ArrayList();
-        for (FacultyStudentListPojo.Table table : tableArrayList) {
-            if (table.getStudName() != null && table.getStudEnrollmentNo() != null &&
-                    table.getStudMobileNo() != null) {
-                if (table.getStudName().toLowerCase().contains(text.toLowerCase()) ||
-                        table.getStudEnrollmentNo().trim().contains(text.trim()) ||
-                        table.getStudMobileNo().trim().contains(text.trim())) {
+        try {
+            ArrayList<FacultyStudentListPojo.Table> updatedList = new ArrayList();
+            for (FacultyStudentListPojo.Table table : tableArrayList) {
+                if ((table.getStudName() != null && table.getStudName().toLowerCase().contains(text.toLowerCase())) ||
+                        (table.getStudEnrollmentNo() != null && table.getStudEnrollmentNo().trim().contains(text.trim())) ||
+                        (table.getStudMobileNo() != null && table.getStudMobileNo().trim().contains(text.trim()))) {
                     updatedList.add(table);
                 }
             }
+            facultyStudentListAdapter.updateList(updatedList);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        facultyStudentListAdapter.updateList(updatedList);
     }
 
     @Override
@@ -105,6 +122,11 @@ public class FacultyDirectLoginToStudentActivity extends AppCompatActivity imple
             onBackPressed();
         } else if (v.getId() == R.id.imClearSearch) {
             edSearchStudent.setText("");
+        } else if (v.getId() == R.id.tvBtnSearch) {
+            if (isValid()) {
+                CommonUtil.hideKeyboardCommon(FacultyDirectLoginToStudentActivity.this);
+                getStudentListApiCall(tiedtStudentName.getText().toString().trim());
+            }
         }
     }
 
@@ -114,11 +136,11 @@ public class FacultyDirectLoginToStudentActivity extends AppCompatActivity imple
     }
 
 
-    private void getStudentListApiCall() {
+    private void getStudentListApiCall(String studentName) {
         llFacultyStudentList.setVisibility(View.GONE);
         llFacultyStudentProgressbar.setVisibility(View.VISIBLE);
         llNoDataFoundFacultyStudent.setVisibility(View.GONE);
-        ApiImplementer.getFacultyStudentListforDirectLoginApiImplementer("", mySharedPreferences.getEmpInstituteId(), new Callback<FacultyStudentListPojo>() {
+        ApiImplementer.getFacultyStudentListforDirectLoginApiImplementer(studentName, mySharedPreferences.getEmpInstituteId(), new Callback<FacultyStudentListPojo>() {
             @Override
             public void onResponse(Call<FacultyStudentListPojo> call, Response<FacultyStudentListPojo> response) {
                 try {
