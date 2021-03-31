@@ -365,6 +365,96 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:weightSum="3"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/llDirectLoginToStudentFacultySide"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="visible"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:adjustViewBounds="true"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_direct_login"
+                            android:tint="@color/colorAccent"/>
+
+                        <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:text="Direct Login\nTo Student"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:adjustViewBounds="true"
+                            app:srcCompat="@drawable/ic_faculty_announcement" />
+
+                        <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:text="Announcement"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:adjustViewBounds="true"
+                            app:srcCompat="@drawable/ic_teaching_update" />
+
+                        <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:text="Teaching\nUpdate"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/faculty_dashboard_menu_font_size" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

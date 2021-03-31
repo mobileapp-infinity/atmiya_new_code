@@ -26,6 +26,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_announcement.FacultyAnnouncem
 import com.infinity.infoway.atmiya.faculty.faculty_attendance.FacultyAttendanceActivity;
 import com.infinity.infoway.atmiya.faculty.faculty_dashboard.adapter.FacultyAnnouncementAdapter;
 import com.infinity.infoway.atmiya.faculty.faculty_dashboard.pojo.UpdateFaultyFCMTokenPojo;
+import com.infinity.infoway.atmiya.faculty.faculty_direct_login_to_student.FacultyDirectLoginToStudentActivity;
 import com.infinity.infoway.atmiya.faculty.faculty_leave.FacultyLeaveActivity;
 import com.infinity.infoway.atmiya.faculty.faculty_lecture_plan.FacultyLecturePlanActivity;
 import com.infinity.infoway.atmiya.faculty.faculty_news.FacultyNewsActivity;
@@ -36,6 +37,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.FacultyTeachi
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.activity.FacultyTimeTableActivity;
 import com.infinity.infoway.atmiya.login.activity.LoginActivity;
 import com.infinity.infoway.atmiya.student.news_or_notification.FacultyOrStudentNewsOrNotificationsPojo;
+import com.infinity.infoway.atmiya.student.student_dashboard.activity.StudentDashboardActivity;
 import com.infinity.infoway.atmiya.student.student_dashboard.pojo.GetSliderImageUrlsPojo;
 import com.infinity.infoway.atmiya.utils.CommonUtil;
 import com.infinity.infoway.atmiya.utils.ConnectionDetector;
@@ -60,7 +62,7 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
     private CircleImageView cImgProfileFacultySide;
     private RecyclerViewPager recyclerViewPagerFacultySideBanner;
 
-//    AppCompatImageView imgNotificationBellFacultySide;
+//    AppCompatImageView imgNotificationBellFacultySide;ST
 
     TextViewBoldFont tvFacultyName;
     TextViewRegularFont tvFacultyDesignation;
@@ -75,6 +77,7 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
     LinearLayout llFacultyProfile;
     LinearLayout llFacultyAnnouncement;
     LinearLayout llFacultyTeachingUpdate;
+    LinearLayout llDirectLoginToStudentFacultySide;
 
     AppCompatButton btnViewAllAnnouncementFacultySide;
     RecyclerView rvAnnouncementFacultySide;
@@ -128,6 +131,8 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
         llLecturePlanFacultySide.setOnClickListener(this);
         llNewsFacultySide = findViewById(R.id.llNewsFacultySide);
         llNewsFacultySide.setOnClickListener(this);
+        llDirectLoginToStudentFacultySide = findViewById(R.id.llDirectLoginToStudentFacultySide);
+        llDirectLoginToStudentFacultySide.setOnClickListener(this);
 
         btnViewAllAnnouncementFacultySide = findViewById(R.id.btnViewAllAnnouncementFacultySide);
         btnViewAllAnnouncementFacultySide.setOnClickListener(this);
@@ -143,6 +148,16 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
         llFacultyAnnouncement.setOnClickListener(this);
         llFacultyTeachingUpdate = findViewById(R.id.llFacultyTeachingUpdate);
         llFacultyTeachingUpdate.setOnClickListener(this);
+
+        if (!CommonUtil.checkIsEmptyOrNullCommon(mySharedPreferences.getEmpIsAdminOrNot())) {
+            if (mySharedPreferences.getEmpIsAdminOrNot().equalsIgnoreCase("1")) {
+                llDirectLoginToStudentFacultySide.setVisibility(View.VISIBLE);
+            } else {
+                llDirectLoginToStudentFacultySide.setVisibility(View.GONE);
+            }
+        } else {
+            llDirectLoginToStudentFacultySide.setVisibility(View.GONE);
+        }
 
     }
 
@@ -187,6 +202,9 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
         } else if (v.getId() == R.id.flNotification) {
             Intent intent = new Intent(FacultyDashboardActivity.this, FacultyAnnouncementActivity.class);
             startActivity(intent);
+        } else if (v.getId() == R.id.llDirectLoginToStudentFacultySide) {
+            Intent intent = new Intent(FacultyDashboardActivity.this, FacultyDirectLoginToStudentActivity.class);
+            startActivityForResult(intent, IntentConstants.REQUEST_CODE_FOR_FACULTY_STUDENT_DIRECT_LOGIN);
         }
     }
 
@@ -316,6 +334,10 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
             finish();
         } else if (resultCode == RESULT_OK && requestCode == IntentConstants.REQUEST_CODE_FOR_VIEW_ALL_NEWS_OR_NOTIFICATION_FACULTY_SIDE) {
             getFacultyAnnouncementApiCall();
+        } else if (resultCode == RESULT_OK && requestCode == IntentConstants.REQUEST_CODE_FOR_FACULTY_STUDENT_DIRECT_LOGIN) {
+            Intent intent = new Intent(FacultyDashboardActivity.this, StudentDashboardActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 

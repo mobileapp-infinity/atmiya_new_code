@@ -11,7 +11,7 @@ public class EmployeeSidePreferencesConstants {
     public static final String EMP_AC_FULL_NAME = "emp_ac_full_name";
     public static final String EMP_AC_LOGO = "emp_ac_logo";
     public static final String EMP_PHOTO_URL = "emp_photo";
-//    public static final String EMP_STATUS = "emp_status";
+    //    public static final String EMP_STATUS = "emp_status";
     public static final String EMP_AC_CODE = "emp_ac_code";
     public static final String EMP_IS_DIRECTOR = "emp_is_director";
     public static final String EMP_YEAR_ID = "emp_emp_year_id";
@@ -20,5 +20,6 @@ public class EmployeeSidePreferencesConstants {
     public static final String EMP_USER_STATUS = "emp_user_status";
     public static final String EMP_PERMANENT_COLLEGE = "emp_permenant_college";
     public static final String EMP_DEPARTMENT_ID = "emp_department_id";
+    public static final String EMP_IS_ADMIN = " emp_is_admin";
 
 }

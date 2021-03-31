@@ -198,6 +198,15 @@ public class MySharedPreferences {
         return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_DEPARTMENT_ID, "");
     }
 
+    public void setEmpIsAdminOrNot(String empAdminOrNot) {
+        editorForStudentOrFaculty.putString(EmployeeSidePreferencesConstants.EMP_IS_ADMIN, empAdminOrNot);
+        editorForStudentOrFaculty.apply();
+    }
+
+    public String getEmpIsAdminOrNot() {
+        return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_IS_ADMIN, "");
+    }
+
 
     public void setLoginUserType(int loginUserType) {
         editorForStudentOrFaculty.putInt(CommonPreferencesConstants.LOGIN_USER_TYPE, loginUserType);

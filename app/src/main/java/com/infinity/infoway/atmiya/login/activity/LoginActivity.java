@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements
                             }
                             redirectToStudentDashboard();
                         } else {
-                             checkEmployeeLoginCheckApiCall(false, true, userName, password);
+                            checkEmployeeLoginCheckApiCall(false, true, userName, password);
                         }
                     } else {
                         DialogUtil.hideProgressDialog();
@@ -365,6 +365,10 @@ public class LoginActivity extends AppCompatActivity implements
             mySharedPreferences.setEmpId(employeeLoginPojo.getEmpId() + "");
         }
 
+        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getIsAdmin())) {
+            mySharedPreferences.setEmpIsAdminOrNot(employeeLoginPojo.getIsAdmin() + "");
+        }
+
         if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getEmpNumber())) {
             mySharedPreferences.setEmpNumber(employeeLoginPojo.getEmpNumber() + "");
         }
@@ -401,9 +405,9 @@ public class LoginActivity extends AppCompatActivity implements
             mySharedPreferences.setEmpIsDirectory(employeeLoginPojo.getIsDirector() + "");
         }
 
-        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getEmpId())) {
-            mySharedPreferences.setEmpId(employeeLoginPojo.getEmpId() + "");
-        }
+//        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getEmpId())) {
+//            mySharedPreferences.setEmpId(employeeLoginPojo.getEmpId() + "");
+//        }
 
         if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getEmpYearId())) {
             mySharedPreferences.setEmpYearId(employeeLoginPojo.getEmpYearId() + "");

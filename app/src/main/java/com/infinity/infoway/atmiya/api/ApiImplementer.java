@@ -2,6 +2,8 @@ package com.infinity.infoway.atmiya.api;
 
 import com.infinity.infoway.atmiya.faculty.faculty_attendance.FacultyAttendancePojo;
 import com.infinity.infoway.atmiya.faculty.faculty_dashboard.pojo.UpdateFaultyFCMTokenPojo;
+import com.infinity.infoway.atmiya.faculty.faculty_direct_login_to_student.FacultyStudentListPojo;
+import com.infinity.infoway.atmiya.faculty.faculty_direct_login_to_student.GetStudentDetailsForDirectLoginPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_fill_attendance.pojo.FacultyFillAttendanceConfigurationPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_fill_attendance.pojo.FacultyPendingAttendanceUnitPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_fill_attendance.pojo.GetLessonPlaningTopicDetailsSubjectFacultyAndTopicWisePojo;
@@ -199,10 +201,10 @@ public class ApiImplementer {
 //        call.enqueue(cb);
 //    }
 
-    public static void downloadPaySlipOfAxisApiImplementer(String stud_id,String fee_type,
+    public static void downloadPaySlipOfAxisApiImplementer(String stud_id, String fee_type,
                                                            Callback<PaySlipOfAxisPojo> cb) {
         final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
-        Call<PaySlipOfAxisPojo> call = apiService.downloadPaySlipOfAxis(stud_id,fee_type);
+        Call<PaySlipOfAxisPojo> call = apiService.downloadPaySlipOfAxis(stud_id, fee_type);
         call.enqueue(cb);
     }
 
@@ -974,6 +976,18 @@ public class ApiImplementer {
     public static void getStudentMidMarksApiImplementer(String stud_id, String sem_id, String div_id, String year_id, Callback<ArrayList<StudentMidMarksPojo>> cb) {
         final IApiInterface apiInterface = ApiClient.getClient().create(IApiInterface.class);
         Call<ArrayList<StudentMidMarksPojo>> call = apiInterface.getStudentMidMarksAPI(stud_id, sem_id, div_id, year_id);
+        call.enqueue(cb);
+    }
+
+    public static void getFacultyStudentListforDirectLoginApiImplementer(String search, String institute_id, Callback<FacultyStudentListPojo> cb) {
+        final IApiInterface apiInterface = ApiClient.getClient().create(IApiInterface.class);
+        Call<FacultyStudentListPojo> call = apiInterface.getFacultyStudentListforDirectLogin(search, institute_id);
+        call.enqueue(cb);
+    }
+
+    public static void getStudentDetailsForDirectLoginByStudentIdApiImplementer(String student_id, Callback<GetStudentDetailsForDirectLoginPojo> cb) {
+        final IApiInterface apiInterface = ApiClient.getClient().create(IApiInterface.class);
+        Call<GetStudentDetailsForDirectLoginPojo> call = apiInterface.getStudentDetailsForDirectLoginByStudentId(student_id);
         call.enqueue(cb);
     }
 

@@ -291,6 +291,10 @@ public class VerifyOTPActivity extends AppCompatActivity implements View.OnClick
             mySharedPreferences.setEmpId(checkLoginByOTPAndUsername.getEmpId() + "");
         }
 
+        if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsername.getIsAdmin())) {
+            mySharedPreferences.setEmpIsAdminOrNot(checkLoginByOTPAndUsername.getIsAdmin() + "");
+        }
+
         if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsername.getEmpNumber())) {
             mySharedPreferences.setEmpNumber(checkLoginByOTPAndUsername.getEmpNumber() + "");
         }
@@ -327,9 +331,9 @@ public class VerifyOTPActivity extends AppCompatActivity implements View.OnClick
             mySharedPreferences.setEmpIsDirectory(checkLoginByOTPAndUsername.getIsDirector() + "");
         }
 
-        if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsername.getEmpId())) {
-            mySharedPreferences.setEmpId(checkLoginByOTPAndUsername.getEmpId() + "");
-        }
+//        if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsername.getEmpId())) {
+//            mySharedPreferences.setEmpId(checkLoginByOTPAndUsername.getEmpId() + "");
+//        }
 
         if (!CommonUtil.checkIsEmptyOrNullCommon(checkLoginByOTPAndUsername.getEmpYearId())) {
             mySharedPreferences.setEmpYearId(checkLoginByOTPAndUsername.getEmpYearId() + "");

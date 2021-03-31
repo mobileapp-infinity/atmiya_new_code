@@ -931,7 +931,8 @@ public class FacultyFillAttendanceActivity extends AppCompatActivity implements 
         if (isPdShow) {
             DialogUtil.showProgressDialogNotCancelable(FacultyFillAttendanceActivity.this, "");
         }
-        ApiImplementer.insertAllStudentAsPresentApiCallApiImplementer(facultyPendingAttendancePojo.getCollegeId() + "", facultyPendingAttendancePojo.getSmId() + "",
+        ApiImplementer.insertAllStudentAsPresentApiCallApiImplementer(facultyPendingAttendancePojo.getCollegeId() + "",
+                facultyPendingAttendancePojo.getSmId() + "",
                 facultyPendingAttendancePojo.getDivId() + "", facultyPendingAttendancePojo.getCourseId() + "", facultyPendingAttendancePojo.getBatchId() + "",
                 mySharedPreferences.getEmpYearId(), facultyPendingAttendancePojo.getLecNo() + "", strDate, "", attTopicName, attTopicMethod, attAid,
                 attFlint, commaSepratedRollNo, facultyPendingAttendancePojo.getLecType(), facultyPendingAttendancePojo.getDLVERSIONID() + "",
@@ -1100,10 +1101,13 @@ public class FacultyFillAttendanceActivity extends AppCompatActivity implements 
         if (isPdShow) {
             DialogUtil.showProgressDialogNotCancelable(FacultyFillAttendanceActivity.this, "");
         }
-        ApiImplementer.updateDailyLectureWiseAttendanceApiImplementer(facultyPendingAttendancePojo.getCourseId() + "", facultyPendingAttendancePojo.getSmId() + "",
-                facultyPendingAttendancePojo.getDivId() + "", facultyPendingAttendancePojo.getBatchId() + "", facultyPendingAttendancePojo.getDlDate() + "",
+        ApiImplementer.updateDailyLectureWiseAttendanceApiImplementer(facultyPendingAttendancePojo.getCourseId() + "",
+                facultyPendingAttendancePojo.getSmId() + "",
+                facultyPendingAttendancePojo.getDivId() + "", facultyPendingAttendancePojo.getBatchId() + "",
+                facultyPendingAttendancePojo.getDlDate() + "",
                 facultyPendingAttendancePojo.getLecType() + "", mySharedPreferences.getEmpId(), facultyPendingAttendancePojo.getLecNo() + "",
-                facultyPendingAttendancePojo.getSubId() + "", facultyPendingAttendancePojo.getDLRECOURSEID() + "", facultyPendingAttendancePojo.getDLVERSIONID() + "",
+                facultyPendingAttendancePojo.getSubId() + "", facultyPendingAttendancePojo.getDLRECOURSEID() + "",
+                facultyPendingAttendancePojo.getDLVERSIONID() + "",
                 mySharedPreferences.getEmpId(), "1", new Callback<ArrayList<UpdateDailyLectureWiseAttendanceStatusPojo>>() {
                     @Override
                     public void onResponse(Call<ArrayList<UpdateDailyLectureWiseAttendanceStatusPojo>> call, Response<ArrayList<UpdateDailyLectureWiseAttendanceStatusPojo>> response) {
@@ -1148,9 +1152,12 @@ public class FacultyFillAttendanceActivity extends AppCompatActivity implements 
             DialogUtil.showProgressDialogNotCancelable(FacultyFillAttendanceActivity.this, "");
         }
         ApiImplementer.insertClassWiseAttendanceApiImplementer(facultyPendingAttendancePojo.getCollegeId() + "", presentId, absentId,
-                facultyPendingAttendancePojo.getSmId() + "" + "", facultyPendingAttendancePojo.getDivId() + "", facultyPendingAttendancePojo.getBatchId() + "",
-                facultyPendingAttendancePojo.getLecNo() + "", strDate, "", attStatus, mySharedPreferences.getEmpYearId(),
-                attTopic, attTeachingMethod, attAid, flint, facultyPendingAttendancePojo.getLecType(), facultyPendingAttendancePojo.getDLVERSIONID() + "", "By Selection Method Application", mySharedPreferences.getEmpId(), unitId, attHomeWork, mySharedPreferences.getEmpId(), "1", new Callback<InsertClassWiseAttendancePojo>() {
+                facultyPendingAttendancePojo.getSmId() + "" + "", facultyPendingAttendancePojo.getDivId() + "",
+                facultyPendingAttendancePojo.getBatchId() + "",
+                facultyPendingAttendancePojo.getLecNo() + "", strDate, "",
+                attStatus, mySharedPreferences.getEmpYearId(),
+                attTopic, attTeachingMethod, attAid, flint, facultyPendingAttendancePojo.getLecType(), facultyPendingAttendancePojo.getDLVERSIONID() + "",
+                "By Selection Method Application", mySharedPreferences.getEmpId(), unitId, attHomeWork, mySharedPreferences.getEmpId(), "1", new Callback<InsertClassWiseAttendancePojo>() {
                     @Override
                     public void onResponse(Call<InsertClassWiseAttendancePojo> call, Response<InsertClassWiseAttendancePojo> response) {
                         if (isPdHide) {

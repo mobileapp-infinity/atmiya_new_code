@@ -2,6 +2,8 @@ package com.infinity.infoway.atmiya.api;
 
 import com.infinity.infoway.atmiya.faculty.faculty_attendance.FacultyAttendancePojo;
 import com.infinity.infoway.atmiya.faculty.faculty_dashboard.pojo.UpdateFaultyFCMTokenPojo;
+import com.infinity.infoway.atmiya.faculty.faculty_direct_login_to_student.FacultyStudentListPojo;
+import com.infinity.infoway.atmiya.faculty.faculty_direct_login_to_student.GetStudentDetailsForDirectLoginPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_fill_attendance.pojo.FacultyFillAttendanceConfigurationPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_fill_attendance.pojo.FacultyPendingAttendanceUnitPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_fill_attendance.pojo.GetLessonPlaningTopicDetailsSubjectFacultyAndTopicWisePojo;
@@ -167,7 +169,7 @@ public interface IApiInterface {
 
     @GET("Print_Axis_Payslip_with_payment_code")
     @Streaming
-    Call<PaySlipOfAxisPojo> downloadPaySlipOfAxis(@Query("stud_id") String stud_id,@Query("fee_type") String fee_type);
+    Call<PaySlipOfAxisPojo> downloadPaySlipOfAxis(@Query("stud_id") String stud_id, @Query("fee_type") String fee_type);
 
     @GET("BindFeeType")
     @Streaming
@@ -558,7 +560,10 @@ public interface IApiInterface {
     @GET("Get_Student_Forum_Activity_Faculty_Wise_API")
     @Streaming
     Call<ArrayList<FacultyStudentForumPojo>> GetStudentForumActivityFacultyWiseAPI(@Query("emp_id") String emp_id,
-                                                                                   @Query("year_id") String year_id, @Query("institute_id") String institute_id, @Query("RowsPerPage") String RowsPerPage, @Query("PageNumber") String PageNumber);
+                                                                                   @Query("year_id") String year_id,
+                                                                                   @Query("institute_id") String institute_id,
+                                                                                   @Query("RowsPerPage") String RowsPerPage,
+                                                                                   @Query("PageNumber") String PageNumber);
 
 
     @GET("Get_Pending_Attendance_Detail_Employee_Wise_API")
@@ -780,5 +785,13 @@ public interface IApiInterface {
             @Query("div_id") String div_id,
             @Query("year_id") String year_id);
 
+    @GET("Search_Student_Master_Detail")
+    Call<FacultyStudentListPojo> getFacultyStudentListforDirectLogin(
+            @Query("search") String search,
+            @Query("institute_id") String institute_id);
+
+    @GET("get_student_detail_for_direct_login")
+    Call<GetStudentDetailsForDirectLoginPojo> getStudentDetailsForDirectLoginByStudentId(
+            @Query("student_id") String student_id);
 
 }

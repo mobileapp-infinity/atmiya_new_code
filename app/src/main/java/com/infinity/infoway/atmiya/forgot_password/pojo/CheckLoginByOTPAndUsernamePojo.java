@@ -237,6 +237,9 @@ public class CheckLoginByOTPAndUsernamePojo {
         @SerializedName("emp_id")
         @Expose
         private Integer empId;
+        @SerializedName("is_admin")
+        @Expose
+        private Integer isAdmin;
         @SerializedName("emp_number")
         @Expose
         private String empNumber;
@@ -267,6 +270,14 @@ public class CheckLoginByOTPAndUsernamePojo {
         @SerializedName("emp_password")
         @Expose
         private Object empPassword;
+
+        public Integer getIsAdmin() {
+            return isAdmin;
+        }
+
+        public void setIsAdmin(Integer isAdmin) {
+            this.isAdmin = isAdmin;
+        }
 
         public Integer getEmpId() {
             return empId;

@@ -179,14 +179,14 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="vertical"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:id="@+id/llFillAttendanceByStudentInner"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:visibility="gone">
+                                android:visibility="visible">
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btnColumn"

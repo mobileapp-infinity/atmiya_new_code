@@ -8,6 +8,9 @@ public class EmployeeLoginPojo {
     @SerializedName("emp_id")
     @Expose
     private Integer empId;
+    @SerializedName("is_admin")
+    @Expose
+    private Integer isAdmin;
     @SerializedName("emp_number")
     @Expose
     private String empNumber;
@@ -62,6 +65,14 @@ public class EmployeeLoginPojo {
     @SerializedName("login_user_type")
     @Expose
     private Integer loginUserType;
+
+    public Integer getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Integer isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     public Integer getEmpId() {
         return empId;
