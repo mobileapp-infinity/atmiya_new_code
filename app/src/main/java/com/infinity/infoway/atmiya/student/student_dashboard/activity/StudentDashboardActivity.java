@@ -273,14 +273,28 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
                 mySharedPreferences.getAcId(), new Callback<CommonNewImageSliderPojo>() {
             @Override
             public void onResponse(Call<CommonNewImageSliderPojo> call, Response<CommonNewImageSliderPojo> response) {
-                if (response.isSuccessful() && response.body().getUrl().size() > 0) {
-                    ArrayList<String> bannerUrls = (ArrayList<String>) response.body().getUrl();
-                    for (int i = 0; i < bannerUrls.size(); i++) {
-                        if (bannerUrls.get(i) != null && !bannerUrls.get(i).isEmpty() && bannerUrls.get(i).length() > 7) {
-                            recyclerViewPagerStudentSideBanner.addItem(new PagerModel(bannerUrls.get(i)));
+                try {
+                    if (response.isSuccessful() && response.body().getUrl().size() > 0) {
+                        ArrayList<String> bannerUrls = (ArrayList<String>) response.body().getUrl();
+                        ArrayList<String> sequencedBannerUrls = new ArrayList<>();
+                        for (int i = 0; i < bannerUrls.size(); i++) {
+                            if (bannerUrls.get(i) != null && !bannerUrls.get(i).isEmpty() && bannerUrls.get(i).length() > 7) {
+                                String imgUrl = bannerUrls.get(i);
+                                String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/"),imgUrl.lastIndexOf("."));
+                                String[] sequenceAndName = imgUrlWithoutNameExtension.split("_");
+                                sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]),imgUrl);
+                            }
                         }
+
+                        for (int i = 0; i < sequencedBannerUrls.size(); i++) {
+                            if (sequencedBannerUrls.get(i) != null && !sequencedBannerUrls.get(i).isEmpty() && sequencedBannerUrls.get(i).length() > 7) {
+                                recyclerViewPagerStudentSideBanner.addItem(new PagerModel(sequencedBannerUrls.get(i)));
+                            }
+                        }
+                        recyclerViewPagerStudentSideBanner.start();
                     }
-                    recyclerViewPagerStudentSideBanner.start();
+                }catch (Throwable th){
+                    th.printStackTrace();
                 }
             }
 
