@@ -65,6 +65,17 @@ public class EmployeeLoginPojo {
     @SerializedName("login_user_type")
     @Expose
     private Integer loginUserType;
+    @SerializedName("ac_id")
+    @Expose
+    private Integer acId;
+
+    public Integer getAcId() {
+        return acId;
+    }
+
+    public void setAcId(Integer acId) {
+        this.acId = acId;
+    }
 
     public Integer getIsAdmin() {
         return isAdmin;

@@ -210,8 +210,8 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
     }
 
     private void getSliderImagesApiCall() {
-        ApiImplementer.getImageSliderNewApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getInstituteId(),
-                mySharedPreferences.getAcId(), new Callback<CommonNewImageSliderPojo>() {
+        ApiImplementer.getImageSliderNewApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getEmpInstituteId(),
+                mySharedPreferences.getEmpAcId(), new Callback<CommonNewImageSliderPojo>() {
             @Override
             public void onResponse(Call<CommonNewImageSliderPojo> call, Response<CommonNewImageSliderPojo> response) {
                 try{
@@ -221,9 +221,9 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
                         for (int i = 0; i < bannerUrls.size(); i++) {
                             if (bannerUrls.get(i) != null && !bannerUrls.get(i).isEmpty() && bannerUrls.get(i).length() > 7) {
                                 String imgUrl = bannerUrls.get(i);
-                                String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/"),imgUrl.lastIndexOf("."));
+                                String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/") + 1,imgUrl.lastIndexOf("."));
                                 String[] sequenceAndName = imgUrlWithoutNameExtension.split("_");
-                                sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]),imgUrl);
+                                sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]) - 1,imgUrl);
                             }
                         }
 

@@ -369,6 +369,10 @@ public class LoginActivity extends AppCompatActivity implements
             mySharedPreferences.setEmpIsAdminOrNot(employeeLoginPojo.getIsAdmin() + "");
         }
 
+        if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getAcId())) {
+            mySharedPreferences.setEmpAcId(employeeLoginPojo.getAcId() + "");
+        }
+
         if (!CommonUtil.checkIsEmptyOrNullCommon(employeeLoginPojo.getEmpNumber())) {
             mySharedPreferences.setEmpNumber(employeeLoginPojo.getEmpNumber() + "");
         }

@@ -280,9 +280,9 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
                         for (int i = 0; i < bannerUrls.size(); i++) {
                             if (bannerUrls.get(i) != null && !bannerUrls.get(i).isEmpty() && bannerUrls.get(i).length() > 7) {
                                 String imgUrl = bannerUrls.get(i);
-                                String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/"),imgUrl.lastIndexOf("."));
+                                String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/")+1,imgUrl.lastIndexOf("."));
                                 String[] sequenceAndName = imgUrlWithoutNameExtension.split("_");
-                                sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]),imgUrl);
+                                sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]) - 1,imgUrl);
                             }
                         }
 

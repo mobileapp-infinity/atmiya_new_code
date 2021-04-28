@@ -207,6 +207,15 @@ public class MySharedPreferences {
         return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_IS_ADMIN, "");
     }
 
+    public void setEmpAcId(String acId) {
+        editorForStudentOrFaculty.putString(EmployeeSidePreferencesConstants.EMP_AC_ID, acId);
+        editorForStudentOrFaculty.apply();
+    }
+
+    public String getEmpAcId() {
+        return sharedPreferencesForStudentOrFaculty.getString(EmployeeSidePreferencesConstants.EMP_AC_ID, "");
+    }
+
 
     public void setLoginUserType(int loginUserType) {
         editorForStudentOrFaculty.putInt(CommonPreferencesConstants.LOGIN_USER_TYPE, loginUserType);
