@@ -27,6 +27,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_lab_o
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_student_forum.FacultyStudentForumPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_subject_wise_division_wise_total_theory_period_engaged.FacultySubjectAndDivisionWiseTotalTheoryPeriodEngagedPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTablePojo;
+import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
@@ -114,9 +115,18 @@ public class ApiImplementer {
         call.enqueue(cb);
     }
 
-    public static void getSliderImagesApiImplementer(String url, String instituteId, Callback<GetSliderImageUrlsPojo> cb) {
+    //this is old ,image slider api don't use it new api is below
+//    public static void getSliderImagesApiImplementer(String url, String instituteId, Callback<GetSliderImageUrlsPojo> cb) {
+//        final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
+//        Call<GetSliderImageUrlsPojo> call = apiService.getSliderImages(url, instituteId);
+//        call.enqueue(cb);
+//    }
+
+
+    //this is new image slider api
+    public static void getImageSliderNewApiImplementer(String url,String institute_id,String ac_id, Callback<CommonNewImageSliderPojo> cb) {
         final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
-        Call<GetSliderImageUrlsPojo> call = apiService.getSliderImages(url, instituteId);
+        Call<CommonNewImageSliderPojo> call = apiService.getCommonNewImageSlider(url, institute_id,ac_id);
         call.enqueue(cb);
     }
 
@@ -345,11 +355,11 @@ public class ApiImplementer {
         call.enqueue(cb);
     }
 
-    public static void groupWiseLearningManagementSubjectListApiImplementer(String grp_id, String stud_id, String sem_id, String year_id,
+    public static void groupWiseLearningManagementDocumentListApiImplementer(String grp_id, String stud_id, String sem_id, String year_id,
                                                                             String from_date, String to_date, String sub_id,
                                                                             Callback<ArrayList<LearningManagementGroupDetailsPojo>> cb) {
         final IApiInterface apiService = ApiClient.getClient().create(IApiInterface.class);
-        Call<ArrayList<LearningManagementGroupDetailsPojo>> call = apiService.groupWiseLearningManagementSubjectList(grp_id, stud_id, sem_id, year_id,
+        Call<ArrayList<LearningManagementGroupDetailsPojo>> call = apiService.groupWiseLearningManagementDocumentList(grp_id, stud_id, sem_id, year_id,
                 from_date, to_date, sub_id);
         call.enqueue(cb);
     }

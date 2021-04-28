@@ -28,6 +28,7 @@ import com.infinity.infoway.atmiya.custom_class.ProgressBarAnimation;
 import com.infinity.infoway.atmiya.custom_class.TextViewBoldFont;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
 import com.infinity.infoway.atmiya.login.activity.LoginActivity;
+import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
 import com.infinity.infoway.atmiya.login.pojo.LogOutPojo;
 import com.infinity.infoway.atmiya.student.assignment.AssignmentActivity;
 import com.infinity.infoway.atmiya.student.attendance.activity.StudentAttendanceActivity;
@@ -268,9 +269,10 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
 
 
     private void getSliderImagesApiCall() {
-        ApiImplementer.getSliderImagesApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getInstituteId(), new Callback<GetSliderImageUrlsPojo>() {
+        ApiImplementer.getImageSliderNewApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getInstituteId(),
+                mySharedPreferences.getAcId(), new Callback<CommonNewImageSliderPojo>() {
             @Override
-            public void onResponse(Call<GetSliderImageUrlsPojo> call, Response<GetSliderImageUrlsPojo> response) {
+            public void onResponse(Call<CommonNewImageSliderPojo> call, Response<CommonNewImageSliderPojo> response) {
                 if (response.isSuccessful() && response.body().getUrl().size() > 0) {
                     ArrayList<String> bannerUrls = (ArrayList<String>) response.body().getUrl();
                     for (int i = 0; i < bannerUrls.size(); i++) {
@@ -283,7 +285,7 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
             }
 
             @Override
-            public void onFailure(Call<GetSliderImageUrlsPojo> call, Throwable t) {
+            public void onFailure(Call<CommonNewImageSliderPojo> call, Throwable t) {
                 t.printStackTrace();
             }
         });

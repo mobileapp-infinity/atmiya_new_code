@@ -20,8 +20,10 @@ android {
 //        versionName "3.2.5"
 //        versionCode 37
 //        versionName "3.2.6"
-          versionCode 38
-          versionName "3.2.7"
+//          versionCode 38
+//          versionName "3.2.7"
+          versionCode 39
+          versionName "3.2.8"
 
         renderscriptTargetApi 25
         vectorDrawables.useSupportLibrary = true

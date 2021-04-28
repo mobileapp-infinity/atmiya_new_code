@@ -515,7 +515,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
             if (isPdShow) {
                 DialogUtil.showProgressDialogNotCancelable(eLearningActivity, "");
             }
-            ApiImplementer.groupWiseLearningManagementSubjectListApiImplementer(grp_id, mySharedPreferences.getStudentId(),
+            ApiImplementer.groupWiseLearningManagementDocumentListApiImplementer(grp_id, mySharedPreferences.getStudentId(),
                     mySharedPreferences.getSmId(), selectedYearId, from_date, to_date, sub_id, new Callback<ArrayList<LearningManagementGroupDetailsPojo>>() {
                         @Override
                         public void onResponse(Call<ArrayList<LearningManagementGroupDetailsPojo>> call, Response<ArrayList<LearningManagementGroupDetailsPojo>> response) {
@@ -552,7 +552,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
 //                                        efabApplyFilterEnrollToGroup.setVisibility(View.VISIBLE);
 ////                                    rvEnrollToGroupList.setAdapter(new GroupWiseSubjectDetailsAdapter(eLearningActivity, response.body()))
 //                                    }
-                                    ;
+                                    //;
                                 } else {
 //                                    flStudentExaminationSchedule.setVisibility(View.GONE);
                                     elvGroupWiseSubjectDetails.setVisibility(View.GONE);

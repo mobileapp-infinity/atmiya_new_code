@@ -27,6 +27,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_lab_o
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_student_forum.FacultyStudentForumPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_subject_wise_division_wise_total_theory_period_engaged.FacultySubjectAndDivisionWiseTotalTheoryPeriodEngagedPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTablePojo;
+import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
 import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
@@ -244,7 +245,7 @@ public interface IApiInterface {
                                                                                      @Query("grp_id") String grp_id);
 
     @GET("Get_Learning_Management_Group_Details_Group_Wise_New_API")
-    Call<ArrayList<LearningManagementGroupDetailsPojo>> groupWiseLearningManagementSubjectList(@Query("grp_id") String grp_id,
+    Call<ArrayList<LearningManagementGroupDetailsPojo>> groupWiseLearningManagementDocumentList(@Query("grp_id") String grp_id,
                                                                                                @Query("stud_id") String stud_id,
                                                                                                @Query("sem_id") String sem_id,
                                                                                                @Query("year_id") String year_id,
@@ -484,13 +485,21 @@ public interface IApiInterface {
             @Query("emp_id") String emp_id);
 
 
+    @GET("Get_Image_URL_College_wise")
+    Call<CommonNewImageSliderPojo> getCommonNewImageSlider(
+            @Query("url") String url,
+            @Query("institute_id") String institute_id,
+            @Query("ac_id") String ac_id);
+
+
     @GET("Get_Employee_Timetable_Display_with_Merge_Lecture")
     Call<ArrayList<FacultyTimeTablePojo>> getFacultyTimeTable(
             @Query("emp_id") String emp_id,
             @Query("year_id") String year_id);
 
-
     //Common For Both Student And Employee(Faculty)
+
+
 
     @GET("Get_User_Wise_Announcement_Notification_API_with_Count")
     @Streaming
@@ -506,8 +515,8 @@ public interface IApiInterface {
             @Query("year_id") String year_id,
             @Query("notif_count") String notification_count);
 
-    @GET("Get_Image_URL")
-    Call<GetSliderImageUrlsPojo> getSliderImages(@Query("url") String url, @Query("institute_id") String institute_id);
+//    @GET("Get_Image_URL")
+//    Call<GetSliderImageUrlsPojo> getSliderImages(@Query("url") String url, @Query("institute_id") String institute_id);
 
     @GET("Logout_and_Clear_FCM_id_of_User")
     Call<ArrayList<LogOutPojo>> logoutUser(@Query("login_user_type") int login_user_type,

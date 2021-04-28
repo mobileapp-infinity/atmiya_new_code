@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.infinity.infoway.atmiya.R;
 
 public class ErrorActivity extends AppCompatActivity {
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

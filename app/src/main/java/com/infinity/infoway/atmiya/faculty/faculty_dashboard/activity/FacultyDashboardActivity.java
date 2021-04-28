@@ -36,6 +36,7 @@ import com.infinity.infoway.atmiya.faculty.faculty_profile.FacultyProfilePojo;
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.FacultyTeachingUpdateActivity;
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.activity.FacultyTimeTableActivity;
 import com.infinity.infoway.atmiya.login.activity.LoginActivity;
+import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
 import com.infinity.infoway.atmiya.student.news_or_notification.FacultyOrStudentNewsOrNotificationsPojo;
 import com.infinity.infoway.atmiya.student.student_dashboard.activity.StudentDashboardActivity;
 import com.infinity.infoway.atmiya.student.student_dashboard.pojo.GetSliderImageUrlsPojo;
@@ -209,9 +210,10 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
     }
 
     private void getSliderImagesApiCall() {
-        ApiImplementer.getSliderImagesApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getEmpInstituteId(), new Callback<GetSliderImageUrlsPojo>() {
+        ApiImplementer.getImageSliderNewApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getInstituteId(),
+                mySharedPreferences.getAcId(), new Callback<CommonNewImageSliderPojo>() {
             @Override
-            public void onResponse(Call<GetSliderImageUrlsPojo> call, Response<GetSliderImageUrlsPojo> response) {
+            public void onResponse(Call<CommonNewImageSliderPojo> call, Response<CommonNewImageSliderPojo> response) {
                 if (response.isSuccessful() && response.body().getUrl().size() > 0) {
                     ArrayList<String> bannerUrls = (ArrayList<String>) response.body().getUrl();
                     for (int i = 0; i < bannerUrls.size(); i++) {
@@ -224,7 +226,7 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
             }
 
             @Override
-            public void onFailure(Call<GetSliderImageUrlsPojo> call, Throwable t) {
+            public void onFailure(Call<CommonNewImageSliderPojo> call, Throwable t) {
                 t.printStackTrace();
             }
         });
