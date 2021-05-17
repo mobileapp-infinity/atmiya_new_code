@@ -1,12 +1,9 @@
 package com.infinity.infoway.atmiya.api;
 
-import com.infinity.infoway.atmiya.BuildConfig;
+import androidx.multidex.BuildConfig;
 
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
