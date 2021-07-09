@@ -185,6 +185,28 @@ public class StudentProfilePojo {
     @SerializedName("unread_notif_count")
     @Expose
     private String unread_notif_count;
+    @SerializedName("sm_id")
+    @Expose
+    private Integer smId;
+    @SerializedName("swd_year_id")
+    @Expose
+    private Integer swdYearId;
+
+    public Integer getSmId() {
+        return smId;
+    }
+
+    public void setSmId(Integer smId) {
+        this.smId = smId;
+    }
+
+    public Integer getSwdYearId() {
+        return swdYearId;
+    }
+
+    public void setSwdYearId(Integer swdYearId) {
+        this.swdYearId = swdYearId;
+    }
 
     public Integer getStudIsLoginDeActive() {
         return studIsLoginDeActive;

@@ -94,7 +94,6 @@ public class CommonUtil {
         return monthName;
     }
 
-
     public static String getMonthSortNameFromNumber(int monthNo) {
         String monthName = "";
         switch (monthNo) {
@@ -137,7 +136,6 @@ public class CommonUtil {
         }
         return monthName;
     }
-
 
     public static String getWeekDayName(int currentMonth, int dayOfMonth, String currentDate) {
 

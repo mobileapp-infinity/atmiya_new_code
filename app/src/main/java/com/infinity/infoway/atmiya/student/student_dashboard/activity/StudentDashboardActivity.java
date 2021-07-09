@@ -319,6 +319,17 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
                     try {
                         if (response.isSuccessful() && response.body() != null) {
                             StudentProfilePojo studentProfilePojo = response.body();
+
+
+                            if (studentProfilePojo.getSmId() != null) {
+                                mySharedPreferences.setSmId(studentProfilePojo.getSmId()+"");
+                            }
+
+                            if (studentProfilePojo.getSwdYearId() != null) {
+                                mySharedPreferences.setSwdYearId(studentProfilePojo.getSwdYearId()+"");
+                            }
+
+
                             if (studentProfilePojo.getStudIsLoginDeActive() != null && studentProfilePojo.getStudIsLoginDeActive() == 1) {//if student DeActive status is 1 than force logout to student
                                 logoutUserApiCall(studentProfilePojo);
                             } else {
@@ -439,7 +450,6 @@ public class StudentDashboardActivity extends AppCompatActivity implements View.
                         llNewsOrNotificationListStudentDashboard.setVisibility(View.GONE);
                     }
                 });
-
     }
 
     @Override

@@ -107,11 +107,22 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
         eLearningActivity = (ELearningActivity) context;
     }
 
+
+
+    private void setDefaultFromAndToDate(){
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        edtFromDateEnrollToGroup.setText(formattedDate);
+        edtToDateEnrollToGroup.setText(formattedDate);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_enroll_to_group, container, false);
         initView(view);
+        setDefaultFromAndToDate();
         getYearListApiCall();
         return view;
     }
@@ -325,18 +336,23 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                             yearNameAndIdHashMap = new HashMap<>();
 //                            yearNameAndYearStatusHashMap = new HashMap<>();
                             yearArrayList.add(SELECT_YEAR);
+                            int defaultYearSelection = 0;
 
                             for (int i = 0; i < tableArrayList.size(); i++) {
                                 if (!CommonUtil.checkIsEmptyOrNullCommon(tableArrayList.get(i).getYearName())) {
                                     String yearName = tableArrayList.get(i).getYearName();
                                     yearArrayList.add(yearName);
                                     yearNameAndIdHashMap.put(yearName, tableArrayList.get(i).getYearId() + "");
+                                    if (tableArrayList.get(i).getYearIsCurrent() == 1){
+                                        defaultYearSelection = i;
+                                    }
 //                                    yearNameAndYearStatusHashMap.put(yearName, tableArrayList.get(i).getYearIsCurrent() + "");
                                 }
                             }
                             spinnerAdapterYear = new SpinnerSimpleAdapter(eLearningActivity, yearArrayList);
                             spYear.setAdapter(spinnerAdapterYear);
                             getStudentWiseLearningManagementGroupApiCall();
+                            spYear.setSelection(defaultYearSelection);
                         } else {
                             llEnrollToGroup.setVisibility(View.GONE);
                             llEnrollToGroupProgressbar.setVisibility(View.GONE);

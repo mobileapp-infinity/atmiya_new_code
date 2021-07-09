@@ -754,7 +754,8 @@ public interface IApiInterface {
     //Added by harsh on 18-1-2021
     @GET("Get_User_wise_Detail_For_Forget_Password_API")
     Call<GetUserWiseDetailForgetPasswordPojo> getUserWiseDetailForForgetPasswordAPI(
-            @Query("uname_mobile") String uname_mobile, @Query("user_type") String user_type,
+            @Query("uname_mobile") String uname_mobile,
+            @Query("user_type") String user_type,
             @Query("domain_name") String domain_name);
 
 

@@ -32,7 +32,6 @@ public class AxisAndHdfcPaymentWebViewActivity extends AppCompatActivity impleme
     String url = "", status = "";
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_axis_and_hdfc_payment_web_view);

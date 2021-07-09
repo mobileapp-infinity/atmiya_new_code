@@ -64,8 +64,8 @@ public class ELearningActivity extends AppCompatActivity implements View.OnClick
 
     private void setupViewPager(ViewPager viewPager) {
         ELearningViewPagerAdapter eLearningViewPagerAdapter = new ELearningViewPagerAdapter(getSupportFragmentManager());
-        eLearningViewPagerAdapter.addFragment(joinGroupFragment, "JOIN GROUP");
         eLearningViewPagerAdapter.addFragment(enrollToGroupFragment, "ENROLL TO GROUP");
+        eLearningViewPagerAdapter.addFragment(joinGroupFragment, "JOIN GROUP");
         viewPager.setAdapter(eLearningViewPagerAdapter);
     }
 

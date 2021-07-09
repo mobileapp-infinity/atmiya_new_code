@@ -131,7 +131,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                 if (otpBaseForgetPassword.contentEquals("1")) {
                     getUserWiseDetailForForgetPasswordUsingOTPAPI(edtEnterRegisterMobileNo.getText().toString().trim(), userType);
                 } else {
-                    getStudentForgetPasswordDetailsUsingMailApiCall(false, true, edtEnterRegisterMobileNo.getText().toString().trim());
+                    getStudentForgetPasswordDetailsUsingMailApiCall(true, true, edtEnterRegisterMobileNo.getText().toString().trim());
                 }
             }
         }
@@ -335,7 +335,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         final String RANDOM_6_DIGIT_OTP = CommonUtil.getRandom6DigitOTP();
 
         if (!CommonUtil.checkIsEmptyOrNullCommon(instituteId)) {
-
             try {
 
                 if (!CommonUtil.checkIsEmptyOrNullCommon(tableBean.getSms_api())) {
@@ -373,8 +372,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
-
         } else {
             Toast.makeText(this, "instituteId not found!", Toast.LENGTH_SHORT).show();
         }
