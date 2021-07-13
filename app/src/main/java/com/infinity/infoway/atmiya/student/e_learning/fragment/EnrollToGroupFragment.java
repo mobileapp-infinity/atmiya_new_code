@@ -3,18 +3,6 @@ package com.infinity.infoway.atmiya.student.e_learning.fragment;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.fragment.app.Fragment;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.Fragment;
+
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.api.ApiImplementer;
 import com.infinity.infoway.atmiya.custom_class.SpinnerSimpleAdapter;
-import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
 import com.infinity.infoway.atmiya.student.e_learning.activity.ELearningActivity;
 import com.infinity.infoway.atmiya.student.e_learning.adapter.GroupWiseSubjectDetailsAdapter;
 import com.infinity.infoway.atmiya.student.e_learning.pojo.CheckIsELearningManagementGroupIsCompulsoryOrNot;
@@ -49,6 +41,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EnrollToGroupFragment extends Fragment implements View.OnClickListener {
 
@@ -89,6 +85,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
     AppCompatImageView imgClearFromToDateFilter;
     AppCompatImageView imgClearSubjectFilter;
     LinearLayout llFromDateToDateFilterOption;
+    boolean isFirstTime = true;
 
     public EnrollToGroupFragment() {
         // Required empty public constructor
@@ -108,8 +105,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
     }
 
 
-
-    private void setDefaultFromAndToDate(){
+    private void setDefaultFromAndToDate() {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String formattedDate = df.format(c);
@@ -193,7 +189,10 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                     if (spYear.getSelectedItemPosition() > 0) {
                         String selectedYearId = yearNameAndIdHashMap.get(yearArrayList.get(spYear.getSelectedItemPosition())) + "";
                         String selectedGroupId = groupNameAndIdHashMap.get(eLearningGroupList.get(spGroupName.getSelectedItemPosition())) + "";
-                        checkIsELearningGrpIsCompulsoryOrNot(selectedYearId, selectedGroupId);
+                        if (!isFirstTime) {
+                            checkIsELearningGrpIsCompulsoryOrNot(selectedYearId, selectedGroupId);
+                        }
+                        isFirstTime = false;
                     }
                 }
             }
@@ -343,7 +342,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                                     String yearName = tableArrayList.get(i).getYearName();
                                     yearArrayList.add(yearName);
                                     yearNameAndIdHashMap.put(yearName, tableArrayList.get(i).getYearId() + "");
-                                    if (tableArrayList.get(i).getYearIsCurrent() == 1){
+                                    if (tableArrayList.get(i).getYearIsCurrent() == 1) {
                                         defaultYearSelection = i;
                                     }
 //                                    yearNameAndYearStatusHashMap.put(yearName, tableArrayList.get(i).getYearIsCurrent() + "");
@@ -403,6 +402,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                                     }
                                     spinnerAdapterGroupName = new SpinnerSimpleAdapter(eLearningActivity, eLearningGroupList);
                                     spGroupName.setAdapter(spinnerAdapterGroupName);
+                                    spGroupName.setSelection(1);
                                     llEnrollToGroup.setVisibility(View.VISIBLE);
                                 } else {
                                     llEnrollToGroup.setVisibility(View.GONE);
