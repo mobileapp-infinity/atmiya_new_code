@@ -85,7 +85,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
     AppCompatImageView imgClearFromToDateFilter;
     AppCompatImageView imgClearSubjectFilter;
     LinearLayout llFromDateToDateFilterOption;
-    boolean isFirstTime = true;
+//    boolean isNeedToCallGrpApi = false;
 
     public EnrollToGroupFragment() {
         // Required empty public constructor
@@ -167,8 +167,9 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                             SUBJECT_ID = subjectNameAndIdHashMap.get(subjectNameArrayList.get(spSubjectName.getSelectedItemPosition()));
                             String fromDate = edtFromDateEnrollToGroup.getText().toString().trim() == null ? "" : edtFromDateEnrollToGroup.getText().toString().trim();
                             String toDate = edtToDateEnrollToGroup.getText().toString().trim() == null ? "" : edtToDateEnrollToGroup.getText().toString().trim();
-
-                            getEnrollToGroupExpandedListApiCall(true, true, selectedGroupId, selectedYearId, fromDate, toDate, SUBJECT_ID);
+//                            if (!isNeedToCallGrpApi) {
+                                getEnrollToGroupExpandedListApiCall(true, true, selectedGroupId, selectedYearId, fromDate, toDate, SUBJECT_ID);
+//                            }
                         } else {
                             SUBJECT_ID = "0";
                             checkIsELearningGrpIsCompulsoryOrNot(selectedYearId, selectedGroupId);
@@ -189,10 +190,10 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                     if (spYear.getSelectedItemPosition() > 0) {
                         String selectedYearId = yearNameAndIdHashMap.get(yearArrayList.get(spYear.getSelectedItemPosition())) + "";
                         String selectedGroupId = groupNameAndIdHashMap.get(eLearningGroupList.get(spGroupName.getSelectedItemPosition())) + "";
-                        if (!isFirstTime) {
-                            checkIsELearningGrpIsCompulsoryOrNot(selectedYearId, selectedGroupId);
-                        }
-                        isFirstTime = false;
+//                        if (isFirstTime) {
+                        checkIsELearningGrpIsCompulsoryOrNot(selectedYearId, selectedGroupId);
+//                        }
+//                        isFirstTime = true;
                     }
                 }
             }
@@ -343,7 +344,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                                     yearArrayList.add(yearName);
                                     yearNameAndIdHashMap.put(yearName, tableArrayList.get(i).getYearId() + "");
                                     if (tableArrayList.get(i).getYearIsCurrent() == 1) {
-                                        defaultYearSelection = i;
+                                        defaultYearSelection = i + 1;
                                     }
 //                                    yearNameAndYearStatusHashMap.put(yearName, tableArrayList.get(i).getYearIsCurrent() + "");
                                 }
@@ -403,6 +404,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                                     spinnerAdapterGroupName = new SpinnerSimpleAdapter(eLearningActivity, eLearningGroupList);
                                     spGroupName.setAdapter(spinnerAdapterGroupName);
                                     spGroupName.setSelection(1);
+//                                    isNeedToCallGrpApi = false;
                                     llEnrollToGroup.setVisibility(View.VISIBLE);
                                 } else {
                                     llEnrollToGroup.setVisibility(View.GONE);
@@ -477,7 +479,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
     private void getGroupWiseSubjectListApiCall(boolean isPdShow, boolean isPdHide, String selectedYearId, String grp_id) {
         if (connectionDetector.isConnectingToInternet()) {
             if (isPdShow) {
-                DialogUtil.showProgressDialogNotCancelable(eLearningActivity, "");
+                DialogUtil.showProgressDialogNotCancelable(eLearningActivity, "grp sub");
             }
             ApiImplementer.groupWiseLearningManagementSubjectListApiImplementer(mySharedPreferences.getStudentId(), mySharedPreferences.getSmId(),
                     selectedYearId, grp_id, new Callback<ArrayList<GroupWiseSubjectlistPojo>>() {
@@ -529,7 +531,7 @@ public class EnrollToGroupFragment extends Fragment implements View.OnClickListe
                                                      String to_date, String sub_id) {
         if (connectionDetector.isConnectingToInternet()) {
             if (isPdShow) {
-                DialogUtil.showProgressDialogNotCancelable(eLearningActivity, "");
+                DialogUtil.showProgressDialogNotCancelable(eLearningActivity, "grp lear");
             }
             ApiImplementer.groupWiseLearningManagementDocumentListApiImplementer(grp_id, mySharedPreferences.getStudentId(),
                     mySharedPreferences.getSmId(), selectedYearId, from_date, to_date, sub_id, new Callback<ArrayList<LearningManagementGroupDetailsPojo>>() {
