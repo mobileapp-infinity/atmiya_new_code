@@ -1,12 +1,15 @@
 package com.infinity.infoway.atmiya.student.e_learning.adapter;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Build;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
@@ -17,8 +20,6 @@ import com.infinity.infoway.atmiya.utils.DownloadPdfFromUrl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import androidx.appcompat.widget.AppCompatImageView;
 
 public class GroupWiseSubjectDetailsAdapter extends BaseExpandableListAdapter {
 
@@ -42,8 +43,7 @@ public class GroupWiseSubjectDetailsAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int i) {
-        return childListDetailsHashMap.get(this.headerArrayList.get(i))
-                .size();
+        return childListDetailsHashMap.get(this.headerArrayList.get(i)).size();
     }
 
     @Override
@@ -115,8 +115,16 @@ public class GroupWiseSubjectDetailsAdapter extends BaseExpandableListAdapter {
             tvGroupWiseSubjectDate.setText(groupDetailArray.getFileUploadDate() + "");
         }
 
-        if (!CommonUtil.checkIsEmptyOrNullCommon(groupDetailArray.getFileDesc())) {
-            tvGroupWiseSubjectDescription.setText(groupDetailArray.getFileDesc() + "");
+        try {
+            if (!CommonUtil.checkIsEmptyOrNullCommon(groupDetailArray.getFileDesc())) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    tvGroupWiseSubjectDescription.setText(Html.fromHtml(groupDetailArray.getFileDesc() + "", Html.FROM_HTML_MODE_COMPACT));
+                } else {
+                    tvGroupWiseSubjectDescription.setText(Html.fromHtml(groupDetailArray.getFileDesc() + ""));
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
         if (!CommonUtil.checkIsEmptyOrNullCommon(groupDetailArray.getFileUrl())) {

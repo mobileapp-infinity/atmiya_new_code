@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
+import androidx.multidex.BuildConfig;
 
 import android.Manifest;
 import android.content.Context;
@@ -21,7 +22,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.infinity.infoway.atmiya.BuildConfig;
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.api.ApiImplementer;
 import com.infinity.infoway.atmiya.common_activity.NoInternetConnectionActivity;

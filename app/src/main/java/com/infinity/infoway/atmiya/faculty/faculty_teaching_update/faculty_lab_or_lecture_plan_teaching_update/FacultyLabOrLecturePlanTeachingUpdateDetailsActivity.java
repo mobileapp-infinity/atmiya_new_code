@@ -1,24 +1,19 @@
 package com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_lab_or_lecture_plan_teaching_update;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.google.android.material.card.MaterialCardView;
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.custom_class.CustomAnimationForDefaultExpandableCard;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
-import com.infinity.infoway.atmiya.student.lesson_plan.StudentLectureDetailsAdapter;
-import com.infinity.infoway.atmiya.student.lesson_plan.StudentLessonPlanDetailActivity;
-import com.infinity.infoway.atmiya.student.lesson_plan.StudentLessonPlanListPojo;
 import com.infinity.infoway.atmiya.utils.CommonUtil;
-import com.infinity.infoway.atmiya.utils.ConnectionDetector;
 import com.infinity.infoway.atmiya.utils.IntentConstants;
-import com.infinity.infoway.atmiya.utils.MySharedPreferences;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,12 +67,10 @@ public class FacultyLabOrLecturePlanTeachingUpdateDetailsActivity extends AppCom
         ArrayList<String> lectureDetailsHeaderArrayList = new ArrayList<>();
         HashMap<String, ArrayList<FacultyLabOrLecturePlanTeachingUpdatePojo.LabOrLectureDetails>> lectureDetailsChildHashMap = new HashMap<>();
 
-        ArrayList<FacultyLabOrLecturePlanTeachingUpdatePojo.LabOrLectureDetails> lpSubTopicArrayList = new ArrayList<>();
-
         for (int i = 0; i < studentLessonPlanListPojo.size(); i++) {
             if (!CommonUtil.checkIsEmptyOrNullCommon(studentLessonPlanListPojo.get(i).getLpSub())) {
                 lectureDetailsHeaderArrayList.add(studentLessonPlanListPojo.get(i).getLpSub() + "");
-
+                ArrayList<FacultyLabOrLecturePlanTeachingUpdatePojo.LabOrLectureDetails> lpSubTopicArrayList = new ArrayList<>();
                 for (int k = 0; k < studentLessonPlanListPojo.get(i).getLabOrLectureDetailsList().size(); k++) {
                     FacultyLabOrLecturePlanTeachingUpdatePojo.LabOrLectureDetails lpSubTopic =
                             studentLessonPlanListPojo.get(i).getLabOrLectureDetailsList().get(k);
