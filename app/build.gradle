@@ -22,8 +22,10 @@ android {
 //        versionName "3.2.6"
 //          versionCode 38
 //          versionName "3.2.7"
-          versionCode 39
-          versionName "3.2.8"
+//          versionCode 39
+//          versionName "3.2.8"
+        versionCode 40
+        versionName "3.2.9" //changes in elearning group description now grp description display as per html content from web
 
         renderscriptTargetApi 25
         vectorDrawables.useSupportLibrary = true
