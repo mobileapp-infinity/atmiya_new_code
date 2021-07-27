@@ -27,27 +27,31 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_lab_o
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_student_forum.FacultyStudentForumPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.faculty_subject_wise_division_wise_total_theory_period_engaged.FacultySubjectAndDivisionWiseTotalTheoryPeriodEngagedPojo;
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.pojo.FacultyTimeTablePojo;
-import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
-import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
-import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
-import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
-import com.infinity.infoway.atmiya.student.fee_details.pojo.PaySlipOfAxisFeeTypePojo;
-import com.infinity.infoway.atmiya.student.fee_details.pojo.PayWithPaytmPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.CheckLoginByOTPAndUsernamePojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.CheckOTPVerificationForEmployeePojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.CheckOTPVerificationForStudentPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.GetForgetPasswordDetailByUserIDPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.GetInstituteFromDomainPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.GetSMSApiForApplicationPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.GetStudentForgotPasswordDetailsPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.GetUserWiseDetailForgetPasswordPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.InsertForgetPasswordSendSMSRecordPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.InsertForgotPasswordOTPSmsRecordPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.InsertStudentPasswordAndSMSAbsentApiCall;
 import com.infinity.infoway.atmiya.forgot_password.pojo.OtpBaseLoginDetailsForEmployeePojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.OtpBaseLoginDetailsForStudentPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.ResetEmployeePasswordPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.ResetStudentPasswordPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.ResetUserPasswordPojo;
 import com.infinity.infoway.atmiya.forgot_password.pojo.UpdateStudentForgotPasswordOtpPojo;
-import com.infinity.infoway.atmiya.student.home_work.pojo.StudentHomeWorkPojo;
-import com.infinity.infoway.atmiya.student.news_or_notification.UpdateNotificationStatusPojo;
-import com.infinity.infoway.atmiya.student.student_dashboard.pojo.UpdateStudentFCMTokenPojo;
+import com.infinity.infoway.atmiya.forgot_password.pojo.UpdateUserOTPAtForgetPasswordPojo;
 import com.infinity.infoway.atmiya.login.pojo.CheckVersionApiPojo;
+import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
+import com.infinity.infoway.atmiya.login.pojo.EmployeeLoginPojo;
 import com.infinity.infoway.atmiya.login.pojo.LogOutPojo;
 import com.infinity.infoway.atmiya.login.pojo.StudentLoginPojo;
+import com.infinity.infoway.atmiya.recent_notification_dialog.GetImpNotificationPojo;
+import com.infinity.infoway.atmiya.recent_notification_dialog.ReadImpNotificationPojo;
 import com.infinity.infoway.atmiya.student.assignment.StudentAssignmentListPojo;
 import com.infinity.infoway.atmiya.student.attendance.pojo.StudentLectureWiseAttendancePojo;
 import com.infinity.infoway.atmiya.student.attendance.pojo.StudentSubjectWiseAttendancePojo;
@@ -62,26 +66,27 @@ import com.infinity.infoway.atmiya.student.e_learning.pojo.LearningManagementGro
 import com.infinity.infoway.atmiya.student.e_learning.pojo.StudentWiseLearningGroupPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamSemesterPojo;
-import com.infinity.infoway.atmiya.student.exam.pojo.StudentReulstPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadExaminationSchedulePojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadStudentMidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleDetailsPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleProgramWiseTimetablePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.MidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentCIAMarksPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.StudentReulstPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.FeeReceiptPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.FeeUrlPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.GetAllPendingFeeStudentPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.GetPaymentButtonHideShowPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.GetPaymentSingleButtonHideShowPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PayFeeTypePojoList;
+import com.infinity.infoway.atmiya.student.fee_details.pojo.PaySlipOfAxisFeeTypePojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PaySlipOfAxisPojo;
+import com.infinity.infoway.atmiya.student.fee_details.pojo.PayWithPaytmPojo;
 import com.infinity.infoway.atmiya.student.fee_details.pojo.PrintFeeReceiptPojo;
-import com.infinity.infoway.atmiya.forgot_password.pojo.GetForgetPasswordDetailsByStudentEmployeeIdPojo;
-import com.infinity.infoway.atmiya.forgot_password.pojo.GetInstituteFromDomainPojo;
-import com.infinity.infoway.atmiya.forgot_password.pojo.GetSMSApiForApplicationPojo;
-import com.infinity.infoway.atmiya.forgot_password.pojo.GetStudentForgotPasswordDetailsPojo;
 import com.infinity.infoway.atmiya.student.holiday.HolidayListPojo;
+import com.infinity.infoway.atmiya.student.home_work.pojo.StudentHomeWorkPojo;
 import com.infinity.infoway.atmiya.student.leave_application.pojo.CheckStudentLeaveExistPojo;
 import com.infinity.infoway.atmiya.student.leave_application.pojo.InsertStudentLeavePojo;
 import com.infinity.infoway.atmiya.student.leave_application.pojo.KindOfLeaveListPojo;
@@ -92,12 +97,12 @@ import com.infinity.infoway.atmiya.student.leave_application.pojo.UploadStudentL
 import com.infinity.infoway.atmiya.student.lesson_plan.StudentLessonPlanListPojo;
 import com.infinity.infoway.atmiya.student.message_history.MessageHistoryListPojo;
 import com.infinity.infoway.atmiya.student.news_or_notification.FacultyOrStudentNewsOrNotificationsPojo;
+import com.infinity.infoway.atmiya.student.news_or_notification.UpdateNotificationStatusPojo;
 import com.infinity.infoway.atmiya.student.profile.StudentProfilePojo;
 import com.infinity.infoway.atmiya.student.student_activity.StudentActivityPojo;
-import com.infinity.infoway.atmiya.student.student_dashboard.pojo.GetSliderImageUrlsPojo;
+import com.infinity.infoway.atmiya.student.student_dashboard.pojo.UpdateStudentFCMTokenPojo;
 import com.infinity.infoway.atmiya.student.student_syllabus.SyllabusListPojo;
 import com.infinity.infoway.atmiya.student.student_timetable.pojo.StudentTimeTablePojo;
-import com.infinity.infoway.atmiya.forgot_password.pojo.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -246,12 +251,12 @@ public interface IApiInterface {
 
     @GET("Get_Learning_Management_Group_Details_Group_Wise_New_API")
     Call<ArrayList<LearningManagementGroupDetailsPojo>> groupWiseLearningManagementDocumentList(@Query("grp_id") String grp_id,
-                                                                                               @Query("stud_id") String stud_id,
-                                                                                               @Query("sem_id") String sem_id,
-                                                                                               @Query("year_id") String year_id,
-                                                                                               @Query("from_date") String from_date,
-                                                                                               @Query("to_date") String to_date,
-                                                                                               @Query("sub_id") String sub_id);
+                                                                                                @Query("stud_id") String stud_id,
+                                                                                                @Query("sem_id") String sem_id,
+                                                                                                @Query("year_id") String year_id,
+                                                                                                @Query("from_date") String from_date,
+                                                                                                @Query("to_date") String to_date,
+                                                                                                @Query("sub_id") String sub_id);
 
     @GET("Check_Exist_Learning_Mangement_Group_Wise_Student_Master_API")
     Call<CheckIsLearningManagementGroupIsExistOrNotPojo> checkIsLearningManagementGroupIsExistOrNot(@Query("grp_id") String grp_id,
@@ -498,7 +503,6 @@ public interface IApiInterface {
             @Query("year_id") String year_id);
 
     //Common For Both Student And Employee(Faculty)
-
 
 
     @GET("Get_User_Wise_Announcement_Notification_API_with_Count")
@@ -803,5 +807,19 @@ public interface IApiInterface {
     @GET("get_student_detail_for_direct_login")
     Call<GetStudentDetailsForDirectLoginPojo> getStudentDetailsForDirectLoginByStudentId(
             @Query("student_id") String student_id);
+
+    @GET("Read_Important_Announcement")
+    Call<ReadImpNotificationPojo> readImpNotification(
+            @Query("user_id") String user_id,
+            @Query("announcement_id") String announcement_id,
+            @Query("institute_id") String institute_id,
+            @Query("ann_for") String ann_for);
+
+    @GET("Get_Important_And_Unread_Announcement")
+    Call<ArrayList<GetImpNotificationPojo>> getAllUnreadNotification(
+            @Query("user_id") String user_id,
+            @Query("institute_id") String institute_id,
+            @Query("ann_for") String ann_for);
+
 
 }

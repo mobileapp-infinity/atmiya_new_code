@@ -1,19 +1,22 @@
 package com.infinity.infoway.atmiya.faculty.faculty_dashboard.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.infinity.infoway.atmiya.R;
@@ -37,9 +40,10 @@ import com.infinity.infoway.atmiya.faculty.faculty_teaching_update.FacultyTeachi
 import com.infinity.infoway.atmiya.faculty.faculty_timetable.activity.FacultyTimeTableActivity;
 import com.infinity.infoway.atmiya.login.activity.LoginActivity;
 import com.infinity.infoway.atmiya.login.pojo.CommonNewImageSliderPojo;
+import com.infinity.infoway.atmiya.recent_notification_dialog.GetImpNotificationPojo;
+import com.infinity.infoway.atmiya.recent_notification_dialog.UnreadNotificationListAdapter;
 import com.infinity.infoway.atmiya.student.news_or_notification.FacultyOrStudentNewsOrNotificationsPojo;
 import com.infinity.infoway.atmiya.student.student_dashboard.activity.StudentDashboardActivity;
-import com.infinity.infoway.atmiya.student.student_dashboard.pojo.GetSliderImageUrlsPojo;
 import com.infinity.infoway.atmiya.utils.CommonUtil;
 import com.infinity.infoway.atmiya.utils.ConnectionDetector;
 import com.infinity.infoway.atmiya.utils.IntentConstants;
@@ -90,12 +94,15 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
     private Boolean exit = false;
     FrameLayout flNotification;
     TextViewRegularFont tvNotificationCount;
+    private Dialog recentNotificationDialog = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_dashboard);
         initView();
+        getAllUnreadNotificationApiCall();
         sendFacultyFCMTokenToServer();
         getFacultyProfileDetailsApiCall();
     }
@@ -212,38 +219,38 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
     private void getSliderImagesApiCall() {
         ApiImplementer.getImageSliderNewApiImplementer(Urls.DOMAIN_NAME, mySharedPreferences.getEmpInstituteId(),
                 mySharedPreferences.getEmpAcId(), new Callback<CommonNewImageSliderPojo>() {
-            @Override
-            public void onResponse(Call<CommonNewImageSliderPojo> call, Response<CommonNewImageSliderPojo> response) {
-                try{
-                    if (response.isSuccessful() && response.body().getUrl().size() > 0) {
-                        ArrayList<String> bannerUrls = (ArrayList<String>) response.body().getUrl();
-                        ArrayList<String> sequencedBannerUrls = new ArrayList<>();
-                        for (int i = 0; i < bannerUrls.size(); i++) {
-                            if (bannerUrls.get(i) != null && !bannerUrls.get(i).isEmpty() && bannerUrls.get(i).length() > 7) {
-                                String imgUrl = bannerUrls.get(i);
-                                String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/") + 1,imgUrl.lastIndexOf("."));
-                                String[] sequenceAndName = imgUrlWithoutNameExtension.split("_");
-                                sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]) - 1,imgUrl);
-                            }
-                        }
+                    @Override
+                    public void onResponse(Call<CommonNewImageSliderPojo> call, Response<CommonNewImageSliderPojo> response) {
+                        try {
+                            if (response.isSuccessful() && response.body().getUrl().size() > 0) {
+                                ArrayList<String> bannerUrls = (ArrayList<String>) response.body().getUrl();
+                                ArrayList<String> sequencedBannerUrls = new ArrayList<>();
+                                for (int i = 0; i < bannerUrls.size(); i++) {
+                                    if (bannerUrls.get(i) != null && !bannerUrls.get(i).isEmpty() && bannerUrls.get(i).length() > 7) {
+                                        String imgUrl = bannerUrls.get(i);
+                                        String imgUrlWithoutNameExtension = imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.lastIndexOf("."));
+                                        String[] sequenceAndName = imgUrlWithoutNameExtension.split("_");
+                                        sequencedBannerUrls.add(Integer.parseInt(sequenceAndName[0]) - 1, imgUrl);
+                                    }
+                                }
 
-                        for (int i = 0; i < sequencedBannerUrls.size(); i++) {
-                            if (sequencedBannerUrls.get(i) != null && !sequencedBannerUrls.get(i).isEmpty() && sequencedBannerUrls.get(i).length() > 7) {
-                                recyclerViewPagerFacultySideBanner.addItem(new PagerModel(bannerUrls.get(i)));
+                                for (int i = 0; i < sequencedBannerUrls.size(); i++) {
+                                    if (sequencedBannerUrls.get(i) != null && !sequencedBannerUrls.get(i).isEmpty() && sequencedBannerUrls.get(i).length() > 7) {
+                                        recyclerViewPagerFacultySideBanner.addItem(new PagerModel(bannerUrls.get(i)));
+                                    }
+                                }
+                                recyclerViewPagerFacultySideBanner.start();
                             }
+                        } catch (Throwable th) {
+                            th.printStackTrace();
                         }
-                        recyclerViewPagerFacultySideBanner.start();
                     }
-                }catch (Throwable th){
-                    th.printStackTrace();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<CommonNewImageSliderPojo> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
+                    @Override
+                    public void onFailure(Call<CommonNewImageSliderPojo> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
     }
 
     @Override
@@ -382,7 +389,42 @@ public class FacultyDashboardActivity extends AppCompatActivity implements View.
         } else {
             Toast.makeText(this, "No internet connection,Please try again later.", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void showRecentNotificationDialog(ArrayList<GetImpNotificationPojo> getImpNotificationPojoArrayList) {
+        recentNotificationDialog = new Dialog(FacultyDashboardActivity.this);
+        recentNotificationDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_shape_for_custom_dialog);
+        recentNotificationDialog.setCancelable(true);
+        View customNotificationView = LayoutInflater.from(FacultyDashboardActivity.this).inflate(R.layout.layout_for_recent_notification_dialog, null);
+        AppCompatImageView imgClose = customNotificationView.findViewById(R.id.imgClose);
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recentNotificationDialog.dismiss();
+            }
+        });
+        RecyclerView rvRecentNotificationList = customNotificationView.findViewById(R.id.rvRecentNotificationList);
+        rvRecentNotificationList.setAdapter(new UnreadNotificationListAdapter(FacultyDashboardActivity.this, getImpNotificationPojoArrayList, true));
+        recentNotificationDialog.setContentView(customNotificationView);
+        recentNotificationDialog.show();
+    }
+
+
+    private void getAllUnreadNotificationApiCall() {
+        ApiImplementer.getAllUnreadNotificationApiImplementer(mySharedPreferences.getEmpId(), mySharedPreferences.getEmpInstituteId(), CommonUtil.ANNOUNCEMENT_FOR_FACULTY, new Callback<ArrayList<GetImpNotificationPojo>>() {
+            @Override
+            public void onResponse(Call<ArrayList<GetImpNotificationPojo>> call, Response<ArrayList<GetImpNotificationPojo>> response) {
+                if (response.isSuccessful() && response.body() != null &&
+                        response.body().size() > 0) {
+                    showRecentNotificationDialog(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<GetImpNotificationPojo>> call, Throwable t) {
+                Toast.makeText(FacultyDashboardActivity.this, "Failed to get important notification", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

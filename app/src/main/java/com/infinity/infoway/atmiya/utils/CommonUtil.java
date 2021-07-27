@@ -22,6 +22,9 @@ import java.util.UUID;
 
 public class CommonUtil {
 
+    public static final String ANNOUNCEMENT_FOR_FACULTY = "1";
+    public static final String ANNOUNCEMENT_FOR_STUDENT = "2";
+
     //don't change this param if need to change than ask to backed developer regarding login type pram value 1 or 2 etc..
     // and also check that value in both login api student and faculty(employee).
     public static final int LOGIN_TYPE_FACULTY = 1;
