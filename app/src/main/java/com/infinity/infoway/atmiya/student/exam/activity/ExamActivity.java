@@ -13,7 +13,8 @@ import com.infinity.infoway.atmiya.R;
 public class ExamActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppCompatImageView ivCloseExam;
-    private LinearLayout llExamSchedule, llExamResult, llExamCIAMarks, llMidResult, llMidMarks, llCourseSelection;
+    private LinearLayout llExamSchedule, llExamResult, llExamCIAMarks,
+            llMidResult, llMidMarks, llCourseSelection, llStudentExamForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
         llMidMarks.setOnClickListener(this);
         llCourseSelection = findViewById(R.id.llCourseSelection);
         llCourseSelection.setOnClickListener(this);
+        llStudentExamForm = findViewById(R.id.llStudentExamForm);
+        llStudentExamForm.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +63,9 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (v.getId() == R.id.llCourseSelection) {
             Intent intent = new Intent(ExamActivity.this, StudentCourseSelectionActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.llStudentExamForm) {
+            Intent intent = new Intent(ExamActivity.this, StudentExamFormActivity.class);
             startActivity(intent);
         }
     }

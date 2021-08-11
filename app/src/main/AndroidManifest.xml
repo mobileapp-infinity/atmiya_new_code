@@ -39,9 +39,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".student.exam.activity.StudentCourseSelectionActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".faculty.faculty_direct_login_to_student.FacultyDirectLoginToStudentActivity"
             android:screenOrientation="portrait" />
