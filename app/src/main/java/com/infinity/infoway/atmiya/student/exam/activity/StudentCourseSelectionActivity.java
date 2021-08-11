@@ -42,6 +42,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_course_selection);
         initView();
+        getCourseListApiCall();
     }
 
     private void initView() {
@@ -70,9 +71,9 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         if (v.getId() == R.id.ivCloseCourseSelection) {
             onBackPressed();
         } else if (v.getId() == R.id.btnSave) {
-
+            saveCourseSelectionApiCall();
         } else if (v.getId() == R.id.btnDownload) {
-
+            downloadApiCall();
         }
     }
 
@@ -107,6 +108,46 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     }
 
     private void getCourseListApiCall() {
-        
+        //TODO REPLACE BELOW CODE WHENEVER API READY FOR COURSE SELECTION FROM KRISHNA MADAM
+//        if (connectionDetector.isConnectingToInternet()) {
+//            llStudentCourseSelection.setVisibility(View.GONE);
+//            llCourseSelectionProgressbar.setVisibility(View.VISIBLE);
+//            llNoDataCourseSelection.setVisibility(View.GONE);
+//            ApiImplementer.getStudentResultListApiImplementer(mySharedPreferences.getStudentEnrollmentNo(), new Callback<ArrayList<StudentReulstPojo>>() {
+//                @Override
+//                public void onResponse(Call<ArrayList<StudentReulstPojo>> call, Response<ArrayList<StudentReulstPojo>> response) {
+//                    llCourseSelectionProgressbar.setVisibility(View.GONE);
+//                    if (response.isSuccessful() && response.body() != null &&
+//                            response.body().size() > 0) {
+//                        llStudentCourseSelection.setVisibility(View.VISIBLE);
+//                        llNoDataCourseSelection.setVisibility(View.GONE);
+//                        storeCompulsorySubIds(response.body());
+//                        rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this, response.body()));
+//                    } else {
+//                        llStudentCourseSelection.setVisibility(View.GONE);
+//                        llNoDataCourseSelection.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ArrayList<StudentReulstPojo>> call, Throwable t) {
+//                    llStudentCourseSelection.setVisibility(View.GONE);
+//                    llCourseSelectionProgressbar.setVisibility(View.GONE);
+//                    llNoDataCourseSelection.setVisibility(View.VISIBLE);
+//                    Toast.makeText(StudentCourseSelectionActivity.this, "Request Failed:- " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        } else {
+//            Toast.makeText(this, "No internet connection,please try again later", Toast.LENGTH_SHORT).show();
+//        }
     }
+
+    private void saveCourseSelectionApiCall() {
+        //TODO API ENDING FROM KRISHNA MADAM
+    }
+
+    private void downloadApiCall() {
+        //TODO API ENDING FROM KRISHNA MADAM
+    }
+
 }
