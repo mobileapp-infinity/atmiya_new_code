@@ -23,6 +23,7 @@
 
     <color name="color_accent_with_90_opacity">#E6CEA955</color>
     <color name="color_accent_with_75_opacity">#66CEA955</color>
+    <color name="color_accent_with_30_opacity">#33CEA955</color>
     <color name="color_accent_with_80_opacity">#CCCEA955</color>
 
     <color name="profile_heading_color">@color/colorAccent</color>

@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../Android_Sdk/icons/material/materialicons/cancel/baseline_cancel_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../Android_Sdk/icons/material/materialicons/cloud_download/baseline_cloud_download_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_clear_new" />
+                            <entry key="outputName" value="ic_baseline_cloud_download_24" />
                             <entry key="sourceFile" value="C:\Users\iipl\Downloads\new_iipl_logo.svg" />
                           </map>
                         </option>

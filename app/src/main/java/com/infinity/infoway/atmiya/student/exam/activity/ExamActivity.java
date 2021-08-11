@@ -1,19 +1,19 @@
 package com.infinity.infoway.atmiya.student.exam.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.infinity.infoway.atmiya.R;
 
 public class ExamActivity extends AppCompatActivity implements View.OnClickListener {
 
-    AppCompatImageView ivCloseExam;
-    LinearLayout llExamSchedule, llExamResult, llExamCIAMarks, llMidResult, llMidMarks;
+    private AppCompatImageView ivCloseExam;
+    private LinearLayout llExamSchedule, llExamResult, llExamCIAMarks, llMidResult, llMidMarks, llCourseSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,8 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
         llMidResult.setOnClickListener(this);
         llMidMarks = findViewById(R.id.llMidMarks);
         llMidMarks.setOnClickListener(this);
+        llCourseSelection = findViewById(R.id.llCourseSelection);
+        llCourseSelection.setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +57,9 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (v.getId() == R.id.llMidMarks) {
             Intent intent = new Intent(ExamActivity.this, StudentMidMarksActivity.class);
+            startActivity(intent);
+        } else if (v.getId() == R.id.llCourseSelection) {
+            Intent intent = new Intent(ExamActivity.this, StudentCourseSelectionActivity.class);
             startActivity(intent);
         }
     }

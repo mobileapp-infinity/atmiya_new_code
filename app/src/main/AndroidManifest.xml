@@ -35,8 +35,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".student.exam.activity.StudentExamFormActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".student.exam.activity.StudentCourseSelectionActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".faculty.faculty_direct_login_to_student.FacultyDirectLoginToStudentActivity"
-            android:screenOrientation="portrait" ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".student.fee_details.activity.PaySlipOfAxisDetailActivity"
             android:screenOrientation="portrait" />

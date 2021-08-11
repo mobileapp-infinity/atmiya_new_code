@@ -269,6 +269,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llCourseSelection"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
@@ -278,7 +279,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:visibility="invisible">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -291,7 +292,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="18dp"
                         android:paddingBottom="18dp"
-                        app:srcCompat="@drawable/ic_cia_marks" />
+                        app:srcCompat="@drawable/ic_faculty_teching_update_subject_wise_total_theory_period" />
 
                     <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
                         android:layout_width="match_parent"
@@ -301,7 +302,7 @@
                         android:maxLines="2"
                         android:minLines="2"
                         android:padding="8dp"
-                        android:text="Result"
+                        android:text="Course Selection"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="10sp" />
