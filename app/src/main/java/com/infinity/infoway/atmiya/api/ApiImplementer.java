@@ -1057,9 +1057,9 @@ public class ApiImplementer {
     }
 
     //TODO FOR STUDENT COURSE SELECTION
-    public static void checkExistForPaperVerificationApiImplementer(String stud_id, Callback<CheckExistsStudentPaperVerificationAPIPojo> cb) {
+    public static void checkExistForPaperVerificationApiImplementer(String sem_id,String stud_id, Callback<CheckExistsStudentPaperVerificationAPIPojo> cb) {
         final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
-        Call<CheckExistsStudentPaperVerificationAPIPojo> call = apiService.checkExistForPaperVerification(stud_id);
+        Call<CheckExistsStudentPaperVerificationAPIPojo> call = apiService.checkExistForPaperVerification(sem_id,stud_id);
         call.enqueue(cb);
     }
 

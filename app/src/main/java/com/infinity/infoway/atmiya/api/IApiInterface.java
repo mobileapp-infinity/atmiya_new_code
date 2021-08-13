@@ -857,7 +857,8 @@ public interface IApiInterface {
                                                                                            @Query("sem_id") String sem_id);
 
     @GET("Check_Exists_Student_Paper_Verification_API")
-    Call<CheckExistsStudentPaperVerificationAPIPojo> checkExistForPaperVerification(@Query("stud_id") String stud_id);
+    Call<CheckExistsStudentPaperVerificationAPIPojo> checkExistForPaperVerification(@Query("sem_id") String sem_id,
+                                                                                    @Query("stud_id") String stud_id);
 
     @GET("get_student_paper_list_for_verification_API")
     Call<GetStudentPaperListForVerificationAPIPojo> getStudentPaperListForVerification(@Query("stud_id") String stud_id);

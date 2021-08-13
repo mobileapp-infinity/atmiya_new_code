@@ -24,19 +24,19 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
     private ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table> checkExistStudentPaperArrayList;
     private ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentPaperListForConfigArrayList;
     private LayoutInflater layoutInflater;
-    private boolean isForConfig;
+    private boolean isForCheckExist;
     private IElectiveSubSelection iElectiveSubSelection;
     private boolean isNeedToDisplayCheckBox;
 
     public CourseSelectionAdapter(Context context,
                                   ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table> checkExistStudentPaperArrayList,
                                   ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentPaperListForConfigArrayList,
-                                  boolean isForConfig,
+                                  boolean isForCheckExist,
                                   boolean isNeedToDisplayCheckBox) {
         this.context = context;
         this.checkExistStudentPaperArrayList = checkExistStudentPaperArrayList;
         this.studentPaperListForConfigArrayList = studentPaperListForConfigArrayList;
-        this.isForConfig = isForConfig;
+        this.isForCheckExist = isForCheckExist;
         this.isNeedToDisplayCheckBox = isNeedToDisplayCheckBox;
         iElectiveSubSelection = (IElectiveSubSelection) context;
         layoutInflater = LayoutInflater.from(context);
@@ -52,7 +52,19 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
 
     @Override
     public void onBindViewHolder(@NonNull CourseSelectionAdapter.MyViewHolder holder, int position) {
-        if (isForConfig) {
+        if (isForCheckExist) {
+            holder.cbElectiveSub.setVisibility(View.GONE);
+
+            CheckExistsStudentPaperVerificationAPIPojo.Table table = checkExistStudentPaperArrayList.get(position);
+
+            if (!CommonUtil.checkIsEmptyOrNullCommon(table.getNameOfCourse())) {
+                holder.tvCourseName.setText(table.getNameOfCourse());
+            }
+
+            if (!CommonUtil.checkIsEmptyOrNullCommon(table.getPaperCode())) {
+                holder.tvCourseCode.setText(table.getPaperCode());
+            }
+        } else {
             GetStudentPaperListForVerificationAPIPojo.Table configPojo = studentPaperListForConfigArrayList.get(position);
 
             if (isNeedToDisplayCheckBox) {
@@ -81,26 +93,14 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
             if (!CommonUtil.checkIsEmptyOrNullCommon(configPojo.getPaperCode())) {
                 holder.tvCourseCode.setText(configPojo.getPaperCode());
             }
-        } else {
-            holder.cbElectiveSub.setVisibility(View.GONE);
-
-            CheckExistsStudentPaperVerificationAPIPojo.Table table = checkExistStudentPaperArrayList.get(position);
-
-            if (!CommonUtil.checkIsEmptyOrNullCommon(table.getNameOfCourse())) {
-                holder.tvCourseName.setText(table.getNameOfCourse());
-            }
-
-            if (!CommonUtil.checkIsEmptyOrNullCommon(table.getPaperCode())) {
-                holder.tvCourseCode.setText(table.getPaperCode());
-            }
 
         }
     }
 
     @Override
     public int getItemCount() {
-        return isForConfig ? studentPaperListForConfigArrayList.size() :
-                checkExistStudentPaperArrayList.size();
+        return isForCheckExist ? checkExistStudentPaperArrayList.size() :
+        studentPaperListForConfigArrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

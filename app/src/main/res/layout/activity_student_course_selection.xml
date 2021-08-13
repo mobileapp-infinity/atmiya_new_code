@@ -46,10 +46,50 @@
         android:visibility="gone">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvAlertMsg"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            app:contentPadding="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/ic_baseline_error_24"
+                    android:tint="@color/color_red"/>
+
+                <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
+                    android:id="@+id/tvAlertMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text=""
+                    android:textColor="@color/color_red"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="6dp"
@@ -169,6 +209,18 @@
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEditStudentCourseSelection"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:layoutAnimation="@anim/layout_animation"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
         <FrameLayout
             android:id="@+id/flSaveAndDownloadBtn"
             android:layout_width="match_parent"
@@ -198,6 +250,20 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:text="Save"
+                    app:cornerRadius="25dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditCourse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_save_24"
+                    android:drawableTint="@color/white"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Edit Course"
                     app:cornerRadius="25dp" />
 
                 <com.google.android.material.button.MaterialButton

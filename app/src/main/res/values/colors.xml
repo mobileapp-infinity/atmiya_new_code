@@ -36,6 +36,7 @@
     <color name="status_absent_color">#F5506D</color>
     <color name="status_remaining_color">#1E1E1E</color>
     <color name="status_holiday_color">#FF0000</color>
+    <color name="color_red">#d32f2f</color>
     <color name="status_period_suspend_color">#FF6F00</color>
 
     <color name="lightgrey">#E0E0E0</color>

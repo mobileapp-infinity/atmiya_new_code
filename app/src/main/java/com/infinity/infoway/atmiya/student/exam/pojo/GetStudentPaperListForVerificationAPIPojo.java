@@ -21,6 +21,9 @@ public class GetStudentPaperListForVerificationAPIPojo {
 
     public class Table {
 
+        @SerializedName("is_sub_selected")
+        @Expose
+        private Integer isSubSelected;
         @SerializedName("Title")
         @Expose
         private String title;
@@ -129,6 +132,14 @@ public class GetStudentPaperListForVerificationAPIPojo {
         @SerializedName("Filename")
         @Expose
         private String filename;
+
+        public Integer getIsSubSelected() {
+            return isSubSelected;
+        }
+
+        public void setIsSubSelected(Integer isSubSelected) {
+            this.isSubSelected = isSubSelected;
+        }
 
         public String getTitle() {
             return title;

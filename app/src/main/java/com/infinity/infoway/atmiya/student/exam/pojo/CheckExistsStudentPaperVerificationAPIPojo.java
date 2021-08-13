@@ -6,7 +6,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class CheckExistsStudentPaperVerificationAPIPojo {
-
+    @SerializedName("date_config_status")
+    @Expose
+    private Integer dateConfigStatus;
+    @SerializedName("att_approve_status")
+    @Expose
+    private Integer attApproveStatus;
     @SerializedName("Table")
     @Expose
     private List<Table> table = null;
@@ -17,6 +22,22 @@ public class CheckExistsStudentPaperVerificationAPIPojo {
 
     public void setTable(List<Table> table) {
         this.table = table;
+    }
+
+    public Integer getDateConfigStatus() {
+        return dateConfigStatus;
+    }
+
+    public void setDateConfigStatus(Integer dateConfigStatus) {
+        this.dateConfigStatus = dateConfigStatus;
+    }
+
+    public Integer getAttApproveStatus() {
+        return attApproveStatus;
+    }
+
+    public void setAttApproveStatus(Integer attApproveStatus) {
+        this.attApproveStatus = attApproveStatus;
     }
 
     public class Table {
