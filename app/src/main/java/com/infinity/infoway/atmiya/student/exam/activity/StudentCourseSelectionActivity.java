@@ -139,7 +139,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
 
             for (String dateKey : electiveCourseHashMap.keySet()) {
                 JSONObject jsonObject = new JSONObject();
-                GetStudentPaperListForVerificationAPIPojo.Table table = compulsoryCourseHashMap.get(dateKey);
+                GetStudentPaperListForVerificationAPIPojo.Table table = electiveCourseHashMap.get(dateKey);
                 try {
                     jsonObject.put("spv_stud_id", table.getSwdStudentId());
                     jsonObject.put("spv_sem_id", table.getSwdSemId());
