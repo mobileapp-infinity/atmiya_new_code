@@ -68,7 +68,6 @@ public class StudentExamFormActivity extends AppCompatActivity implements View.O
         if (!CommonUtil.checkIsEmptyOrNullCommon(admissionNo)) {
             tvAdmissionNo.setText(studentName);
         }
-
     }
 
     @Override
@@ -76,11 +75,7 @@ public class StudentExamFormActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_exam_form);
         initView();
-        if (connectionDetector.isConnectingToInternet()) {
-            getStudentPaperListForRegExamFormApiCall();
-        } else {
-            Toast.makeText(this, "Internet connection not available!", Toast.LENGTH_SHORT).show();
-        }
+        getStudentPaperListForRegExamFormApiCall();
     }
 
     private void initView() {
@@ -121,40 +116,6 @@ public class StudentExamFormActivity extends AppCompatActivity implements View.O
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-//    private void getSubjectListApiCall() {
-//        //TODO REPLACE BELOW CODE WHENEVER API READY FOR COURSE SELECTION FROM KRISHNA MADAM
-//        if (connectionDetector.isConnectingToInternet()) {
-//            llStudentExamForm.setVisibility(View.GONE);
-//            llExamFormProgressbar.setVisibility(View.VISIBLE);
-//            llNoDataExamForm.setVisibility(View.GONE);
-//            ApiImplementer.getStudentResultListApiImplementer(mySharedPreferences.getStudentEnrollmentNo(), new Callback<ArrayList<StudentReulstPojo>>() {
-//                @Override
-//                public void onResponse(Call<ArrayList<StudentReulstPojo>> call, Response<ArrayList<StudentReulstPojo>> response) {
-//                    llExamFormProgressbar.setVisibility(View.GONE);
-//                    if (response.isSuccessful() && response.body() != null &&
-//                            response.body().size() > 0) {
-//                        llStudentExamForm.setVisibility(View.VISIBLE);
-//                        llNoDataExamForm.setVisibility(View.GONE);
-//                        rvStudentExamForm.setAdapter(new StudentExamFormAdapter(StudentExamFormActivity.this, response.body()));
-//                    } else {
-//                        llStudentExamForm.setVisibility(View.GONE);
-//                        llNoDataExamForm.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<ArrayList<StudentReulstPojo>> call, Throwable t) {
-//                    llStudentExamForm.setVisibility(View.GONE);
-//                    llExamFormProgressbar.setVisibility(View.GONE);
-//                    llNoDataExamForm.setVisibility(View.VISIBLE);
-//                    Toast.makeText(StudentExamFormActivity.this, "Request Failed:- " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        } else {
-//            Toast.makeText(this, "No internet connection,please try again later", Toast.LENGTH_SHORT).show();
-//        }
-//
 
     private void getStudentPaperListForRegExamFormApiCall() {
         DialogUtil.showProgressDialogNotCancelable(StudentExamFormActivity.this, "");

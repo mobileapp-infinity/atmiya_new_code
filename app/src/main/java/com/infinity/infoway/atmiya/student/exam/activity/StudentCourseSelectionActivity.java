@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.infinity.infoway.atmiya.R;
+import com.infinity.infoway.atmiya.api.ApiImplementer;
 import com.infinity.infoway.atmiya.custom_class.TextViewMediumFont;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
 import com.infinity.infoway.atmiya.student.exam.adapter.CourseSelectionAdapter;
@@ -142,11 +143,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
 //        }
     }
 
-    private void saveCourseSelectionApiCall() {
-        //TODO API ENDING FROM KRISHNA MADAM
+    private void checkStudentExistForPaperVerificationApiCall(){
+        ApiImplementer.checkExistForPaperVerificationApiImplementer
     }
 
-    private void downloadApiCall() {
-        //TODO API ENDING FROM KRISHNA MADAM
-    }
 }

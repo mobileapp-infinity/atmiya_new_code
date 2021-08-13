@@ -66,6 +66,7 @@ import com.infinity.infoway.atmiya.student.e_learning.pojo.LearningManagementGro
 import com.infinity.infoway.atmiya.student.e_learning.pojo.StudentWiseLearningGroupPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamSemesterPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.CheckExistsStudentPaperVerificationAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CheckIsStudentFromAtmiyaUniOrNotPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
@@ -849,5 +850,8 @@ public interface IApiInterface {
                                                                                            @Query("created_by") String created_by,
                                                                                            @Query("college_id") String college_id,
                                                                                            @Query("sem_id") String sem_id);
+
+    @GET("Check_Exists_Student_Paper_Verification_API")
+    Call<CheckExistsStudentPaperVerificationAPIPojo> checkExistForPaperVerification(@Query("stud_id") String stud_id);
 
 }

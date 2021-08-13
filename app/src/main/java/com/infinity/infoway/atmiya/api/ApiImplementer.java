@@ -60,6 +60,7 @@ import com.infinity.infoway.atmiya.student.e_learning.pojo.LearningManagementGro
 import com.infinity.infoway.atmiya.student.e_learning.pojo.StudentWiseLearningGroupPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamSemesterPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.CheckExistsStudentPaperVerificationAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CheckIsStudentFromAtmiyaUniOrNotPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
@@ -1031,22 +1032,11 @@ public class ApiImplementer {
         call.enqueue(cb);
     }
 
-    //TODO Studnet Exam Form
-    public static void checkStudentIsAtmiyaUniOrNotApiImplementer(String stud_id, Callback<CheckIsStudentFromAtmiyaUniOrNotPojo> cb) {
-        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
-        Call<CheckIsStudentFromAtmiyaUniOrNotPojo> call = apiService.checkStudentIsAtmiyaUniOrNot(stud_id);
-        call.enqueue(cb);
-    }
+    //TODO STUDENT Exam Form
 
     public static void getStudentPaperListOfRegExamFormApiImplementer(String stud_id, String sem_id, Callback<GetStudentPaperListForRegExamFormAPIPojo> cb) {
         final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
         Call<GetStudentPaperListForRegExamFormAPIPojo> call = apiService.getStudentPaperListOfRegExamForm(stud_id, sem_id);
-        call.enqueue(cb);
-    }
-
-    public static void getGrantTermConfigurationForStudentApiImplementer(String sem_id, String gtc_stud_type, Callback<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> cb) {
-        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
-        Call<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> call = apiService.getGrantTermConfigurationForStudent(sem_id, gtc_stud_type);
         call.enqueue(cb);
     }
 
@@ -1060,6 +1050,27 @@ public class ApiImplementer {
                                                                         String college_id, String sem_id, Callback<InsertExamToStudentFromRegularExamFormAPIPojo> cb) {
         final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
         Call<InsertExamToStudentFromRegularExamFormAPIPojo> call = apiService.insertExamToStudentFromRegularExam(stud_id, swd_id, year_id, created_by, college_id, sem_id);
+        call.enqueue(cb);
+    }
+
+    //TODO FOR STUDENT COURSE SELECTION
+    public static void checkExistForPaperVerificationApiImplementer(String stud_id, Callback<CheckExistsStudentPaperVerificationAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<CheckExistsStudentPaperVerificationAPIPojo> call = apiService.checkExistForPaperVerification(stud_id);
+        call.enqueue(cb);
+    }
+
+
+    //TODO COMMON FOR EXAM COURSE SELECTION AND EXAM FORM
+    public static void getGrantTermConfigurationForStudentApiImplementer(String sem_id, String gtc_stud_type, Callback<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> call = apiService.getGrantTermConfigurationForStudent(sem_id, gtc_stud_type);
+        call.enqueue(cb);
+    }
+
+    public static void checkStudentIsAtmiyaUniOrNotApiImplementer(String stud_id, Callback<CheckIsStudentFromAtmiyaUniOrNotPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<CheckIsStudentFromAtmiyaUniOrNotPojo> call = apiService.checkStudentIsAtmiyaUniOrNot(stud_id);
         call.enqueue(cb);
     }
 }
