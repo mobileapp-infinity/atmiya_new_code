@@ -149,5 +149,4 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     private void downloadApiCall() {
         //TODO API ENDING FROM KRISHNA MADAM
     }
-
 }

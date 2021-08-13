@@ -170,6 +170,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <FrameLayout
+            android:id="@+id/flSaveAndDownload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -215,50 +216,6 @@
             </LinearLayout>
 
         </FrameLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llExamFormProgressbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/spin_kit"
-            style="@style/SpinKitView.Large.Circle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            app:SpinKit_Color="@color/colorPrimary" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llNoDataExamForm"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_no_data_found" />
-
-        <com.infinity.infoway.atmiya.custom_class.TextViewMediumFont
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="No Data Found !"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
 
     </LinearLayout>
 

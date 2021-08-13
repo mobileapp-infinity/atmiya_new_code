@@ -66,11 +66,16 @@ import com.infinity.infoway.atmiya.student.e_learning.pojo.LearningManagementGro
 import com.infinity.infoway.atmiya.student.e_learning.pojo.StudentWiseLearningGroupPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamSemesterPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.CheckIsStudentFromAtmiyaUniOrNotPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadStudentMidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleDetailsPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleProgramWiseTimetablePojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetGrantTermConfigurationForStudentRegExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.InsertExamToStudentFromRegularExamFormAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.MidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentCIAMarksPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
@@ -821,5 +826,28 @@ public interface IApiInterface {
             @Query("institute_id") String institute_id,
             @Query("ann_for") String ann_for);
 
+
+    @GET("check_student_is_atmiya_uni_or_not_API")
+    Call<CheckIsStudentFromAtmiyaUniOrNotPojo> checkStudentIsAtmiyaUniOrNot(@Query("stud_id") String stud_id);
+
+    @GET("get_student_paper_list_for_reg_exam_form_API")
+    Call<GetStudentPaperListForRegExamFormAPIPojo> getStudentPaperListOfRegExamForm(@Query("stud_id") String stud_id,
+                                                                                    @Query("sem_id") String sem_id);
+
+    @GET("Get_Grant_Term_Configuration_For_Student_Reg_Exam_Form_API")
+    Call<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> getGrantTermConfigurationForStudent(@Query("sem_id") String sem_id,
+                                                                                                    @Query("gtc_stud_type") String gtc_stud_type);
+
+    @GET("get_student_paper_list_for_reg_exam_form_for_submit_exam_form_API")
+    Call<GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo> getStudPaperListForRegExamIfConfigFound(@Query("stud_id") String stud_id,
+                                                                                                            @Query("sem_id") String sem_id);
+
+    @GET("Insert_Exam_To_Student_From_Regular_Exam_Form_API")
+    Call<InsertExamToStudentFromRegularExamFormAPIPojo> insertExamToStudentFromRegularExam(@Query("stud_id") String stud_id,
+                                                                                           @Query("swd_id") String swd_id,
+                                                                                           @Query("year_id") String year_id,
+                                                                                           @Query("created_by") String created_by,
+                                                                                           @Query("college_id") String college_id,
+                                                                                           @Query("sem_id") String sem_id);
 
 }

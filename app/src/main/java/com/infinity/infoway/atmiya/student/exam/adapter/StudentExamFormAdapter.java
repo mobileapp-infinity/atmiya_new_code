@@ -10,19 +10,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
-import com.infinity.infoway.atmiya.student.exam.pojo.StudentExamFormFillListPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo;
+import com.infinity.infoway.atmiya.utils.CommonUtil;
 
 import java.util.ArrayList;
 
 public class StudentExamFormAdapter extends RecyclerView.Adapter<StudentExamFormAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<StudentExamFormFillListPojo> studentExamFormFillListPojoArrayList;
+    private ArrayList<GetStudentPaperListForRegExamFormAPIPojo.Table> studentExamFormFillListPojoArrayList;
+    private ArrayList<GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo.Table> forConfigPojoArrayList;
+    private boolean isForConfiguration;
     private LayoutInflater layoutInflater;
 
-    public StudentExamFormAdapter(Context context, ArrayList<StudentExamFormFillListPojo> studentExamFormFillListPojoArrayList) {
+    public StudentExamFormAdapter(Context context,
+                                  boolean isForConfiguration,
+                                  ArrayList<GetStudentPaperListForRegExamFormAPIPojo.Table> studentExamFormFillListPojoArrayList,
+                                  ArrayList<GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo.Table> forConfigPojoArrayList) {
         this.context = context;
         this.studentExamFormFillListPojoArrayList = studentExamFormFillListPojoArrayList;
+        this.forConfigPojoArrayList = forConfigPojoArrayList;
+        this.isForConfiguration = isForConfiguration;
         layoutInflater = LayoutInflater.from(context);
     }
 
@@ -35,20 +44,28 @@ public class StudentExamFormAdapter extends RecyclerView.Adapter<StudentExamForm
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        StudentExamFormFillListPojo studentExamFormFillListPojo = studentExamFormFillListPojoArrayList.get(position);
-
-//        if (!CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojo.getSomething)){
-//           holder.tvCourseName.setText();
-//        }
-//
-//        if (!CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojo.getSomething)){
-//            holder.tvCourseCode.setText();
-//        }
+        String courseName = "-";
+        String courseCode = "-";
+        if (isForConfiguration) {
+            if (CommonUtil.checkIsEmptyOrNullCommon(forConfigPojoArrayList.get(position).getPaperName())) {
+                courseName = forConfigPojoArrayList.get(position).getPaperName() + "";
+            }
+            if (!CommonUtil.checkIsEmptyOrNullCommon(forConfigPojoArrayList.get(position).getPaperCode())) {
+                courseCode = forConfigPojoArrayList.get(position).getPaperCode() + "";
+            }
+        } else {
+            if (CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojoArrayList.get(position).getPaperName())) {
+                courseName = studentExamFormFillListPojoArrayList.get(position).getPaperName() + "";
+            }
+            if (!CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojoArrayList.get(position).getPaperCode())) {
+                courseCode = studentExamFormFillListPojoArrayList.get(position).getPaperCode() + "";
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return studentExamFormFillListPojoArrayList.size();
+        return isForConfiguration ? forConfigPojoArrayList.size() : studentExamFormFillListPojoArrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

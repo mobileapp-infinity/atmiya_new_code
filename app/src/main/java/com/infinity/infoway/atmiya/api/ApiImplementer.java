@@ -60,11 +60,16 @@ import com.infinity.infoway.atmiya.student.e_learning.pojo.LearningManagementGro
 import com.infinity.infoway.atmiya.student.e_learning.pojo.StudentWiseLearningGroupPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.CIAExamSemesterPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.CheckIsStudentFromAtmiyaUniOrNotPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadHallTicketExaminationSchedulePojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.DownloadStudentMidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleDetailsPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleProgramWiseTimetablePojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetGrantTermConfigurationForStudentRegExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.InsertExamToStudentFromRegularExamFormAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.MidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentCIAMarksPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
@@ -1026,4 +1031,35 @@ public class ApiImplementer {
         call.enqueue(cb);
     }
 
+    //TODO Studnet Exam Form
+    public static void checkStudentIsAtmiyaUniOrNotApiImplementer(String stud_id, Callback<CheckIsStudentFromAtmiyaUniOrNotPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<CheckIsStudentFromAtmiyaUniOrNotPojo> call = apiService.checkStudentIsAtmiyaUniOrNot(stud_id);
+        call.enqueue(cb);
+    }
+
+    public static void getStudentPaperListOfRegExamFormApiImplementer(String stud_id, String sem_id, Callback<GetStudentPaperListForRegExamFormAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<GetStudentPaperListForRegExamFormAPIPojo> call = apiService.getStudentPaperListOfRegExamForm(stud_id, sem_id);
+        call.enqueue(cb);
+    }
+
+    public static void getGrantTermConfigurationForStudentApiImplementer(String sem_id, String gtc_stud_type, Callback<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<GetGrantTermConfigurationForStudentRegExamFormAPIPojo> call = apiService.getGrantTermConfigurationForStudent(sem_id, gtc_stud_type);
+        call.enqueue(cb);
+    }
+
+    public static void getStudPaperListForRegExamIfConfigFoundApiImplementer(String stud_id, String sem_id, Callback<GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo> call = apiService.getStudPaperListForRegExamIfConfigFound(stud_id, sem_id);
+        call.enqueue(cb);
+    }
+
+    public static void insertExamToStudentFromRegularExamApiImplementer(String stud_id, String swd_id, String year_id, String created_by,
+                                                                        String college_id, String sem_id, Callback<InsertExamToStudentFromRegularExamFormAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<InsertExamToStudentFromRegularExamFormAPIPojo> call = apiService.insertExamToStudentFromRegularExam(stud_id, swd_id, year_id, created_by, college_id, sem_id);
+        call.enqueue(cb);
+    }
 }

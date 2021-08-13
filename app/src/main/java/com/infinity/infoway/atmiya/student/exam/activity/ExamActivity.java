@@ -4,17 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.infinity.infoway.atmiya.R;
+import com.infinity.infoway.atmiya.api.ApiImplementer;
+import com.infinity.infoway.atmiya.student.exam.pojo.CheckIsStudentFromAtmiyaUniOrNotPojo;
+import com.infinity.infoway.atmiya.utils.DialogUtil;
+import com.infinity.infoway.atmiya.utils.MySharedPreferences;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ExamActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppCompatImageView ivCloseExam;
     private LinearLayout llExamSchedule, llExamResult, llExamCIAMarks,
             llMidResult, llMidMarks, llCourseSelection, llStudentExamForm;
+    private MySharedPreferences mySharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,7 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
+        mySharedPreferences = new MySharedPreferences(ExamActivity.this);
         ivCloseExam = findViewById(R.id.ivCloseExam);
         ivCloseExam.setOnClickListener(this);
         llExamSchedule = findViewById(R.id.llExamSchedule);
@@ -63,10 +74,10 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (v.getId() == R.id.llCourseSelection) {
             Intent intent = new Intent(ExamActivity.this, StudentCourseSelectionActivity.class);
-            startActivity(intent);
+            checkIsStudentFromAtmiyaUniversityOrNotApiCall(intent);
         } else if (v.getId() == R.id.llStudentExamForm) {
             Intent intent = new Intent(ExamActivity.this, StudentExamFormActivity.class);
-            startActivity(intent);
+            checkIsStudentFromAtmiyaUniversityOrNotApiCall(intent);
         }
     }
 
@@ -74,4 +85,29 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
+    private void checkIsStudentFromAtmiyaUniversityOrNotApiCall(Intent intent) {
+        DialogUtil.showProgressDialogNotCancelable(ExamActivity.this, "");
+        ApiImplementer.checkStudentIsAtmiyaUniOrNotApiImplementer(mySharedPreferences.getStudentId(), new Callback<CheckIsStudentFromAtmiyaUniOrNotPojo>() {
+            @Override
+            public void onResponse(Call<CheckIsStudentFromAtmiyaUniOrNotPojo> call, Response<CheckIsStudentFromAtmiyaUniOrNotPojo> response) {
+                DialogUtil.hideProgressDialog();
+                if (response.isSuccessful() && response.body() != null &&
+                        response.body().getTable() != null && response.body().getTable().size() > 0) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ExamActivity.this, "This facility is available only atmiya university students.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CheckIsStudentFromAtmiyaUniOrNotPojo> call, Throwable t) {
+                DialogUtil.hideProgressDialog();
+                Toast.makeText(ExamActivity.this, "Something went wrong,Please try again later.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
