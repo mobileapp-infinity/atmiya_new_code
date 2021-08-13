@@ -76,7 +76,9 @@ import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleProgramW
 import com.infinity.infoway.atmiya.student.exam.pojo.GetGrantTermConfigurationForStudentRegExamFormAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForVerificationAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.InsertExamToStudentFromRegularExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.InsertStudentPaperVerificationAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.MidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentCIAMarksPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
@@ -113,11 +115,14 @@ import com.infinity.infoway.atmiya.student.student_timetable.pojo.StudentTimeTab
 import java.util.ArrayList;
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
@@ -854,4 +859,14 @@ public interface IApiInterface {
     @GET("Check_Exists_Student_Paper_Verification_API")
     Call<CheckExistsStudentPaperVerificationAPIPojo> checkExistForPaperVerification(@Query("stud_id") String stud_id);
 
+    @GET("get_student_paper_list_for_verification_API")
+    Call<GetStudentPaperListForVerificationAPIPojo> getStudentPaperListForVerification(@Query("stud_id") String stud_id);
+
+    @Multipart
+    @POST("Insert_student_paper_verification_API")
+    Call<InsertStudentPaperVerificationAPIPojo> insertStudentPaperVerification(@Part("spv_stud_id") RequestBody spv_stud_id,
+                                                                               @Part("spv_sem_id") RequestBody spv_sem_id,
+                                                                               @Part("spv_paper_id") RequestBody spv_paper_id,
+                                                                               @Part("spv_created_by") RequestBody spv_created_by,
+                                                                               @Part("spv_created_ip") RequestBody spv_created_ip);
 }

@@ -70,7 +70,9 @@ import com.infinity.infoway.atmiya.student.exam.pojo.ExaminationScheduleProgramW
 import com.infinity.infoway.atmiya.student.exam.pojo.GetGrantTermConfigurationForStudentRegExamFormAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForRegExamFormForSubmitExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForVerificationAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.InsertExamToStudentFromRegularExamFormAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.InsertStudentPaperVerificationAPIPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.MidResultPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentCIAMarksPojo;
 import com.infinity.infoway.atmiya.student.exam.pojo.StudentMidMarksPojo;
@@ -108,6 +110,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -1057,6 +1060,20 @@ public class ApiImplementer {
     public static void checkExistForPaperVerificationApiImplementer(String stud_id, Callback<CheckExistsStudentPaperVerificationAPIPojo> cb) {
         final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
         Call<CheckExistsStudentPaperVerificationAPIPojo> call = apiService.checkExistForPaperVerification(stud_id);
+        call.enqueue(cb);
+    }
+
+    public static void getStudentPaperListForVerificationApiImplementer(String stud_id, Callback<GetStudentPaperListForVerificationAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<GetStudentPaperListForVerificationAPIPojo> call = apiService.getStudentPaperListForVerification(stud_id);
+        call.enqueue(cb);
+    }
+
+    public static void insertStudentPaperVerificationApiImplementer(RequestBody spv_stud_id, RequestBody spv_sem_id,
+                                                                    RequestBody spv_paper_id, RequestBody spv_created_by,
+                                                                    RequestBody spv_created_ip, Callback<InsertStudentPaperVerificationAPIPojo> cb) {
+        final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
+        Call<InsertStudentPaperVerificationAPIPojo> call = apiService.insertStudentPaperVerification(spv_stud_id, spv_sem_id, spv_paper_id, spv_created_by, spv_created_ip);
         call.enqueue(cb);
     }
 
