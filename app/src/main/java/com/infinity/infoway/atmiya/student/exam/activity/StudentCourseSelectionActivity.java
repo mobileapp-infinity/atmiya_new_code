@@ -26,6 +26,10 @@ import com.infinity.infoway.atmiya.utils.DialogUtil;
 import com.infinity.infoway.atmiya.utils.GeneratePDFFileFromBase64String;
 import com.infinity.infoway.atmiya.utils.MySharedPreferences;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -117,6 +121,37 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
             RequestBody req_spv_created_by = RequestBody.create(MediaType.parse("text/plain"), spv_created_by);
             RequestBody req_spv_created_ip = RequestBody.create(MediaType.parse("text/plain"), spv_created_ip);
 
+            JSONArray item_array = new JSONArray();
+            for (String dateKey : compulsoryCourseHashMap.keySet()) {
+                JSONObject jsonObject = new JSONObject();
+                GetStudentPaperListForVerificationAPIPojo.Table table = compulsoryCourseHashMap.get(dateKey);
+                try {
+                    jsonObject.put("spv_stud_id", table.getSwdStudentId());
+                    jsonObject.put("spv_sem_id", table.getSwdSemId());
+                    jsonObject.put("spv_paper_id", table.getPaperId());
+                    jsonObject.put("spv_created_by", String.valueOf(table.getSwdStudentId()));
+                    jsonObject.put("spv_created_ip", "0");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                item_array.put(jsonObject);
+            }
+
+            for (String dateKey : electiveCourseHashMap.keySet()) {
+                JSONObject jsonObject = new JSONObject();
+                GetStudentPaperListForVerificationAPIPojo.Table table = compulsoryCourseHashMap.get(dateKey);
+                try {
+                    jsonObject.put("spv_stud_id", table.getSwdStudentId());
+                    jsonObject.put("spv_sem_id", table.getSwdSemId());
+                    jsonObject.put("spv_paper_id", table.getPaperId());
+                    jsonObject.put("spv_created_by", String.valueOf(table.getSwdStudentId()));
+                    jsonObject.put("spv_created_ip", "0");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                item_array.put(jsonObject);
+            }
+            String jsonString = item_array.toString();
             insertCourseSelectionApiCall(req_spv_stud_id, req_spv_sem_id, req_spv_paper_id,
                     req_spv_created_by, req_spv_created_ip);
 
