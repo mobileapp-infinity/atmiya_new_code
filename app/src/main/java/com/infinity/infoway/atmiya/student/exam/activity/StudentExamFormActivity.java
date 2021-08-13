@@ -256,6 +256,7 @@ public class StudentExamFormActivity extends AppCompatActivity implements View.O
                             fileName = response.body().getTable().get(0).getFilename();
                             btnSave.setEnabled(false);
                             btnDownload.setEnabled(true);
+                            Toast.makeText(StudentExamFormActivity.this, "" + response.body().getTable().get(0).getErrMsg(), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(StudentExamFormActivity.this, "Something went wrong,Please try again later.", Toast.LENGTH_SHORT).show();
                         }

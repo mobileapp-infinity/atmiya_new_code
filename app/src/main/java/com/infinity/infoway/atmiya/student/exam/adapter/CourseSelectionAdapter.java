@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.infinity.infoway.atmiya.R;
 import com.infinity.infoway.atmiya.custom_class.TextViewRegularFont;
-import com.infinity.infoway.atmiya.student.exam.pojo.CourseSelectionModel;
+import com.infinity.infoway.atmiya.student.exam.pojo.CheckExistsStudentPaperVerificationAPIPojo;
+import com.infinity.infoway.atmiya.student.exam.pojo.GetStudentPaperListForVerificationAPIPojo;
 import com.infinity.infoway.atmiya.utils.CommonUtil;
 
 import java.util.ArrayList;
@@ -20,13 +21,23 @@ import java.util.ArrayList;
 public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelectionAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<CourseSelectionModel> courseSelectionModelArrayList;
+    private ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table> checkExistStudentPaperArrayList;
+    private ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentPaperListForConfigArrayList;
     private LayoutInflater layoutInflater;
+    private boolean isForConfig;
     private IElectiveSubSelection iElectiveSubSelection;
+    private boolean isNeedToDisplayCheckBox;
 
-    public CourseSelectionAdapter(Context context, ArrayList<CourseSelectionModel> courseSelectionModelArrayList) {
+    public CourseSelectionAdapter(Context context,
+                                  ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table> checkExistStudentPaperArrayList,
+                                  ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentPaperListForConfigArrayList,
+                                  boolean isForConfig,
+                                  boolean isNeedToDisplayCheckBox) {
         this.context = context;
-        this.courseSelectionModelArrayList = courseSelectionModelArrayList;
+        this.checkExistStudentPaperArrayList = checkExistStudentPaperArrayList;
+        this.studentPaperListForConfigArrayList = studentPaperListForConfigArrayList;
+        this.isForConfig = isForConfig;
+        this.isNeedToDisplayCheckBox = isNeedToDisplayCheckBox;
         iElectiveSubSelection = (IElectiveSubSelection) context;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -41,37 +52,55 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
 
     @Override
     public void onBindViewHolder(@NonNull CourseSelectionAdapter.MyViewHolder holder, int position) {
-        CourseSelectionModel courseSelectionModel = courseSelectionModelArrayList.get(position);
+        if (isForConfig) {
+            GetStudentPaperListForVerificationAPIPojo.Table configPojo = studentPaperListForConfigArrayList.get(position);
 
-        if (courseSelectionModel.isCompulsory()) {
-            holder.cbElectiveSub.setChecked(courseSelectionModel.isCompulsory());
-            holder.cbElectiveSub.setEnabled(false);
-        } else {
-            holder.cbElectiveSub.setChecked(courseSelectionModel.isElectiveSelected());
-            holder.cbElectiveSub.setEnabled(true);
-        }
-
-        if (!CommonUtil.checkIsEmptyOrNullCommon(courseSelectionModel.getCourseName())) {
-            holder.tvCourseName.setText(courseSelectionModel.getCourseName());
-        }
-
-        if (!CommonUtil.checkIsEmptyOrNullCommon(courseSelectionModel.getCourseCode())) {
-            holder.tvCourseCode.setText(courseSelectionModel.getCourseCode());
-        }
-
-        holder.cbElectiveSub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                courseSelectionModel.setElectiveSelected(holder.cbElectiveSub.isChecked());
-                iElectiveSubSelection.onElectiveSubSelected(holder.cbElectiveSub.isChecked(), courseSelectionModel);
+            if (isNeedToDisplayCheckBox) {
+                holder.cbElectiveSub.setVisibility(View.VISIBLE);
+                if (configPojo.getSubCourseTypeId().toString().equalsIgnoreCase("1")) {
+                    holder.cbElectiveSub.setChecked(true);
+                    holder.cbElectiveSub.setEnabled(false);
+                } else {
+                    holder.cbElectiveSub.setChecked(configPojo.getSubCourseTypeId().toString().equalsIgnoreCase("1"));
+                    holder.cbElectiveSub.setEnabled(true);
+                }
+                holder.cbElectiveSub.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        iElectiveSubSelection.onElectiveSubSelected(holder.cbElectiveSub.isChecked(), configPojo);
+                    }
+                });
+            }else{
+                holder.cbElectiveSub.setVisibility(View.GONE);
             }
-        });
 
+            if (!CommonUtil.checkIsEmptyOrNullCommon(configPojo.getNameOfCourse())) {
+                holder.tvCourseName.setText(configPojo.getNameOfCourse());
+            }
+
+            if (!CommonUtil.checkIsEmptyOrNullCommon(configPojo.getPaperCode())) {
+                holder.tvCourseCode.setText(configPojo.getPaperCode());
+            }
+        } else {
+            holder.cbElectiveSub.setVisibility(View.GONE);
+
+            CheckExistsStudentPaperVerificationAPIPojo.Table table = checkExistStudentPaperArrayList.get(position);
+
+            if (!CommonUtil.checkIsEmptyOrNullCommon(table.getNameOfCourse())) {
+                holder.tvCourseName.setText(table.getNameOfCourse());
+            }
+
+            if (!CommonUtil.checkIsEmptyOrNullCommon(table.getPaperCode())) {
+                holder.tvCourseCode.setText(table.getPaperCode());
+            }
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return courseSelectionModelArrayList.size();
+        return isForConfig ? studentPaperListForConfigArrayList.size() :
+                checkExistStudentPaperArrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -91,6 +120,6 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
     }
 
     public interface IElectiveSubSelection {
-        void onElectiveSubSelected(boolean isSelected, CourseSelectionModel courseSelectionModel);
+        void onElectiveSubSelected(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel);
     }
 }
