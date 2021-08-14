@@ -47,18 +47,18 @@ public class StudentCourseSelectionForEditAdapter extends RecyclerView.Adapter<S
             holder.cbElectiveSub.setEnabled(false);
         } else if (!table.getSubCourseTypeId().toString().equalsIgnoreCase("1") &&
                 table.getIsSubSelected().toString().equalsIgnoreCase("1")) {
-            holder.cbElectiveSub.setChecked(true);
+            holder.cbElectiveSub.setChecked(table.getIsSubSelected().toString().equalsIgnoreCase("1"));
             holder.cbElectiveSub.setEnabled(true);
         } else if (!table.getSubCourseTypeId().toString().equalsIgnoreCase("1") &&
                 table.getIsSubSelected().toString().equalsIgnoreCase("0")) {
-            holder.cbElectiveSub.setChecked(false);
+            holder.cbElectiveSub.setChecked(!table.getIsSubSelected().toString().equalsIgnoreCase("0"));
             holder.cbElectiveSub.setEnabled(true);
         }
-
 
         holder.cbElectiveSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                table.setIsSubSelected(holder.cbElectiveSub.isChecked() ? 1 : 0);
                 iEditStudentCourseSelection.onCourseEdited(holder.cbElectiveSub.isChecked(), table);
             }
         });

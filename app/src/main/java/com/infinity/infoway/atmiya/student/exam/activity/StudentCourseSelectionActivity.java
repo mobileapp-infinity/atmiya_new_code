@@ -170,7 +170,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                 new GeneratePDFFileFromBase64String(StudentCourseSelectionActivity.this, "Course Selection", CommonUtil.generateUniqueFileName(fileName), base64String);
             }
         } else if (v.getId() == R.id.btnEditCourse) {
-            getStudentPaperListForVerificationApiCall(true, true,true);
+            getStudentPaperListForVerificationApiCall(true, true, true);
         }
     }
 
@@ -210,7 +210,6 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
             @Override
             public void onResponse(Call<CheckExistsStudentPaperVerificationAPIPojo> call, Response<CheckExistsStudentPaperVerificationAPIPojo> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getTable() != null) {
-
                     if (response.body().getTable().size() <= 0 && response.body().getDateConfigStatus().toString().equalsIgnoreCase("0")) {
                         DialogUtil.hideProgressDialog();
                         cvAlertMsg.setVisibility(View.VISIBLE);
@@ -237,7 +236,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
 
                             fileName = table.getFilename();
                             base64String = table.getBase64string();
-
+                            rvStudentCourseSelection.setVisibility(View.VISIBLE);
+                            rvEditStudentCourseSelection.setVisibility(View.GONE);
                             rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
                                     (ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table>) response.body().getTable(), null, true,
                                     false));
@@ -257,7 +257,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
 
                             fileName = table.getFilename();
                             base64String = table.getBase64string();
-
+                            rvStudentCourseSelection.setVisibility(View.VISIBLE);
+                            rvEditStudentCourseSelection.setVisibility(View.GONE);
                             rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
                                     (ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table>) response.body().getTable(), null, true,
                                     false));
@@ -277,15 +278,17 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
 
                             fileName = table.getFilename();
                             base64String = table.getBase64string();
-
+                            rvStudentCourseSelection.setVisibility(View.VISIBLE);
+                            rvEditStudentCourseSelection.setVisibility(View.GONE);
                             rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
                                     (ArrayList<CheckExistsStudentPaperVerificationAPIPojo.Table>) response.body().getTable(), null, true,
                                     false));
                         }
                     } else {
-                        getStudentPaperListForVerificationApiCall(false, true,false);
+                        getStudentPaperListForVerificationApiCall(false, true, false);
                     }
                 } else {
+                    flSaveAndDownloadBtn.setVisibility(View.GONE);
                     cvAlertMsg.setVisibility(View.GONE);
                     DialogUtil.hideProgressDialog();
                     Toast.makeText(StudentCourseSelectionActivity.this, "Something went wrong,Please try again later.", Toast.LENGTH_SHORT).show();
@@ -295,6 +298,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
             @Override
             public void onFailure(Call<CheckExistsStudentPaperVerificationAPIPojo> call, Throwable t) {
                 DialogUtil.hideProgressDialog();
+                flSaveAndDownloadBtn.setVisibility(View.GONE);
                 cvAlertMsg.setVisibility(View.GONE);
                 Toast.makeText(StudentCourseSelectionActivity.this, "Failed to check student paper verification!", Toast.LENGTH_SHORT).show();
             }
@@ -302,7 +306,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     }
 
 
-    private void getStudentPaperListForVerificationApiCall(boolean isPdShow, boolean isPdHide,boolean isForEdit) {
+    private void getStudentPaperListForVerificationApiCall(boolean isPdShow, boolean isPdHide, boolean isForEdit) {
         if (isPdShow) {
             DialogUtil.showProgressDialogNotCancelable(StudentCourseSelectionActivity.this, "");
         }
@@ -323,8 +327,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                         spv_created_by = table.getSwdStudentId() + "";
                         spv_created_ip = "0";
                         setStudentData(table.getStudName(), table.getProgramme(), table.getStudEnrollmentNo(), table.getStudAdmissionNo());
-                        if (!CommonUtil.checkIsEmptyOrNullCommon(table.getSemesterAllSubjectIsCompulsory()) &&
-                                table.getSemesterAllSubjectIsCompulsory().toString().equalsIgnoreCase("1")) {
+                        if (table.getSemesterAllSubjectIsCompulsory().toString().equalsIgnoreCase("1")) {
                             if (!isPdHide) {
                                 DialogUtil.hideProgressDialog();
                             }
@@ -332,41 +335,55 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                             base64String = table.getBase64string();
                             llStudentCourseSelection.setVisibility(View.VISIBLE);
                             flSaveAndDownloadBtn.setVisibility(View.VISIBLE);
+                            btnEditCourse.setVisibility(View.GONE);
+                            btnSave.setVisibility(View.VISIBLE);
                             btnSave.setEnabled(false);
                             btnDownload.setEnabled(true);
 
-                            if (isForEdit){
+                            cvAlertMsg.setVisibility(View.VISIBLE);
+                            rvStudentCourseSelection.setVisibility(View.VISIBLE);
+                            rvEditStudentCourseSelection.setVisibility(View.GONE);
+                            String msg = "1.Course is submitted. Please click on download button to download receipt.";
+                            tvAlertMsg.setText(msg);
+                            rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
+                                    null, (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable(),
+                                    false, false));
+
+                        } else {
+                            if (isForEdit) {
+                                compulsoryCourseHashMap = new HashMap<>();
+                                electiveCourseHashMap = new HashMap<>();
                                 cvAlertMsg.setVisibility(View.GONE);
+                                btnEditCourse.setVisibility(View.GONE);
+                                btnSave.setVisibility(View.VISIBLE);
+                                btnSave.setEnabled(true);
+                                btnDownload.setEnabled(false);
+
                                 rvStudentCourseSelection.setVisibility(View.GONE);
                                 rvEditStudentCourseSelection.setVisibility(View.VISIBLE);
                                 rvEditStudentCourseSelection.setAdapter(new StudentCourseSelectionForEditAdapter(StudentCourseSelectionActivity.this,
-                                        null, (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable(),
-                                        false, true));
-                            }else{
-                                cvAlertMsg.setVisibility(View.VISIBLE);
+                                        (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable()));
+                            } else {
+                                compulsoryCourseHashMap = new HashMap<>();
+                                electiveCourseHashMap = new HashMap<>();
+                                llStudentCourseSelection.setVisibility(View.VISIBLE);
+                                flSaveAndDownloadBtn.setVisibility(View.VISIBLE);
+                                btnSave.setEnabled(true);
+                                btnDownload.setEnabled(false);
+                                btnEditCourse.setVisibility(View.GONE);
                                 rvStudentCourseSelection.setVisibility(View.VISIBLE);
                                 rvEditStudentCourseSelection.setVisibility(View.GONE);
-                                String msg = "1.Course is submitted. Please click on download button to download receipt.";
-                                tvAlertMsg.setText(msg);
+
                                 rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
                                         null, (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable(),
-                                        false, false));
+                                        false, true));
                             }
-                        } else {
-                            compulsoryCourseHashMap = new HashMap<>();
-                            electiveCourseHashMap = new HashMap<>();
-                            llStudentCourseSelection.setVisibility(View.VISIBLE);
-                            flSaveAndDownloadBtn.setVisibility(View.VISIBLE);
-                            btnSave.setEnabled(true);
-                            btnDownload.setEnabled(false);
-                            rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
-                                    null, (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable(),
-                                    true, true));
                         }
                     } else {
                         String msg = "1.Term is not active. Please contact your cms administrator.";
                         tvAlertMsg.setText(msg);
                         cvAlertMsg.setVisibility(View.VISIBLE);
+                        flSaveAndDownloadBtn.setVisibility(View.GONE);
                         if (!isPdHide) {
                             DialogUtil.hideProgressDialog();
                         }
@@ -421,9 +438,18 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                 });
     }
 
-
     @Override
-    public void onCourseEdited(boolean isAdded, GetStudentPaperListForVerificationAPIPojo.Table table) {
-
+    public void onCourseEdited(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel) {
+        String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
+        if (isSelected) {
+            electiveCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
+        } else {
+            electiveCourseHashMap.remove(key_compulsory_sub);
+        }
+        if (electiveCourseHashMap != null && electiveCourseHashMap.size() > 0) {
+            btnSave.setEnabled(true);
+        } else {
+            btnSave.setEnabled(false);
+        }
     }
 }
