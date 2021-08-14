@@ -59,7 +59,8 @@ public class StudentCourseSelectionForEditAdapter extends RecyclerView.Adapter<S
             @Override
             public void onClick(View v) {
                 table.setIsSubSelected(holder.cbElectiveSub.isChecked() ? 1 : 0);
-                iEditStudentCourseSelection.onCourseEdited(holder.cbElectiveSub.isChecked(), table);
+                iEditStudentCourseSelection.onCourseEdited(holder.cbElectiveSub.isChecked(), table,
+                        tableArrayList);
             }
         });
 
@@ -95,7 +96,8 @@ public class StudentCourseSelectionForEditAdapter extends RecyclerView.Adapter<S
     }
 
     public interface IEditStudentCourseSelection {
-        void onCourseEdited(boolean isAdded, GetStudentPaperListForVerificationAPIPojo.Table table);
+        void onCourseEdited(boolean isAdded, GetStudentPaperListForVerificationAPIPojo.Table table,
+                            ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentAllPaperArrayList);
     }
 
 }

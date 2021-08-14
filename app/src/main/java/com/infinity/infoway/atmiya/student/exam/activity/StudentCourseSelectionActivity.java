@@ -49,7 +49,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     private LinearLayout llStudentCourseSelection;
     private RecyclerView rvStudentCourseSelection;
     private RecyclerView rvEditStudentCourseSelection;
-    private HashMap<String, GetStudentPaperListForVerificationAPIPojo.Table> compulsoryCourseHashMap;
+    //    private HashMap<String, GetStudentPaperListForVerificationAPIPojo.Table> compulsoryCourseHashMap;
+    private ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> allPaperArrayList;
     private HashMap<String, GetStudentPaperListForVerificationAPIPojo.Table> electiveCourseHashMap;
     private MaterialButton btnSave, btnDownload;
     private TextViewRegularFont tvStudentName;
@@ -59,11 +60,6 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     private FrameLayout flSaveAndDownloadBtn;
     private String fileName = "__";
     private String base64String = "";
-    private String spv_stud_id = "";
-    private String spv_sem_id = "";
-    private String spv_paper_id = "";
-    private String spv_created_by = "";
-    private String spv_created_ip = "";
     private MaterialButton btnEditCourse;
     private MaterialCardView cvAlertMsg;
     private TextViewRegularFont tvAlertMsg;
@@ -125,46 +121,29 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         if (v.getId() == R.id.ivCloseCourseSelection) {
             onBackPressed();
         } else if (v.getId() == R.id.btnSave) {
-            RequestBody req_spv_stud_id = RequestBody.create(MediaType.parse("text/plain"), spv_stud_id);
-            RequestBody req_spv_sem_id = RequestBody.create(MediaType.parse("text/plain"), spv_sem_id);
-            RequestBody req_spv_paper_id = RequestBody.create(MediaType.parse("text/plain"), spv_paper_id);
-            RequestBody req_spv_created_by = RequestBody.create(MediaType.parse("text/plain"), spv_created_by);
-            RequestBody req_spv_created_ip = RequestBody.create(MediaType.parse("text/plain"), spv_created_ip);
-
             JSONArray item_array = new JSONArray();
-            for (String dateKey : compulsoryCourseHashMap.keySet()) {
+            for (int i = 0; i < allPaperArrayList.size(); i++) {
                 JSONObject jsonObject = new JSONObject();
-                GetStudentPaperListForVerificationAPIPojo.Table table = compulsoryCourseHashMap.get(dateKey);
+                GetStudentPaperListForVerificationAPIPojo.Table table = allPaperArrayList.get(i);
                 try {
                     jsonObject.put("spv_stud_id", table.getSwdStudentId());
                     jsonObject.put("spv_sem_id", table.getSwdSemId());
                     jsonObject.put("spv_paper_id", table.getPaperId());
+                    if (table.getSubCourseTypeId().toString().equalsIgnoreCase("1")) {
+                        jsonObject.put("checkbox_chk_status", 1);
+                    } else {
+                        jsonObject.put("checkbox_chk_status", table.getIsSubSelected());
+                    }
+                    jsonObject.put("spv_sub_type_id", table.getSubCourseTypeId());
                     jsonObject.put("spv_created_by", String.valueOf(table.getSwdStudentId()));
-                    jsonObject.put("spv_created_ip", "0");
+                    jsonObject.put("spv_created_ip", "1");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 item_array.put(jsonObject);
             }
-
-            for (String dateKey : electiveCourseHashMap.keySet()) {
-                JSONObject jsonObject = new JSONObject();
-                GetStudentPaperListForVerificationAPIPojo.Table table = electiveCourseHashMap.get(dateKey);
-                try {
-                    jsonObject.put("spv_stud_id", table.getSwdStudentId());
-                    jsonObject.put("spv_sem_id", table.getSwdSemId());
-                    jsonObject.put("spv_paper_id", table.getPaperId());
-                    jsonObject.put("spv_created_by", String.valueOf(table.getSwdStudentId()));
-                    jsonObject.put("spv_created_ip", "0");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                item_array.put(jsonObject);
-            }
-            String jsonString = item_array.toString();
-            insertCourseSelectionApiCall(req_spv_stud_id, req_spv_sem_id, req_spv_paper_id,
-                    req_spv_created_by, req_spv_created_ip);
-
+            RequestBody json_paper_string = RequestBody.create(MediaType.parse("text/plain"), item_array.toString());
+            insertCourseSelectionApiCall(json_paper_string);
         } else if (v.getId() == R.id.btnDownload) {
             if (!CommonUtil.checkIsEmptyOrNullCommon(base64String)) {
                 new GeneratePDFFileFromBase64String(StudentCourseSelectionActivity.this, "Course Selection", CommonUtil.generateUniqueFileName(fileName), base64String);
@@ -180,7 +159,9 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onElectiveSubSelected(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel) {
+    public void onElectiveSubSelected(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel,
+                                      ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentAllPaperArrayList) {
+        this.allPaperArrayList = studentAllPaperArrayList;
         String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
         if (isSelected) {
             electiveCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
@@ -194,15 +175,15 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         }
     }
 
-    private void storeCompulsorySubIds(ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> courseSelectionModelArrayList) {
-        for (int i = 0; i < courseSelectionModelArrayList.size(); i++) {
-            GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel = courseSelectionModelArrayList.get(i);
-            if (courseSelectionModel.getSubCourseTypeId().toString().equalsIgnoreCase("1")) {
-                String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
-                compulsoryCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
-            }
-        }
-    }
+//    private void storeCompulsorySubIds(ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> courseSelectionModelArrayList) {
+//        for (int i = 0; i < courseSelectionModelArrayList.size(); i++) {
+//            GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel = courseSelectionModelArrayList.get(i);
+//            if (courseSelectionModel.getSubCourseTypeId().toString().equalsIgnoreCase("1")) {
+//                String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
+//                compulsoryCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
+//            }
+//        }
+//    }
 
     private void checkStudentExistForPaperVerificationApiCall() {
         DialogUtil.showProgressDialogNotCancelable(StudentCourseSelectionActivity.this, "");
@@ -319,13 +300,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                 if (response.isSuccessful() && response.body() != null && response.body().getTable() != null) {
                     if (response.body().getTable().size() > 0) {
 
-                        storeCompulsorySubIds((ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable());
+//                        storeCompulsorySubIds((ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable());
                         GetStudentPaperListForVerificationAPIPojo.Table table = response.body().getTable().get(0);
-                        spv_stud_id = table.getSwdStudentId() + "";
-                        spv_sem_id = table.getSwdSemId() + "";
-                        spv_paper_id = table.getPaperId() + "";
-                        spv_created_by = table.getSwdStudentId() + "";
-                        spv_created_ip = "0";
                         setStudentData(table.getStudName(), table.getProgramme(), table.getStudEnrollmentNo(), table.getStudAdmissionNo());
                         if (table.getSemesterAllSubjectIsCompulsory().toString().equalsIgnoreCase("1")) {
                             if (!isPdHide) {
@@ -351,7 +327,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
 
                         } else {
                             if (isForEdit) {
-                                compulsoryCourseHashMap = new HashMap<>();
+//                                compulsoryCourseHashMap = new HashMap<>();
+                                allPaperArrayList = new ArrayList<>();
                                 electiveCourseHashMap = new HashMap<>();
                                 cvAlertMsg.setVisibility(View.GONE);
                                 btnEditCourse.setVisibility(View.GONE);
@@ -364,7 +341,8 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                                 rvEditStudentCourseSelection.setAdapter(new StudentCourseSelectionForEditAdapter(StudentCourseSelectionActivity.this,
                                         (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable()));
                             } else {
-                                compulsoryCourseHashMap = new HashMap<>();
+//                                compulsoryCourseHashMap = new HashMap<>();
+                                allPaperArrayList = new ArrayList<>();
                                 electiveCourseHashMap = new HashMap<>();
                                 llStudentCourseSelection.setVisibility(View.VISIBLE);
                                 flSaveAndDownloadBtn.setVisibility(View.VISIBLE);
@@ -408,38 +386,35 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         });
     }
 
-    private void insertCourseSelectionApiCall(RequestBody spv_stud_id, RequestBody spv_sem_id,
-                                              RequestBody spv_paper_id, RequestBody spv_created_by,
-                                              RequestBody spv_created_ip) {
+    private void insertCourseSelectionApiCall(RequestBody json_paper_string) {
         DialogUtil.showProgressDialogNotCancelable(StudentCourseSelectionActivity.this, "");
-        ApiImplementer.insertStudentPaperVerificationApiImplementer(spv_stud_id, spv_sem_id,
-                spv_paper_id, spv_created_by, spv_created_ip, new Callback<InsertStudentPaperVerificationAPIPojo>() {
-                    @Override
-                    public void onResponse(Call<InsertStudentPaperVerificationAPIPojo> call, Response<InsertStudentPaperVerificationAPIPojo> response) {
-                        DialogUtil.hideProgressDialog();
-                        if (response.isSuccessful() && response.body() != null && response.body().getTable() != null
-                                && response.body().getTable().size() > 0) {
-                            InsertStudentPaperVerificationAPIPojo.Table table = response.body().getTable().get(0);
-                            fileName = table.getFilename();
-                            base64String = table.getBase64string();
-                            btnSave.setEnabled(false);
-                            btnDownload.setEnabled(true);
-                            Toast.makeText(StudentCourseSelectionActivity.this, "" + table.getErrMsg(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(StudentCourseSelectionActivity.this, "Something went wrong,Please try again later.", Toast.LENGTH_SHORT).show();
-                        }
+        ApiImplementer.insertStudentPaperVerificationApiImplementer(json_paper_string, new Callback<InsertStudentPaperVerificationAPIPojo>() {
+            @Override
+            public void onResponse(Call<InsertStudentPaperVerificationAPIPojo> call, Response<InsertStudentPaperVerificationAPIPojo> response) {
+                DialogUtil.hideProgressDialog();
+                if (response.isSuccessful() && response.body() != null) {
+                    if (response.body().getStatus().equalsIgnoreCase("1")) {
+                        checkStudentExistForPaperVerificationApiCall();
+                    } else {
+                        Toast.makeText(StudentCourseSelectionActivity.this, "" + response.body().getMsg(), Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(StudentCourseSelectionActivity.this, "Something went wrong,Please try again later.", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-                    @Override
-                    public void onFailure(Call<InsertStudentPaperVerificationAPIPojo> call, Throwable t) {
-                        DialogUtil.hideProgressDialog();
-                        Toast.makeText(StudentCourseSelectionActivity.this, "Failed to insert student course selection!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            @Override
+            public void onFailure(Call<InsertStudentPaperVerificationAPIPojo> call, Throwable t) {
+                DialogUtil.hideProgressDialog();
+                Toast.makeText(StudentCourseSelectionActivity.this, "Failed to insert student course selection!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
-    public void onCourseEdited(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel) {
+    public void onCourseEdited(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel,
+                               ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentAllPaperArrayList) {
+        this.allPaperArrayList = studentAllPaperArrayList;
         String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
         if (isSelected) {
             electiveCourseHashMap.put(key_compulsory_sub, courseSelectionModel);

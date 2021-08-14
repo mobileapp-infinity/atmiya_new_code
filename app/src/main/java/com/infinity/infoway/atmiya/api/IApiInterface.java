@@ -865,9 +865,5 @@ public interface IApiInterface {
 
     @Multipart
     @POST("Insert_student_paper_verification_API")
-    Call<InsertStudentPaperVerificationAPIPojo> insertStudentPaperVerification(@Part("spv_stud_id") RequestBody spv_stud_id,
-                                                                               @Part("spv_sem_id") RequestBody spv_sem_id,
-                                                                               @Part("spv_paper_id") RequestBody spv_paper_id,
-                                                                               @Part("spv_created_by") RequestBody spv_created_by,
-                                                                               @Part("spv_created_ip") RequestBody spv_created_ip);
+    Call<InsertStudentPaperVerificationAPIPojo> insertStudentPaperVerification(@Part("json_paper_string") RequestBody json_paper_string);
 }

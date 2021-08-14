@@ -1069,11 +1069,10 @@ public class ApiImplementer {
         call.enqueue(cb);
     }
 
-    public static void insertStudentPaperVerificationApiImplementer(RequestBody spv_stud_id, RequestBody spv_sem_id,
-                                                                    RequestBody spv_paper_id, RequestBody spv_created_by,
-                                                                    RequestBody spv_created_ip, Callback<InsertStudentPaperVerificationAPIPojo> cb) {
+    public static void insertStudentPaperVerificationApiImplementer(RequestBody json_paper_string,
+                                                                    Callback<InsertStudentPaperVerificationAPIPojo> cb) {
         final IApiInterface apiService = ApiClientForFacultyPendingAttendance.getClient().create(IApiInterface.class);
-        Call<InsertStudentPaperVerificationAPIPojo> call = apiService.insertStudentPaperVerification(spv_stud_id, spv_sem_id, spv_paper_id, spv_created_by, spv_created_ip);
+        Call<InsertStudentPaperVerificationAPIPojo> call = apiService.insertStudentPaperVerification(json_paper_string);
         call.enqueue(cb);
     }
 

@@ -73,16 +73,18 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
                     holder.cbElectiveSub.setChecked(true);
                     holder.cbElectiveSub.setEnabled(false);
                 } else {
-                    holder.cbElectiveSub.setChecked(configPojo.getSubCourseTypeId().toString().equalsIgnoreCase("1"));
+                    holder.cbElectiveSub.setChecked(configPojo.getIsSubSelected().toString().equalsIgnoreCase("1"));
                     holder.cbElectiveSub.setEnabled(true);
                 }
                 holder.cbElectiveSub.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        iElectiveSubSelection.onElectiveSubSelected(holder.cbElectiveSub.isChecked(), configPojo);
+                        configPojo.setIsSubSelected(holder.cbElectiveSub.isChecked() ? 1 : 0);
+                        iElectiveSubSelection.onElectiveSubSelected(holder.cbElectiveSub.isChecked(), configPojo,
+                                studentPaperListForConfigArrayList);
                     }
                 });
-            }else{
+            } else {
                 holder.cbElectiveSub.setVisibility(View.GONE);
             }
 
@@ -100,7 +102,7 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
     @Override
     public int getItemCount() {
         return isForCheckExist ? checkExistStudentPaperArrayList.size() :
-        studentPaperListForConfigArrayList.size();
+                studentPaperListForConfigArrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -120,6 +122,7 @@ public class CourseSelectionAdapter extends RecyclerView.Adapter<CourseSelection
     }
 
     public interface IElectiveSubSelection {
-        void onElectiveSubSelected(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel);
+        void onElectiveSubSelected(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel,
+                                   ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentAllPaperArrayList);
     }
 }
