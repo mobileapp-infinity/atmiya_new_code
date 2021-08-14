@@ -64,25 +64,6 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     private MaterialCardView cvAlertMsg;
     private TextViewRegularFont tvAlertMsg;
 
-
-    private void setStudentData(String studentName, String programmeName, String enrollmentNo, String admissionNo) {
-        if (!CommonUtil.checkIsEmptyOrNullCommon(studentName)) {
-            tvStudentName.setText(studentName);
-        }
-
-        if (!CommonUtil.checkIsEmptyOrNullCommon(programmeName)) {
-            tvProgramme.setText(studentName);
-        }
-
-        if (!CommonUtil.checkIsEmptyOrNullCommon(enrollmentNo)) {
-            tvEnrollmentNo.setText(studentName);
-        }
-
-        if (!CommonUtil.checkIsEmptyOrNullCommon(admissionNo)) {
-            tvAdmissionNo.setText(studentName);
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +95,24 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         btnEditCourse.setOnClickListener(this);
         cvAlertMsg = findViewById(R.id.cvAlertMsg);
         tvAlertMsg = findViewById(R.id.tvAlertMsg);
+    }
+
+    private void setStudentData(String studentName, String programmeName, String enrollmentNo, String admissionNo) {
+        if (!CommonUtil.checkIsEmptyOrNullCommon(studentName)) {
+            tvStudentName.setText(studentName);
+        }
+
+        if (!CommonUtil.checkIsEmptyOrNullCommon(programmeName)) {
+            tvProgramme.setText(studentName);
+        }
+
+        if (!CommonUtil.checkIsEmptyOrNullCommon(enrollmentNo)) {
+            tvEnrollmentNo.setText(studentName);
+        }
+
+        if (!CommonUtil.checkIsEmptyOrNullCommon(admissionNo)) {
+            tvAdmissionNo.setText(studentName);
+        }
     }
 
     @Override
@@ -175,15 +174,33 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         }
     }
 
-//    private void storeCompulsorySubIds(ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> courseSelectionModelArrayList) {
-//        for (int i = 0; i < courseSelectionModelArrayList.size(); i++) {
-//            GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel = courseSelectionModelArrayList.get(i);
-//            if (courseSelectionModel.getSubCourseTypeId().toString().equalsIgnoreCase("1")) {
-//                String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
-//                compulsoryCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
-//            }
-//        }
-//    }
+    @Override
+    public void onCourseEdited(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel,
+                               ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentAllPaperArrayList) {
+        this.allPaperArrayList = studentAllPaperArrayList;
+        String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
+        if (isSelected) {
+            electiveCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
+        } else {
+            electiveCourseHashMap.remove(key_compulsory_sub);
+        }
+        if (electiveCourseHashMap != null && electiveCourseHashMap.size() > 0) {
+            btnSave.setEnabled(true);
+        } else {
+            btnSave.setEnabled(false);
+        }
+    }
+
+    private void storeAlreadySelectedCourseForEdit(ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> tableArrayList) {
+        for (int i = 0; i < tableArrayList.size(); i++) {
+            GetStudentPaperListForVerificationAPIPojo.Table table = tableArrayList.get(i);
+            if (!table.getSubCourseTypeId().toString().equalsIgnoreCase("1") &&
+                    table.getIsSubSelected().toString().equalsIgnoreCase("1")) {
+                String key_compulsory_sub = table.getNameOfCourse() + "_" + table.getPaperId();
+                electiveCourseHashMap.put(key_compulsory_sub, table);
+            }
+        }
+    }
 
     private void checkStudentExistForPaperVerificationApiCall() {
         DialogUtil.showProgressDialogNotCancelable(StudentCourseSelectionActivity.this, "");
@@ -324,9 +341,9 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                             rvStudentCourseSelection.setAdapter(new CourseSelectionAdapter(StudentCourseSelectionActivity.this,
                                     null, (ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable(),
                                     false, false));
-
                         } else {
                             if (isForEdit) {
+                                storeAlreadySelectedCourseForEdit((ArrayList<GetStudentPaperListForVerificationAPIPojo.Table>) response.body().getTable());
 //                                compulsoryCourseHashMap = new HashMap<>();
                                 allPaperArrayList = new ArrayList<>();
                                 electiveCourseHashMap = new HashMap<>();
@@ -411,20 +428,4 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         });
     }
 
-    @Override
-    public void onCourseEdited(boolean isSelected, GetStudentPaperListForVerificationAPIPojo.Table courseSelectionModel,
-                               ArrayList<GetStudentPaperListForVerificationAPIPojo.Table> studentAllPaperArrayList) {
-        this.allPaperArrayList = studentAllPaperArrayList;
-        String key_compulsory_sub = courseSelectionModel.getNameOfCourse() + "_" + courseSelectionModel.getPaperId();
-        if (isSelected) {
-            electiveCourseHashMap.put(key_compulsory_sub, courseSelectionModel);
-        } else {
-            electiveCourseHashMap.remove(key_compulsory_sub);
-        }
-        if (electiveCourseHashMap != null && electiveCourseHashMap.size() > 0) {
-            btnSave.setEnabled(true);
-        } else {
-            btnSave.setEnabled(false);
-        }
-    }
 }
