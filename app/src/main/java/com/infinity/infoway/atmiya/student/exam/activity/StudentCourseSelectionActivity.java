@@ -63,6 +63,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
     private MaterialButton btnEditCourse;
     private MaterialCardView cvAlertMsg;
     private TextViewRegularFont tvAlertMsg;
+    private MaterialCardView cvInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
         connectionDetector = new ConnectionDetector(StudentCourseSelectionActivity.this);
         ivCloseCourseSelection = findViewById(R.id.ivCloseCourseSelection);
         ivCloseCourseSelection.setOnClickListener(this);
+        cvInfo = findViewById(R.id.cvInfo);
         tvStudentName = findViewById(R.id.tvStudentName);
         tvProgramme = findViewById(R.id.tvProgramme);
         tvEnrollmentNo = findViewById(R.id.tvEnrollmentNo);
@@ -210,8 +212,11 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                 if (response.isSuccessful() && response.body() != null && response.body().getTable() != null) {
                     if (response.body().getTable().size() <= 0 && response.body().getDateConfigStatus().toString().equalsIgnoreCase("0")) {
                         DialogUtil.hideProgressDialog();
+                        llStudentCourseSelection.setVisibility(View.VISIBLE);
+                        flSaveAndDownloadBtn.setVisibility(View.GONE);
+                        cvInfo.setVisibility(View.GONE);
                         cvAlertMsg.setVisibility(View.VISIBLE);
-                        String msg = "1.Selection of courses (subjects) is Pending; you can't change in selection of courses(subjects) \n" +
+                        String msg = "1.Selection of courses (subjects) is Pending.\n" +
                                 "2.Course verification date is locked.";
                         tvAlertMsg.setText(msg);
                     } else if (response.body().getTable().size() > 0) {
@@ -220,7 +225,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                         setStudentData(table.getStudName(), table.getProgramme(), table.getStudEnrollmentNo(), table.getStudAdmissionNo());
                         if (response.body().getDateConfigStatus().toString().equalsIgnoreCase("0")) {
                             cvAlertMsg.setVisibility(View.VISIBLE);
-                            String msg = "1.Selection of courses (subjects) is approved; you can't change in selection of courses(subjects) \n" +
+                            String msg = "1.Selection of courses (subjects) is approved.\n" +
                                     "2.Course verification date is locked.";
                             tvAlertMsg.setText(msg);
 
@@ -243,7 +248,7 @@ public class StudentCourseSelectionActivity extends AppCompatActivity implements
                         } else if (response.body().getDateConfigStatus().toString().equalsIgnoreCase("1") &&
                                 response.body().getAttApproveStatus().toString().equalsIgnoreCase("1")) {
                             cvAlertMsg.setVisibility(View.VISIBLE);
-                            String msg = "1.Selection of courses (subjects) is approved; you can't change in selection of courses(subjects).";
+                            String msg = "1.Selection of courses (subjects) is approved.";
                             tvAlertMsg.setText(msg);
 
                             llStudentCourseSelection.setVisibility(View.VISIBLE);

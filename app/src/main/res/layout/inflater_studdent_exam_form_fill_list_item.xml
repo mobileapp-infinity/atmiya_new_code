@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <com.infinity.infoway.atmiya.custom_class.TextViewRegularFont
             android:id="@+id/tvCourseName"

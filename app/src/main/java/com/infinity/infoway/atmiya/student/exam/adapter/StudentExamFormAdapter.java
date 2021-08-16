@@ -47,20 +47,22 @@ public class StudentExamFormAdapter extends RecyclerView.Adapter<StudentExamForm
         String courseName = "-";
         String courseCode = "-";
         if (isForConfiguration) {
-            if (CommonUtil.checkIsEmptyOrNullCommon(forConfigPojoArrayList.get(position).getPaperName())) {
+            if (!CommonUtil.checkIsEmptyOrNullCommon(forConfigPojoArrayList.get(position).getPaperName())) {
                 courseName = forConfigPojoArrayList.get(position).getPaperName() + "";
             }
             if (!CommonUtil.checkIsEmptyOrNullCommon(forConfigPojoArrayList.get(position).getPaperCode())) {
                 courseCode = forConfigPojoArrayList.get(position).getPaperCode() + "";
             }
         } else {
-            if (CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojoArrayList.get(position).getPaperName())) {
+            if (!CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojoArrayList.get(position).getPaperName())) {
                 courseName = studentExamFormFillListPojoArrayList.get(position).getPaperName() + "";
             }
             if (!CommonUtil.checkIsEmptyOrNullCommon(studentExamFormFillListPojoArrayList.get(position).getPaperCode())) {
                 courseCode = studentExamFormFillListPojoArrayList.get(position).getPaperCode() + "";
             }
         }
+        holder.tvCourseName.setText(courseName);
+        holder.tvCourseCode.setText(courseCode);
     }
 
     @Override
