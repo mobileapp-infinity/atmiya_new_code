@@ -1,6 +1,5 @@
 package com.infinity.infoway.atmiya.api;
 
-import retrofit2.Retrofit;
 
 public class Urls {
 
